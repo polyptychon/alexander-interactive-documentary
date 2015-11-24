@@ -8,20 +8,33 @@ body {
   text-align: center;
 }
 .title-icon {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 .logo {
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-top: ceil(-633px/2);
-  margin-left: ceil(-645px/2);
+  left: 0;
+  width: 100%;
+  margin-top: ceil(-733px/2);
+  //margin-left: ceil(-645px/2);
 }
 .lang-nav {
-  position: absolute;
-  bottom: 0;
+  margin-top: 120px;
+  bottom: 100px;
   width: 100%;
   .btn {
+    cursor: hand;
+    text-decoration: none;
+    display: block;
     width: 100%;
+    font-size: 18px;
+    padding: 15px 0;
+    border: 1px solid #b2b2a6;
+    border-left: none;
+    border-right: none;
+    color: #808178;
+    &:first-child {
+      border-bottom: none;
+    }
   }
 }
