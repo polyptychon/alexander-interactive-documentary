@@ -1,0 +1,20 @@
+- mainMenuActiveIndex = -1;
+- var title = "Σύνδεσμοι";
+doctype html
+html
+  head
+    include partials/header
+  body
+    include partials/header-body
+    section.content
+      h1
+        span.text-uppercase=title
+      .container
+        .row
+          .col-md-12
+            .content-html.links
+              - for (var i=0; i<20; i++)
+                a(href="#") Donec vestibulum nisi sit amet quam tincidunt malesuada.
+                br
+                
+    include partials/footer

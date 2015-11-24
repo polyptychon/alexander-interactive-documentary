@@ -1,0 +1,21 @@
+.filters {
+  .tag {
+    display: inline-block;
+    border: 1px solid $gray-light;
+    padding: 2px 8px;
+    margin: 4px;
+    border-radius: 2px;
+    color: $text-color;
+    min-height: 30px;
+    &:hover, &:focus {
+      background: white;
+      text-decoration: none;
+    }
+  }
+  .close-icon {
+    display: inline-block;
+    color: lighten($gray, 10%);
+    font-size: 10px;
+    margin: 0 0 0 4px;
+  }
+}

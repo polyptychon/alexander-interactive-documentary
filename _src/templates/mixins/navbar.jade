@@ -1,0 +1,23 @@
+- menus = [[ { label:'Μουσείο', href:'museum.html' }, { label:'Συλλογή', href:'collection.html' }, { label:'Επίσκεψη', href:'visit.html' }, { label:'Νέα', href:'news.html' }]]
+mixin navbar(options)
+  - options = options || {}
+  - classes = options.classes || ''
+  - activeIndex = options.activeIndex || 0
+  - id = options.id || 'top'
+  - menus = options.menus || menus
+  header.navbar(class=classes, id = id)
+    .navbar-header
+      a.navbar-brand(href='./' title="Βυζαντίνο Μουσείο Βέροιας") Βυζαντίνο Μουσείο Βέροιας
+
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.bs-navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    nav.collapse.navbar-collapse.bs-navbar-collapse.sub-navbar
+      each menu, index in menus
+        ul.nav.navbar-nav(class=menu.classes, id=menu.id)
+          each menuItem, index in menu
+            - menuItem.classes = menuItem.classes || 'active'
+            li(class=index==activeIndex?'active ':'')
+              a(href=menuItem.href, class=index==activeIndex?menuItem.classes:'')=menuItem.label

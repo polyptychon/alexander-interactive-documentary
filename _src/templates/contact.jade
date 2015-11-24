@@ -1,0 +1,45 @@
+- var mainMenuActiveIndex = -1;
+- var title = "Επικοινωνία";
+doctype html
+html(lang="en")
+  head
+    include partials/header
+  body
+    include partials/header-body
+    section.content
+      h1
+        span.text-uppercase=title
+      .container
+        .row
+          .col-md-8.col-md-offset-2.contact-form
+            header(style="text-align:center;")
+              h2 ΒΥΖΑΝΤΙΝΟ ΜΟΥΣΕΙΟ ΒΕΡΟΙΑΣ
+              p.
+                Αντ. Καμάρα 3<br>
+                (+30) 23310 92347<br>
+                <a href="#">cheimaria@yahoo.gr</a><br><br>
+                Ώρες εξυπηρέτησης κοινού 10:00 - 17:00<br>
+              hr
+            .screen-reader-response(role="alert") Προέκυψαν λάθη. Πρακαλούμε επιβεβαιώστε οτι όλα τα πεδία είναι συμπληρωμένα και προσπαθήστε ξανά.
+              ul
+                li Παρακαλούμε συμπληρώστε τα απαιτούμενα πεδία.
+            form(action="thank-you.html")
+              .row
+                .form-group.col-md-6
+                  label(for="name") Όνομα
+                  input.form-control(type="text" id="name")
+                .form-group.col-md-6
+                  label(for="email") E-mail
+                  input.form-control(type="text" id="email")
+                .form-group.col-md-12
+                  label(for="title") Τίτλος
+                  input.form-control(type="text" id="title")
+                .form-group.col-md-12
+                  label(for="body") Μήνυμα
+                  textarea.form-control(rows="4" cols="50" id="body")
+                .col-md-12
+                  .small.pull-left Είναι απαραίτητο να συμπληρώσετε όλα τα πεδία.
+                  button.btn.btn-primary.pull-right(type="submit") Αποστολή
+              .wpcf7-response-output.wpcf7-validation-errors(role="alert") Προέκυψαν λάθη. Πρακαλούμε επιβεβαιώστε οτι όλα τα πεδία είναι συμπληρωμένα και προσπαθήστε ξανά.
+                  
+    include partials/footer

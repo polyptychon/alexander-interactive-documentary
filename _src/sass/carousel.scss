@@ -1,0 +1,45 @@
+.carousel {
+  margin: 20px 0;
+  @media (max-width: $screen-sm-max) {
+    margin: 40px 0 20px;
+  }
+  .carousel-inner {
+    height: 640px;
+  }
+  .item-image {
+    display: block;
+    background-color: white;
+    height: 595px;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    @media (max-width: $screen-xs) {
+      height: 580px;
+    }
+    img {
+      opacity: 0;
+    }
+  }
+  .carousel-control {
+    background: $brand-primary;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    padding: 8px;
+    margin-top: -40px;
+    .glyphicon {
+      margin: 0;
+    }
+  }
+  .carousel-caption {
+    bottom: -3em;
+    padding: 0;
+    color: $text-color;
+    text-shadow: none;
+    @media (max-width: $screen-sm) {
+      margin-top: 5px;
+      position: static;
+    }
+  }
+}

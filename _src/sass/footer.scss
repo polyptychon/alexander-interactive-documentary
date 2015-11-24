@@ -1,0 +1,52 @@
+footer {
+  background: $brand-success;
+  padding: 40px 0;
+  .footer-item {
+    @extend .col-md-3;
+  }
+  hr {
+    border-top: 1px dotted $brand-primary;
+  }
+  h3 {
+    @extend .h4;
+  }
+  p {
+    @extend .footer_text;
+  }
+  a:hover {
+    color: $brand-primary;
+  }
+  .social-icons {
+    .glyphicon {
+      margin-right: 5px;
+    }
+    .text {
+      display: none;
+    }
+  }
+  .form-inline {
+    label {
+      @extend .footer_text;
+      font-weight: normal;
+    }
+    input.form-control {
+      background: $link-hover-color;
+      border-color: transparent;
+      width: auto;
+      width: calc(100% - 34px);
+      display: inline-block;
+    }
+    .btn-default {
+      border-color: transparent;
+      background: $brand-primary;
+      display: inline-block;
+      .text {
+        display: none;
+      }
+      &:hover, &:focus {
+        border-color: transparent;
+        background: darken($link-hover-color, 10%);
+      }
+    }
+  }
+}

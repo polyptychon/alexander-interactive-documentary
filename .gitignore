@@ -1,10 +1,6 @@
 .idea
 .DS_Store
-_mockups
-_src
 builds
 node_modules
-.env
-gulpfile.js
-package.json
-README.md
+*.html
+assets

@@ -1,0 +1,14 @@
+mixin button-dropdown (options)
+  - options = options || {}
+  - label = options.label || 'Action'
+  - className = options.className || 'btn-default'
+  - menuItems = options.menuItems || []
+
+  .btn-group
+    button.dropdown-toggle(type="button", class="btn #{className}", data-toggle="dropdown")= label
+      span.caret
+
+    ul.dropdown-menu(role="menu")
+      each item in menuItems
+        li
+          a(href="#")= item

@@ -1,0 +1,60 @@
+include mixins/pagination
+- var mainMenuActiveIndex = 1;
+- var title = "Συλλογή";
+- var collection = [{title:'Αμφιπρόσωπη εικόνα με τον άγιο Γεώργιο και τον άγιο Ανδρέα'}, {title:'Παναγία Γλυκοφιλούσα (Πελαγονίτισσα)'}, {title:'«Παρέστη η βασίλισσα εκ δεξιών σου…»'}, {title:'Αμφιρόσωπη εικόνα με την Παναγία Οδηγήτρια και την Παναγία Οδηγήτρια την "Παμμακάριστο"'}, {title:'Επιτύμβια ενεπίγραφη πλάκα που αναφέρεται στον κόμη Φατάλιο, τη σύζυγό του Κελερίνη και τον εγγονό του Σιλβανό, 492 μ.Χ.'}, {title: 'Μαρμάρινος μετρητής υγρών'}, {title: 'Απορρίμματα  κεραμικού εργαστηρίου'}, {title: 'Ψηφιδωτό δάπεδο από το νάρθηκα της παλαιοχριστιανικής βασιλικής του οικοπέδου Πορφύρη'}]
+doctype html
+html(lang="en")
+  head
+    include partials/header
+  body
+    include partials/header-body
+    section.content
+      h1
+        span.text-uppercase=title
+      .container
+        .row
+          .collection-search.open
+            form(action="#")
+              .form-group.search-input
+                label(for="search-input") Αναζήτηση
+                .input-group
+                  a.input-group-addon.btn.btn-default.toggle-filters(title="Open filters Panel")
+                    .glyphicon.glyphicon-filter
+                  input.form-control(type="text" id="search-input" placeholder="Αναζήτηση")
+              .form-group.search-btn
+                button.btn.btn-primary.pull-right(type="submit") Αναζήτηση
+            .collection-filters
+              .collection-filters-row
+                .collection-filter
+                  select.form-control(placeholder="Chronologies")
+                    option(value="")
+                .collection-filter
+                  select.form-control(placeholder="Dimensions")
+                    option(value="")
+                .collection-filter
+                  select.form-control(placeholder="Materials")
+                    option(value="")
+                .collection-filter
+                  select.form-control(placeholder="Origins")
+                    option(value="")
+                .collection-filter
+                  select.form-control(placeholder="Types")
+                    option(value="")
+            .col-xs-12
+              p.filters Active Filters:&nbsp;
+                span.tag ξύλο
+                  a(href="javascript" class="close-icon")
+                    span.glyphicon.glyphicon-remove
+                span.tag μάρμαρο
+                  a(href="javascript" class="close-icon")
+                    span.glyphicon.glyphicon-remove
+          .collection-list
+            - var i=1;
+            each item in collection
+              a.collection-list-item(href="collection-details.html")
+                img(src="assets/images/c00#{i}.jpg" width="263" height="140" alt="c00#{i}.jpg")
+                h2=item.title
+              - i = i==6?1:i+1;
+        .pagination-container
+          +pagination()
+    include partials/footer

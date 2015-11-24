@@ -1,0 +1,38 @@
+.content .categories {
+  margin-bottom: 10px;
+  & > a {
+    @extend .category_tag;
+  }
+}
+.news {
+  header {
+    margin-bottom: 0;
+  }
+  .meta {
+    margin-bottom: 10px;
+    font-size: 13px;
+    .date {
+      & > a {
+        @extend .category_tag;
+      }
+    }
+    .date:after {
+      content: "|";
+      margin: 0 .5em;
+    }
+    .categories {
+      color: $brand-primary;
+      & > a {
+        @extend .category_tag;
+      }
+    }
+  }
+  .navigation {
+    color: $brand-primary;
+  }
+  .back-to-list, .previous, .next {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

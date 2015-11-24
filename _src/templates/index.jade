@@ -1,0 +1,72 @@
+- var mainMenuActiveIndex = -1;
+- var links = [{img:"img001.jpg", text:"ΓΝΩΡΙΣΤΕ ΤΗΝ ΙΣΤΟΡΙΑ ΤΟΥ ΜΟΥΣΕΙΟΥ"}, {img:"img002.jpg", text:"ΕΞΕΡΕΥΝΗΣΤΕ ΤΗ ΣΥΛΛΟΓΗ ΤΟΥ ΜΟΥΣΕΙΟΥ"}, {img:"img003.jpg", text:"ΕΝΗΜΕΡΩΘΕΙΤΕ ΓΙΑ ΤΑ ΕΚΠΑΙΔΕΥΤΙΚΑ ΜΑΣ ΠΡΟΓΡΑΜΜΑΤΑ"}]
+- var news = ["Περιοδική έκθεση \"Παναγία μου\" στο Βυζαντινό Μουσείο Βέροιας από το Δεκέμβριο του 2013", "Εγκαίνια Βυζαντινού Μουσείου", "Σημεία ελευθερίας, Βέροια 1912-2012 του Χρήστου Μποκόρου"]
+doctype html
+html(lang="en")
+  head
+    include partials/header
+  body
+    include partials/header-body
+    .home-fold-image(style="background-image: url(assets/images/header.jpg)")
+    .container
+      section.internal-links
+        .row.clear-margins
+          each item in links
+            .image-container
+              .ih-item.square.effect13.bottom_to_top
+                a.trigger(href="javascript:")
+                  .img
+                    img(src="assets/images/#{item.img}" alt="img")
+                  .info
+                    h3 !{item.text}
+                    .more Περισσότερα
+
+      section.home-news
+        .col-md-12
+          header
+            h2 Τελευταία Νέα
+          ul
+            each item in news
+              li
+                h3
+                  a(href="news-details.html")=item
+                .meta
+                  span.date 15 MAΪΟΥ 2015
+                  span.categories
+                    a(href="#") ΚΑΤΗΓΟΡΙΑ
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac leo porttitor, interdum tellus eget, viverra erat. Praesent vitae ligula quis enim ornare ultricies. Donec vestibulum nisi ...
+        a.home-more.more-news(href="news.html") Περισσότερα Νέα &nbsp;<span class="glyphicon icon-link-arrow-right"></span>
+
+    section.home-visit
+      .container
+        .row.clear-margins
+          .home-visit-card
+            h3.text-uppercase
+              span ΩΡΑΡΙΟ ΛΕΙΤΟΥΡΓΙΑΣ
+            .home-visit-card-text
+              .icon
+                span.clock-icon.glyphicon
+              .text
+                p Καθημερινά <br>08.00 - 20.00
+          .home-visit-card
+            h3.text-uppercase
+              span ΕΙΣΙΤΗΡΙΟ
+            .home-visit-card-text
+              .icon
+                span.ticket-icon.glyphicon
+              .text
+                p Ολόκληρο €8<br> Μειωμένο €4
+          .home-visit-card
+            h3.text-uppercase
+              span ΠΡΟΣΒΑΣΗ
+            .home-visit-card-text
+              .icon
+                span.pin-icon.glyphicon
+              .text
+                p Για την προσβασή σας στο Μουσείο δείτε το&nbsp;
+                  a(href="#") χάρτη.
+          .home-visit-card.visible-lg
+            .home-visit-card-image
+              img(src="assets/images/museum-edited.png" alt="Museum")
+
+    include partials/footer
