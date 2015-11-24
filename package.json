@@ -1,8 +1,8 @@
 {
-  "name": "veroia",
+  "name": "alexander-interactive-documentary",
   "version": "0.1.0",
   "description": "veroia.gr",
-  "homepage": "https://github.com/polyptychon/veroia",
+  "homepage": "https://github.com/polyptychon/alexander-interactive-documentary",
   "bugs": "",
   "main": "src/coffee/main.coffee",
   "author": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/polyptychon/veroia"
+    "url": "https://github.com/polyptychon/alexander-interactive-documentary"
   },
   "browserify": {
     "transform": [
