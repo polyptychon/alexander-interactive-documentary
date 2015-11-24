@@ -9,6 +9,9 @@ body {
 }
 .title-icon {
   margin-top: 100px;
+  @media (max-width: 700px) {
+    display: none;
+  }
 }
 .logo {
   position: absolute;
@@ -17,11 +20,18 @@ body {
   width: 100%;
   margin-top: ceil(-733px/2);
   //margin-left: ceil(-645px/2);
+  @media (max-height: 740px) {
+    position: static;
+    margin-top: 30px;
+  }
 }
 .lang-nav {
   margin-top: 120px;
   bottom: 100px;
   width: 100%;
+  @media (max-height: 520px) {
+    margin-top: 70px;
+  }
   .btn {
     cursor: hand;
     text-decoration: none;
@@ -35,6 +45,10 @@ body {
     color: #808178;
     &:first-child {
       border-bottom: none;
+    }
+    &:hover {
+      background: rgba(black, .2);
+      color: #63635c;
     }
   }
 }
