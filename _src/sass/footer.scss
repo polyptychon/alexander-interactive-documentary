@@ -1,5 +1,5 @@
 footer {
-  $button-width: 117px;
+  $button-width: 114px;
   $menus-distance: 20px;
 
   position: absolute;
@@ -39,13 +39,13 @@ footer {
     color: #a8a89d;
     font-size: 13px;
     background: $text-color;
-    display: inline-block;
+    display: block;
+    float: left;
     padding: 6px 0;
-    position: relative;
-    top: -13px;
     width: $button-width;
     text-align: center;
     &.btn-library {
+      float: right;
       background: #a7a79c;
       color: $text-color;
     }
