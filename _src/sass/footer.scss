@@ -6,6 +6,7 @@ footer {
   background: #93938a;
   height: 34px;
   overflow: hidden;
+  color: $text-color;
   a {
     color: $text-color;
   }
@@ -33,7 +34,7 @@ footer {
   .btn-footer {
     color: #a8a89d;
     font-size: 13px;
-    background: #585852;
+    background: $text-color;
     display: inline-block;
     padding: 6px 40px;
     position: relative;
@@ -42,7 +43,7 @@ footer {
   }
   .btn-library {
     background: #a7a79c;
-    color: #585852;
+    color: $text-color;
   }
   .facebook-icon, .twitter-icon {
     margin-bottom: -.4em;
