@@ -1,5 +1,6 @@
-$font-primary: "ProximaNova-Light", Arial, 'sans-serif';
-$font-secondary: "ProximaNova-Light", Arial, 'sans-serif';
+@import "fonts";
+$font-primary: "ProximaNova", Arial, 'sans-serif';
+$font-secondary: "ProximaNova", Arial, 'sans-serif';
 $border-radius-base: 0;
 
 $input-border-focus: $brand-primary;
