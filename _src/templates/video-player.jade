@@ -4,7 +4,7 @@ html(lang="en")
     include partials/header
   body(style="background-image: url('assets/images/hades.jpg')")
     .video-player-controls
-      .btn.chapters-btn
+      a.btn.chapters-btn(href="#")
         .dots
           span.glyphicon.dot
           span.glyphicon.dot
@@ -13,4 +13,13 @@ html(lang="en")
           span.glyphicon.dot
         span CHAPTERS
       .progress-bar
+        .bar-container
+          .bar-bg
+          .bar-progress
+            .bar-progress-control
+      .player-buttons
+        a.mute-btn(href="#")
+          span.glyphicon.speaker-icon
+        hr
+        a.subs-btn(href="#") CC
     include partials/footer
