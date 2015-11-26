@@ -1,4 +1,7 @@
 footer {
+  $button-width: 117px;
+  $menus-distance: 20px;
+
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -12,13 +15,13 @@ footer {
   }
   .social {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: $menus-distance;
   }
   .footer-menu {
-    margin-left: 20px;
+    margin-left: $menus-distance;
   }
   .footer-description {
-    width: calc( 100% - (117px * 2) - 34px );
+    width: calc( 100% - (#{$button-width} * 2) - 34px );
     padding: 5px 15px;
     text-align: center;
     display: inline-block;
@@ -32,18 +35,20 @@ footer {
     margin-right: 5px;
   }
   .btn-footer {
+    $horizontal-padding: 80px;
     color: #a8a89d;
     font-size: 13px;
     background: $text-color;
     display: inline-block;
-    padding: 6px 40px;
+    padding: 6px 0;
     position: relative;
     top: -13px;
-    width: 117px - 80px;
-  }
-  .btn-library {
-    background: #a7a79c;
-    color: $text-color;
+    width: $button-width;
+    text-align: center;
+    &.btn-library {
+      background: #a7a79c;
+      color: $text-color;
+    }
   }
   .facebook-icon, .twitter-icon {
     margin-bottom: -.4em;
