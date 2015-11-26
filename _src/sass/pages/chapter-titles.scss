@@ -1,0 +1,18 @@
+header.bottom {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  h1 {
+    color: #b2b19f;
+    font-size: 55px;
+    margin-bottom: 10px;
+  }
+  hr {
+    border-width: 1px;
+    border-bottom-color: #b2b19f;
+  }
+  h2 {
+    color: #b2b19f;
+    font-size: 18px;
+  }
+}
