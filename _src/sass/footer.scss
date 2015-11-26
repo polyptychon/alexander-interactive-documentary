@@ -1,52 +1,51 @@
 footer {
-  background: $brand-success;
-  padding: 40px 0;
-  .footer-item {
-    @extend .col-md-3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  background: #93938a;
+  height: 34px;
+  overflow: hidden;
+  a {
+    color: $text-color;
   }
-  hr {
-    border-top: 1px dotted $brand-primary;
+  .social {
+    display: inline-block;
+    margin-right: 20px;
   }
-  h3 {
-    @extend .h4;
+  .footer-menu {
+    margin-left: 20px;
   }
-  p {
-    @extend .footer_text;
+  .footer-description {
+    width: calc( 100% - (117px * 2) - 34px );
+    padding: 5px 15px;
+    text-align: center;
+    display: inline-block;
+    @include text-ellipsis();
   }
-  a:hover {
-    color: $brand-primary;
+  .copyright {
+    font-size: 11px;
   }
-  .social-icons {
-    .glyphicon {
-      margin-right: 5px;
-    }
-    .text {
-      display: none;
-    }
+  .logo-small-icon {
+    margin-bottom: -.5em;
+    margin-right: 5px;
   }
-  .form-inline {
-    label {
-      @extend .footer_text;
-      font-weight: normal;
-    }
-    input.form-control {
-      background: $link-hover-color;
-      border-color: transparent;
-      width: auto;
-      width: calc(100% - 34px);
-      display: inline-block;
-    }
-    .btn-default {
-      border-color: transparent;
-      background: $brand-primary;
-      display: inline-block;
-      .text {
-        display: none;
-      }
-      &:hover, &:focus {
-        border-color: transparent;
-        background: darken($link-hover-color, 10%);
-      }
-    }
+  .btn-footer {
+    color: #a8a89d;
+    font-size: 13px;
+    background: #585852;
+    display: inline-block;
+    padding: 6px 40px;
+    position: relative;
+    top: -13px;
+    width: 117px - 80px;
+  }
+  .btn-library {
+    background: #a7a79c;
+    color: #585852;
+  }
+  .facebook-icon, .twitter-icon {
+    margin-bottom: -.4em;
+    margin-right: 5px;
   }
 }

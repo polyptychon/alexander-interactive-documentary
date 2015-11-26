@@ -90,7 +90,7 @@ $pathToFonts : '../fonts/';
 @import "sprites";
 @import "icons";
 
-//@import "footer";
+@import "footer";
 //@import "header";
 
 //@import "breadcrumb";
@@ -101,7 +101,7 @@ $pathToFonts : '../fonts/';
 //@import "contact-form";
 //@import "filters";
 
-@import "pages/home";
+@import "pages/splash";
 @import "pages/default-page";
 
 
