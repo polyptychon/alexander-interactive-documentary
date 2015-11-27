@@ -31,3 +31,45 @@ header.bottom.intro {
     padding: 10px 0;
   }
 }
+.chapters-intro {
+  display: none;
+  position: absolute;
+  top: 0;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(black, .7);
+  h1 {
+    color: #a7a79c;
+    margin-top: -70px;
+  }
+  .chapters-intro-container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .chapters {
+    margin: 0;
+    padding: 0;
+    a {
+      display: inline-block;
+      width: 100%;
+      color: #a7a79c;
+      padding: 15px 0;
+      border-bottom: 1px solid #808079;
+      &:hover {
+        background: rgba(#221e1a, .6);
+      }
+    }
+    li:first-child a {
+      border-top: 1px solid #808079;
+    }
+  }
+}
+.show-chapters-intro {
+  .intro {
+    display: none;
+  }
+  .chapters-intro {
+    display: table;
+  }
+}
