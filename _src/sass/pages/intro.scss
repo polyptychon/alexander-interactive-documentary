@@ -4,27 +4,29 @@ header.bottom.intro {
     margin-bottom: 50px;
   }
 }
-.play-documentary-btn, .chapters-btn, .archive-btn {
-  color: #a7a79c;
-  font-size: 18px;
-  width: 100%;
-  display: block;
-  padding: 20px 0;
-  border: 1px solid #a7a79c;
-  border-left: none;
-  border-right: none;
-  &:hover {
+.intro {
+  .play-documentary-btn, .chapters-btn, .archive-btn {
     color: #a7a79c;
-    background: rgba(#221e1a, .5);
+    font-size: 18px;
+    width: 100%;
+    display: block;
+    padding: 20px 0;
+    border: 1px solid #a7a79c;
+    border-left: none;
+    border-right: none;
+    &:hover {
+      color: #a7a79c;
+      background: rgba(#221e1a, .5);
+    }
   }
-}
-.chapters-btn, .archive-btn {
-  border-top: none;
-  width: 50%;
-  float: left;
-  padding: 10px 0;
-}
-.archive-btn {
-  border-left: 1px solid #a7a79c;
-  margin-left: -1px;
+  .archive-btn {
+    border-left: 1px solid #a7a79c;
+    margin-left: -1px;
+  }
+  .chapters-btn, .archive-btn {
+    border-top: none;
+    width: 50%;
+    float: left;
+    padding: 10px 0;
+  }
 }
