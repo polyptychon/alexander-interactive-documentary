@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
   head
     include partials/header
-  body.show-chapters(style="background-image: url('assets/images/alexander.jpg')")
+  body(style="background-image: url('assets/images/alexander.jpg')")
     .chapter-title
       .chapter-gradient.light
       header.bottom.intro
@@ -12,6 +12,7 @@ html(lang="en")
         a.btn.chapters-btn(href="#") CHAPTERS
         a.btn.archive-btn(href="#") MEDIA ARCHIVE
     .chapters-intro
+      a.back(href="#") BACK
       .chapters-intro-container
         h1 CHAPTERS
         ul.chapters
