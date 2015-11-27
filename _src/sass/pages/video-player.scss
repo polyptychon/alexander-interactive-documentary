@@ -46,11 +46,30 @@
     height: 100%;
     display: inline-block;
     padding: 0 30px;
-    .bar-container {
+    .container {
       width: calc(100% - 60px);
-      height: 1px;
+      height: 50%;
       position: absolute;
+      top: 0;
+    }
+    .related-container {
+      height: 30%;
+    }
+    .bar-container {
       top: 50%;
+      height: 20%;
+    }
+    .info-container {
+      top: 60%;
+      height: 40%;
+      font-size: 11px;
+      .chapter-info {
+        float: left;
+      }
+      .duration-info {
+        float: right;
+        color: #9d9d93;
+      }
     }
     .bar-progress, .bar-bg {
       position: absolute;
@@ -61,15 +80,9 @@
     .bar-bg {
       background: #d2d1c2;
     }
-    .related-container {
-      width: calc(100% - 60px);
-      height: 50%;
-      position: absolute;
-      top: 0;
-    }
     .related-items {
       position: absolute;
-      top: 0;
+      top: 30%;
       left: 0;
       width: 100%;
       height: 100%;
