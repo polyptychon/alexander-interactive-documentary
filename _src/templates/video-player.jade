@@ -3,32 +3,34 @@ html(lang="en")
   head
     include partials/header
   body(style="background-image: url('assets/images/hades.jpg')")
-    .video-player-controls
-      a.btn.chapters-btn(href="#")
-        .dots
-          span.glyphicon.dot
-          span.glyphicon.dot
-          span.glyphicon.dot
-          span.glyphicon.dot
-          span.glyphicon.dot
-        span CHAPTERS
-      .progress-bar
-        .container.related-container
-          .related-items
-            .related-item(style="left:10%;")
-            .related-item(style="left:17%;")
-            .related-item(style="left:20%;")
-            .related-item(style="left:50%;")
-        .container.bar-container
-          .bar-bg
-          .bar-progress
-            .bar-progress-control
-        .container.info-container
-          .chapter-info 1 - CHAPTER TITLE
-          .duration-info 07:06 | 32:46
-      .player-buttons
-        a.mute-btn(href="#")
-          span.glyphicon.speaker-icon
-        hr
-        a.subs-btn(href="#") CC
-    include partials/footer
+    .player-footer-container
+      .video-player-controls
+        a.btn.chapters-btn(href="#")
+          .dots
+            span.glyphicon.dot
+            span.glyphicon.dot
+            span.glyphicon.dot
+            span.glyphicon.dot
+            span.glyphicon.dot
+          span CHAPTERS
+        .progress-bar
+          .container.related-container
+            .related-items
+              .related-item(style="left:10%;")
+              .related-item(style="left:17%;")
+              .related-item(style="left:20%;")
+              .related-item(style="left:50%;")
+          .container.bar-container
+            .bar-bg
+            .bar-progress
+              .bar-progress-control
+          .container.info-container
+            .chapter-info 1 - CHAPTER TITLE
+            .duration-info 07:06 | 32:46
+        .player-buttons
+          a.mute-btn(href="#")
+            span.glyphicon.speaker-icon
+          hr
+          a.subs-btn(href="#") CC
+      a.btn.related-items-btn(href="#") RELATED VIDEOS (NUMBER)
+      include partials/footer
