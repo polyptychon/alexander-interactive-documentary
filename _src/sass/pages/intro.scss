@@ -7,7 +7,7 @@ header.bottom.intro {
 .intro {
   .play-documentary-btn, .chapters-btn, .archive-btn {
     color: #a7a79c;
-    font-size: 18px;
+    font-size: 22px;
     width: 100%;
     display: block;
     padding: 20px 0;
@@ -24,6 +24,7 @@ header.bottom.intro {
     margin-left: -1px;
   }
   .chapters-btn, .archive-btn {
+    font-size: 16px;
     border-top: none;
     width: 50%;
     float: left;
