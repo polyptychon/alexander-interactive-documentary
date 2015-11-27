@@ -3,9 +3,10 @@ html(lang="en")
   head
     include partials/header
   body(style="background-image: url('assets/images/stone-light.jpg')")
-    .chapter-gradient
-    header.bottom.chapter-title
-      h1 CHAPTER TITLE
-      hr
-      h2 CHAPTER NUMBER
-    include partials/footer
+    .chapter-title
+      .chapter-gradient
+      header.bottom
+        h1 CHAPTER TITLE
+        hr
+        h2 CHAPTER NUMBER
+      include partials/footer
