@@ -61,13 +61,36 @@
     .bar-bg {
       background: #d2d1c2;
     }
+    .related-container {
+      width: calc(100% - 60px);
+      height: 50%;
+      position: absolute;
+      top: 0;
+    }
+    .related-items {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      .related-item {
+        position: absolute;
+        top: 50%;
+        width: 4px;
+        height: 4px;
+        margin-top: -2px;
+        margin-left: -2px;
+        border-radius: 50%;
+        background: #a72428;
+      }
+    }
     .bar-progress {
       width: 50%;
       background: #a72428;
       .bar-progress-control {
         position: absolute;
         top: -3px;
-        right: -3px;
+        right: -4px;
         background: #a72428;
         border-radius: 50%;
         width: 8px;
