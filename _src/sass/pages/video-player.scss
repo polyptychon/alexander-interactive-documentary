@@ -20,16 +20,19 @@
   }
   &.mini {
     bottom: -122px;
+    .chapters {
+      display: none !important;
+    }
     & {
       .video-player-controls {
-        .chapters-btn, .player-buttons {
-          width: 0;
-          overflow: hidden;
+        .chapters-btn, .player-buttons, .info-container, .related-items {
+          display: none;
         }
         .progress-bar {
           padding: 0;
           width: 100%;
-          .bar-container {
+          width: calc(100% - 1px);
+          .bar-container, .related-container {
             width: 100%;
             top: 0;
             .bar-bg, .bar-progress, .bar-progress-control {
@@ -38,9 +41,6 @@
             .bar-progress-control {
               top: 0;
             }
-          }
-          .info-container, .related-items {
-            display: none;
           }
         }
       }

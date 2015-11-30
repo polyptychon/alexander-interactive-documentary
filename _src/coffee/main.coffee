@@ -18,8 +18,6 @@ $('.chapters .back').bind('click', (e)->
   e.stopImmediatePropagation()
   return false
 )
-#$('body').bind('click', (e)->
-#  $('.player-footer-container').toggleClass('mini')
-#  e.stopImmediatePropagation()
-#  return false
-#)
+$('body').bind('click', (e)->
+  $('.player-footer-container').toggleClass('mini')
+)
