@@ -47,6 +47,9 @@
     }
   }
   &.compact {
+    .chapters {
+      display: none !important;
+    }
     .related-items-btn {
       display: none;
     }
