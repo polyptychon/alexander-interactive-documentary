@@ -172,7 +172,7 @@
         color: #a7a79c;
         padding: 15px 0;
         border-bottom: 1px solid #b2b2a6;
-        &:hover {
+        &:hover, &.active {
           color: #a72428;
         }
       }
