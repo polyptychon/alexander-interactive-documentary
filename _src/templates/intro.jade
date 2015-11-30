@@ -11,11 +11,11 @@ html(lang="en")
         a.btn.play-documentary-btn(href="chapter-title.html") PLAY DOCUMENTARY
         a.btn.chapters-btn(href="#") CHAPTERS
         a.btn.archive-btn(href="#") MEDIA ARCHIVE
-    .chapters-intro
+    .chapters.intro
       a.back(href="#") BACK
-      .chapters-intro-container
+      .chapters-container
         h1 CHAPTERS
-        ul.chapters
+        ul
           each item in [1,2,3,4,5,6,7]
             li
               a(href="#") #{item} - CHAPTER TITLE

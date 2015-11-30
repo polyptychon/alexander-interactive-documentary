@@ -152,3 +152,30 @@
     }
   }
 }
+.video-player-controls {
+  .chapters {
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: #f2f0e6;
+    padding-bottom: 40px;
+    ul {
+      margin: 0;
+      padding: 20px;
+      list-style: none;
+      text-align: center;
+      a {
+        display: inline-block;
+        width: 100%;
+        color: #a7a79c;
+        padding: 15px 0;
+        border-bottom: 1px solid #b2b2a6;
+        &:hover {
+          color: #a72428;
+        }
+      }
+    }
+  }
+}

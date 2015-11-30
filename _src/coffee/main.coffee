@@ -8,9 +8,13 @@ require "bootstrap/assets/javascripts/bootstrap/dropdown"
 require "bootstrap/assets/javascripts/bootstrap/collapse"
 require "bootstrap/assets/javascripts/bootstrap/carousel"
 
-$('.chapters-btn').bind('click', ()->
+$('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
+  e.stopImmediatePropagation()
+  return false
 )
-$('.chapters-intro .back').bind('click', ()->
+$('.chapters .back').bind('click', (e)->
   $('body').toggleClass('show-chapters')
+  e.stopImmediatePropagation()
+  return false
 )

@@ -31,7 +31,7 @@ header.bottom.intro {
     padding: 10px 0;
   }
 }
-.chapters-intro {
+.chapters.intro {
   display: none;
   position: absolute;
   top: 0;
@@ -51,11 +51,11 @@ header.bottom.intro {
     color: #a7a79c;
     margin-top: -70px;
   }
-  .chapters-intro-container {
+  .chapters-container {
     display: table-cell;
     vertical-align: middle;
   }
-  .chapters {
+  ul {
     margin: 0;
     padding: 0;
     a {
@@ -77,7 +77,7 @@ header.bottom.intro {
   .intro {
     display: none;
   }
-  .chapters-intro {
+  .chapters {
     display: table;
   }
 }
