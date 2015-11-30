@@ -1,3 +1,6 @@
+.chapters, .player-footer-container {
+  transition: all .4s ease-out
+}
 .player-footer-container {
   $button-width: 113px;
 
@@ -14,6 +17,34 @@
     bottom: 34px;
     color: $text-color;
     background: #d1d1c5;
+  }
+  &.mini {
+    bottom: -122px;
+    & {
+      .video-player-controls {
+        .chapters-btn, .player-buttons {
+          width: 0;
+          overflow: hidden;
+        }
+        .progress-bar {
+          padding: 0;
+          width: 100%;
+          .bar-container {
+            width: 100%;
+            top: 0;
+            .bar-bg, .bar-progress, .bar-progress-control {
+              height: 4px;
+            }
+            .bar-progress-control {
+              top: 0;
+            }
+          }
+          .info-container, .related-items {
+            display: none;
+          }
+        }
+      }
+    }
   }
   &.compact {
     .related-items-btn {
@@ -108,7 +139,7 @@
       }
     }
     .progress-bar {
-      position: relative;
+      position: absolute;
       background: #f2f0e6;
       width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - 61px);
       margin-left: 1px;
@@ -205,7 +236,6 @@
       }
     }
     .chapters {
-      transition: all .4s ease-out;
       display: table;
       position: absolute;
       width: 100%;
