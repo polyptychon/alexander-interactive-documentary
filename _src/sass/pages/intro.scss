@@ -81,6 +81,7 @@ header.bottom.intro {
     display: none;
   }
   .chapters {
+    bottom: 0 !important;
     display: table !important;
   }
 }

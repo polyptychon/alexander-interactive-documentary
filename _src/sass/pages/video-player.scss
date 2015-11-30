@@ -205,11 +205,12 @@
       }
     }
     .chapters {
-      display: none;
+      transition: all .5s ease-out;
+      display: table;
       position: absolute;
       width: 100%;
       left: 0;
-      bottom: 0;
+      bottom: -460px;
       background: #f2f0e6;
       padding-bottom: 40px;
       ul {
