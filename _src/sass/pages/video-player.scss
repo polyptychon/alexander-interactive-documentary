@@ -60,7 +60,7 @@
         display: block;
       }
       .progress-bar {
-        width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - (61px + 50px));
+        width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - (61px + 57px));
         .chapter-info {
           display: none;
         }
@@ -72,7 +72,7 @@
         }
       }
       .player-buttons {
-        width: ceil($button-width/2 +40px);
+        width: ceil($button-width/2 +47px);
         .mute-btn, .subs-btn, hr {
           display: inline-block;
           width: 21px;
