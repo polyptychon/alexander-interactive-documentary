@@ -19,5 +19,5 @@ $('.chapters .back').bind('click', (e)->
   return false
 )
 $('body').bind('click', (e)->
-  $('.player-footer-container').toggleClass('mini')
+#  $('.player-footer-container').toggleClass('mini')
 )
