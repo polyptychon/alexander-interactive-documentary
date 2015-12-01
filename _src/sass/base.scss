@@ -39,3 +39,16 @@ a {
     color: $link-active-color;
   }
 }
+.center-img {
+  position: relative;
+  width: 160px;
+  height: 94px;
+  overflow: hidden;
+  img {
+    width: 160px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}

@@ -18,6 +18,11 @@ $('.chapters .back').bind('click', (e)->
   e.stopImmediatePropagation()
   return false
 )
+$('.related-items-btn').bind('click', (e)->
+  $('.player-footer-container').toggleClass('open-related-items')
+  e.stopImmediatePropagation()
+  return false
+)
 $('body').bind('click', (e)->
-#  $('.player-footer-container').toggleClass('mini')
+#  $('.player-footer-container').toggleClass('open-related-items')
 )
