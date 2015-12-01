@@ -25,13 +25,20 @@
     }
     &.completed {
       .video-player-controls {
-        .chapters-btn, .player-buttons, .info-container, .related-items {
+        .chapters-btn, .player-buttons, .info-container {
           display: none;
         }
         .progress-bar {
           padding: 0;
           margin: 0;
           width: 100%;
+          .related-items {
+            top: -4px;
+            .related-item {
+              background: transparent;
+            }
+
+          }
           .bar-container, .related-container {
             width: 100%;
             top: 0;
