@@ -207,6 +207,7 @@
           border-radius: 50%;
           background: #a72428;
           .related-item-popup {
+            //display: none;
             position: absolute;
             transform: translate(-50%, 0);
             bottom: 16px;
