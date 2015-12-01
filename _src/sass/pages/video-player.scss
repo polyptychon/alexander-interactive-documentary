@@ -67,9 +67,7 @@
   }
   &.mini {
     bottom: -122px;
-    .chapters {
-      display: none !important;
-    }
+    
     &.completed {
       .video-player-controls {
         .chapters-btn, .player-buttons, .info-container {

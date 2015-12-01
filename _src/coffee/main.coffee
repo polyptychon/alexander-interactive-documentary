@@ -24,5 +24,7 @@ $('.related-items-btn').bind('click', (e)->
   return false
 )
 $('body').bind('click', (e)->
-#  $('.player-footer-container').toggleClass('open-related-items')
+  $('body').removeClass('show-chapters')
+  $('.player-footer-container').removeClass('open-related-items')
+  $('.player-footer-container').toggleClass('mini')
 )
