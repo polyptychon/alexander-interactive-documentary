@@ -217,8 +217,21 @@
               margin-left: -5px;
               transform: rotate(45deg);
             }
+            .img {
+              position: relative;
+              width: 160px;
+              height: 94px;
+              overflow: hidden;
+              img {
+                width: 160px;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+              }
+            }
             .info {
-              padding: 0 5px;
+              padding: 5px 5px 0 5px;
               font-size: 11px;
               text-align: center;
               width: 150px;
