@@ -9,11 +9,8 @@ html(lang="en")
 
         a.btn.chapters-btn(href="#")
           .dots
-            span.glyphicon.dot
-            span.glyphicon.dot
-            span.glyphicon.dot
-            span.glyphicon.dot
-            span.glyphicon.dot
+            each item in [1,2,3,4,5]
+              span.glyphicon.dot
           span CHAPTERS
         .progress-bar
           .progress-bar-container
