@@ -104,7 +104,7 @@
     .chapters {
       display: none !important;
     }
-    .related-items-btn {
+    .related-items-container {
       display: none;
     }
     .video-player-controls {
@@ -117,7 +117,7 @@
         display: block;
       }
       .progress-bar {
-        width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - (61px + 57px));
+        width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - 58px);
         .chapter-info {
           display: none;
         }
