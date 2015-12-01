@@ -148,14 +148,17 @@
         }
       }
     }
+    .progress-bar-container {
+      padding: 0 30px;
+    }
     .progress-bar {
       position: absolute;
       background: #f2f0e6;
-      width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - 61px);
+      width: calc(100% - #{$button-width + ceil($button-width/2) + 1px} - 1px);
       margin-left: 1px;
       height: 100%;
       display: inline-block;
-      padding: 0 30px;
+      padding: 0;
       .container {
         width: calc(100% - 60px);
         height: 50%;
