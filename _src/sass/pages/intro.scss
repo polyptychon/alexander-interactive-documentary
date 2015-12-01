@@ -82,6 +82,7 @@ header.bottom.intro {
   }
   .chapters {
     bottom: 0 !important;
+    transform: translate(0, 0) !important;
     display: table !important;
   }
 }

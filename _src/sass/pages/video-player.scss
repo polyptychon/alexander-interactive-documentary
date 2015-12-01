@@ -290,7 +290,8 @@
       position: absolute;
       width: 100%;
       left: 0;
-      bottom: -460px;
+      bottom: 0;
+      transform: translate(0, 100%);
       background: #f2f0e6;
       padding-bottom: 40px;
       ul {
