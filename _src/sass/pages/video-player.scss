@@ -67,15 +67,19 @@
   }
   &.mini {
     bottom: -122px;
-    
+    &.compact {
+      bottom: -62px;
+    }
     &.completed {
       .video-player-controls {
-        .chapters-btn, .player-buttons, .info-container {
+        .chapters-btn, .player-buttons, .info-container, .duration-info {
           display: none;
         }
-        .progress-bar {
+        .progress-bar-container {
           padding: 0;
           margin: 0;
+        }
+        .progress-bar {
           width: 100%;
           .related-items {
             top: -4px;
