@@ -44,11 +44,13 @@ html(lang="en")
           a.subs-btn(href="#") CC
       .related-items-container
         a.btn.related-items-btn(href="#") RELATED VIDEOS (NUMBER)
-        ul.related-videos
-          each item in [1,2,3,4,5]
-            li
-              a(href="#")
-                .img
-                  img(src="assets/images/thumbnail.jpg")
-                .info RELATED VIDEO TITLE
+        .related-videos-container
+          .related-videos-mask
+            ul.related-videos
+              each item in [1,2,3,4,5,6,7,8,9]
+                li
+                  a(href="#")
+                    .img
+                      img(src="assets/images/thumbnail.jpg")
+                    .info RELATED VIDEO TITLE
       include partials/footer

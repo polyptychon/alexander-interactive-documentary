@@ -23,23 +23,35 @@
       width: 100%;
     }
   }
-  .related-videos {
+  .related-videos-container {
     background: rgba(#221e1a, .85);
-    width: 100%;
+    width: auto;
     height: 186px;
+    position: relative;
+  }
+  .related-videos-mask {
+    width: calc(100% - 180px);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    left: 90px;
+  }
+  .related-videos {
+    width: auto;
+    height: 100%;
     list-style: none;
     padding: 0;
     margin: 0;
+    position: relative;
     li {
-      float: left;
+      position: absolute;
       padding: 0 0 5px;
-      margin: 25px 5px;
+      margin: 25px 0;
       background: rgba(#dddbcb, .2);
-      &:first-child {
-        margin-left: 0;
-      }
-      &:last-child {
-        margin-right: 0;
+      @for $i from 1 through 30 {
+        &:nth-child(#{$i}) {
+          left: 170px * ($i - 1);
+        }
       }
       .img {
         @extend .center-img;
