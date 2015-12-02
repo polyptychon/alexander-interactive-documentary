@@ -28,13 +28,30 @@
     width: auto;
     height: 186px;
     position: relative;
+    .previous, .next {
+      position: absolute;
+      width: 70px;
+      height: 100%;
+      top: 0;
+      .glyphicon {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .previous {
+      left: 0;
+    }
+    .next {
+      right: 0;
+    }
   }
   .related-videos-mask {
-    width: calc(100% - 180px);
+    width: calc(100% - 140px);
     height: 100%;
     overflow: hidden;
     position: relative;
-    left: 90px;
+    left: 70px;
   }
   .related-videos {
     width: auto;
