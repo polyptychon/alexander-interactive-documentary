@@ -1,5 +1,8 @@
-.chapters, .player-footer-container, .related-items-container, .video-player-controls {
-  transition: all .4s ease-out
+.chapters, .player-footer-container, .related-items-container {
+  transition: all .4s ease-out;
+}
+.video-player-controls, .progress-bar-container, .related-items, .bar-bg, .bar-progress, .bar-progress-control {
+  transition: all .4s ease;
 }
 .player-footer-container {
   $button-width: 113px;
