@@ -266,6 +266,7 @@
       }
       .bar-container {
         top: 50%;
+        margin-top: -6px;
         height: 20%;
       }
       .info-container {
@@ -282,7 +283,7 @@
       }
       .bar-progress, .bar-bg {
         position: absolute;
-        top: 0;
+        top: 50%;
         width: 100%;
         height: 1px;
       }
