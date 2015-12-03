@@ -7,6 +7,9 @@ require "bootstrap/assets/javascripts/bootstrap/tab"
 require "bootstrap/assets/javascripts/bootstrap/dropdown"
 require "bootstrap/assets/javascripts/bootstrap/collapse"
 require "bootstrap/assets/javascripts/bootstrap/carousel"
+isTouchDevice =  require "./detectTouchDevice"
+$('html').addClass('hasTouch') if isTouchDevice()
+
 away = require('away')
 
 $('.chapters-btn').bind('click', (e)->

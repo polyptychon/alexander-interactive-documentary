@@ -4,12 +4,28 @@
 .video-player-controls, .progress-bar-container, .related-items, .bar-bg, .bar-progress, .bar-progress-control {
   transition: all .4s ease-out;
 }
+.hasTouch {
+  .player-footer-container {
+    .previous, .next {
+      display: none;
+    }
+    .related-videos-mask {
+      left: 10px;
+      width: calc(100% - 10px);
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+  }
+}
 .player-footer-container {
   $button-width: 113px;
 
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
+  margin: 0;
+  padding: 0;
   .related-items-container {
     position: absolute;
     display: block;
