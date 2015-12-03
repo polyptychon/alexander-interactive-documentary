@@ -7,7 +7,7 @@ html(lang="en")
       .video-player-controls
         .duration-info 07:06 | 32:46
 
-        a.btn.chapters-btn(href="#")
+        a.btn.chapters-btn(href="javascript:")
           .dots
             each item in [1,2,3,4,5]
               span.glyphicon.dot
@@ -36,25 +36,25 @@ html(lang="en")
               ul
                 each item in [1,2,3,4,5,6,7]
                   li
-                    a(href="#") #{item} - CHAPTER TITLE
+                    a(href="javascript:") #{item} - CHAPTER TITLE
         .player-buttons
-          a.mute-btn(href="#")
+          a.mute-btn(href="javascript:")
             span.glyphicon.speaker-icon
           hr
-          a.subs-btn(href="#") CC
+          a.subs-btn(href="javascript:") CC
       .related-items-container
-        a.btn.related-items-btn(href="#") RELATED VIDEOS (NUMBER)
+        a.btn.related-items-btn(href="javascript:") RELATED VIDEOS (NUMBER)
         .related-videos-container
-          a.btn.previous(href="#")
+          a.btn.previous(href="javascript:")
             span.glyphicon.previous-icon
           .related-videos-mask
             ul.related-videos
               each item in [1,2,3,4,5,6,7,8,9]
                 li
-                  a(href="#")
+                  a(href="javascript:")
                     .img
                       img(src="assets/images/thumbnail.jpg")
                     .info RELATED VIDEO TITLE
-          a.btn.next(href="#")
+          a.btn.next(href="javascript:")
             span.glyphicon.next-icon
       include partials/footer
