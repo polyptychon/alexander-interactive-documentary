@@ -28,10 +28,6 @@ $('.related-items-btn').bind('click', (e)->
   return false
 )
 
-#$('body').bind('click', (e)->
-#  toggleMiniBar()
-#)
-
 timer = away(10000)
 timer.on 'idle', ()-> toggleMiniBar()
 timer.on 'active', ()-> toggleMiniBar()
