@@ -7,6 +7,7 @@ require "bootstrap/assets/javascripts/bootstrap/tab"
 require "bootstrap/assets/javascripts/bootstrap/dropdown"
 require "bootstrap/assets/javascripts/bootstrap/collapse"
 require "bootstrap/assets/javascripts/bootstrap/carousel"
+away = require('away')
 
 $('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
@@ -24,7 +25,15 @@ $('.related-items-btn').bind('click', (e)->
   return false
 )
 miniInterval = -1;
-$('body').bind('click', (e)->
+#$('body').bind('click', (e)->
+#  toggleMiniBar()
+#)
+
+timer = away(10000)
+timer.on('idle', ()-> toggleMiniBar() )
+timer.on('active', ()-> toggleMiniBar() )
+
+toggleMiniBar = ()->
   $('body').removeClass('show-chapters')
   $('.player-footer-container').removeClass('open-related-items')
   $('.player-footer-container').removeClass('completed')
@@ -33,5 +42,3 @@ $('body').bind('click', (e)->
   miniInterval = setInterval(()->
     $('.player-footer-container').addClass('completed')
   , 200) if $('.player-footer-container').hasClass('mini')
-
-)

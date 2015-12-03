@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "animationframe": "git://github.com/HarrisSidiropoulos/animationframe",
+    "away": "^1.0.0",
     "jquery": "^2.1.1",
     "jquery.transit": "^0.9.12",
     "photoswipe": "^4.0.7",
