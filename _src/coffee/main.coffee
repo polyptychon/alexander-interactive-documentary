@@ -41,4 +41,4 @@ toggleMiniBar = ()->
   clearInterval(miniInterval);
   miniInterval = setInterval(()->
     $('.player-footer-container').addClass('completed')
-  , 200) if $('.player-footer-container').hasClass('mini')
+  , 300) if $('.player-footer-container').hasClass('mini')
