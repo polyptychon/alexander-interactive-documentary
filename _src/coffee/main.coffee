@@ -23,6 +23,7 @@ $('.chapters .back').bind('click', (e)->
   return false
 )
 $('.related-items-btn').bind('click', (e)->
+  $('body').removeClass('show-chapters')
   $('.player-footer-container').toggleClass('open-related-items')
   e.stopImmediatePropagation()
   return false
