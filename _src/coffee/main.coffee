@@ -34,6 +34,7 @@ timer.on 'idle', ()-> toggleMiniBar()
 timer.on 'active', ()-> toggleMiniBar()
 
 toggleMiniBar = ()->
+  return if (!$('body').hasClass('is-playing'))
   $('body').removeClass('show-chapters')
   $('.player-footer-container').removeClass('open-related-items')
   $('.player-footer-container').removeClass('completed')
