@@ -30,8 +30,8 @@ miniInterval = -1;
 #)
 
 timer = away(10000)
-timer.on('idle', ()-> toggleMiniBar() )
-timer.on('active', ()-> toggleMiniBar() )
+timer.on 'idle', ()-> toggleMiniBar()
+timer.on 'active', ()-> toggleMiniBar()
 
 toggleMiniBar = ()->
   $('body').removeClass('show-chapters')
