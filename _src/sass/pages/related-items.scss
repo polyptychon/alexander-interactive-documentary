@@ -93,7 +93,7 @@
       li {
         left: 0;
         top: 0;
-        transform: translate($width, 0);
+        transition: all .4s ease-out;
         a {
           .info {
             background: #93938a;
@@ -103,7 +103,6 @@
       }
       @for $page from 1 through 3 {
         &.page#{$page} {
-
           li {
             $gap: 25px;
             $horizontal-gap: 0;
@@ -113,13 +112,14 @@
             $columns: 2;
             $items-per-column: floor($items / $columns);
 
-            @for $i from (($page - 2)*$items)+1 through (($page - 2)*$items)+1+$items {
+            transform: translate($width, $vertical-gap);
+
+            @for $i from (($page - 2)*$items)+1 through (($page - 2)*$items)+$items {
               &:nth-child(#{$i}) {
-                transform: translate($horizontal-gap - $width, $vertical-gap);
+                transform: translate(-$width, $vertical-gap);
               }
               $horizontal-gap: $horizontal-gap + $left + $gap;
               @if $i % $items-per-column == 0 {
-                $horizontal-gap: -$width;
                 $vertical-gap: $vertical-gap + $left;
               }
             }
@@ -139,11 +139,10 @@
             $vertical-gap: $gap;
             @for $i from $page*$items+1 through $page*$items+$items {
               &:nth-child(#{$i}) {
-                transform: translate($horizontal-gap, $vertical-gap);
+                transform: translate($width, $vertical-gap);
               }
               $horizontal-gap: $horizontal-gap + $left + $gap;
               @if $i % $items-per-column == 0 {
-                $horizontal-gap: $width;
                 $vertical-gap: $vertical-gap + $left;
               }
             }
