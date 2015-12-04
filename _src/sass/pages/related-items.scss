@@ -90,44 +90,63 @@
       width: $width;
       transform: translate(-50%, -50%);
       background: none;
-
       li {
         left: 0;
         top: 0;
-
-        $gap: 25px;
-        $horizontal-gap: 0;
-        $vertical-gap: $gap;
-        $left: 150px;
-        $items: 10;
-        $columns: 2;
-        $items-per-column: floor($items / $columns);
-        @for $i from 1 through $items {
-          &:nth-child(#{$i}) {
-            transform: translate($horizontal-gap, $vertical-gap);
-          }
-          $horizontal-gap: $horizontal-gap + $left + $gap;
-          @if $i % $items-per-column == 0 {
-            $horizontal-gap: 0;
-            $vertical-gap: $vertical-gap + $left;
-          }
-        }
-        $horizontal-gap: 0;
-        $vertical-gap: $gap;
-        @for $i from $items+1 through 200 {
-          &:nth-child(#{$i}) {
-            transform: translate($horizontal-gap + $width, $vertical-gap);
-          }
-          $horizontal-gap: $horizontal-gap + $left + $gap;
-          @if $i % $items-per-column == 0 {
-            $horizontal-gap: $width;
-            $vertical-gap: $vertical-gap + $left;
-          }
-        }
+        transform: translate($width, 0);
         a {
           .info {
             background: #93938a;
             color: #bdbcaf;
+          }
+        }
+      }
+      @for $page from 1 through 3 {
+        &.page#{$page} {
+
+          li {
+            $gap: 25px;
+            $horizontal-gap: 0;
+            $vertical-gap: $gap;
+            $left: 150px;
+            $items: 10;
+            $columns: 2;
+            $items-per-column: floor($items / $columns);
+
+            @for $i from (($page - 2)*$items)+1 through (($page - 2)*$items)+1+$items {
+              &:nth-child(#{$i}) {
+                transform: translate($horizontal-gap - $width, $vertical-gap);
+              }
+              $horizontal-gap: $horizontal-gap + $left + $gap;
+              @if $i % $items-per-column == 0 {
+                $horizontal-gap: -$width;
+                $vertical-gap: $vertical-gap + $left;
+              }
+            }
+            $horizontal-gap: 0;
+            $vertical-gap: $gap;
+            @for $i from ($page - 1)*$items+1 through ($page - 1)*$items+1+$items {
+              &:nth-child(#{$i}) {
+                transform: translate($horizontal-gap, $vertical-gap);
+              }
+              $horizontal-gap: $horizontal-gap + $left + $gap;
+              @if $i % $items-per-column == 0 {
+                $horizontal-gap: 0;
+                $vertical-gap: $vertical-gap + $left;
+              }
+            }
+            $horizontal-gap: $width;
+            $vertical-gap: $gap;
+            @for $i from $page*$items+1 through $page*$items+$items {
+              &:nth-child(#{$i}) {
+                transform: translate($horizontal-gap, $vertical-gap);
+              }
+              $horizontal-gap: $horizontal-gap + $left + $gap;
+              @if $i % $items-per-column == 0 {
+                $horizontal-gap: $width;
+                $vertical-gap: $vertical-gap + $left;
+              }
+            }
           }
         }
       }
