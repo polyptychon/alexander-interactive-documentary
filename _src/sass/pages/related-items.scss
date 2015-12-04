@@ -1,0 +1,119 @@
+.related-videos-container {
+  background: rgba(#221e1a, .85);
+  width: auto;
+  height: 184px;
+  position: relative;
+  a.previous, a.next {
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    top: 0;
+    .glyphicon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .previous {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+}
+.related-videos-mask {
+  width: calc(100% - 140px);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  left: 70px;
+}
+.related-videos {
+  width: auto;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  li {
+    position: absolute;
+    padding: 0;
+    margin: 25px 0;
+    @for $i from 1 through 30 {
+      &:nth-child(#{$i}) {
+        left: 170px * ($i - 1);
+      }
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: rgba(#dddbcb, .2);
+      &:hover {
+        background: rgba(#d2d1c2, 1);
+        .info {
+          color: #4c4c47;
+        }
+      }
+    }
+    .img {
+      @extend .center-img;
+    }
+    .info {
+      color: #b2b2a6;
+      padding: 5px;
+      font-size: 11px;
+      text-align: center;
+      width: 150px;
+      @include text-ellipsis;
+    }
+  }
+}
+.archive {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .archive-videos-container {
+    position: relative;
+    width: 100%;
+    height: 184px * 2;
+    background: rgba(#221e1a, .5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .related-videos-container {
+      top: 50%;
+      left: 50%;
+      height: 100%;
+      width: 980px;
+      transform: translate(-50%, -50%);
+      li {
+        $gap: 20px;
+        $horizontal-gap: 0;
+        $vertical-gap: $gap;
+        $left: 150px;
+        $items: 10;
+        $columns: 2;
+        $items-per-column: floor($items / $columns);
+        @for $i from 1 through $items {
+          &:nth-child(#{$i}) {
+            left: $horizontal-gap;
+            top: $vertical-gap;
+          }
+          $horizontal-gap: $horizontal-gap + $left + $gap;
+          @if $i % $items-per-column == 0 {
+            $horizontal-gap: 0;
+            $vertical-gap: $vertical-gap + $left;
+          }
+        }
+        a {
+          .info {
+            background: #93938a;
+            color: #bdbcaf;
+          }
+        }
+      }
+    }
+  }
+}
