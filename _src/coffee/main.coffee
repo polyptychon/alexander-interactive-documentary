@@ -44,3 +44,12 @@ toggleMiniBar = ()->
   miniInterval = setInterval(()->
     $('.player-footer-container').addClass('completed')
   , 300) if $('.player-footer-container').hasClass('mini')
+
+$('.btn.next').bind('click', ()->
+   $('.related-videos-container').removeClass('page1')
+   $('.related-videos-container').addClass('page2')
+)
+$('.btn.previous').bind('click', ()->
+  $('.related-videos-container').removeClass('page2')
+  $('.related-videos-container').addClass('page1')
+)
