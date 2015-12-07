@@ -2,10 +2,16 @@ doctype html
 html(lang="en")
   head
     include partials/header
-  body(style="background-image: url('assets/images/stone-light.jpg')")
+  body(style="background-image: url('assets/images/STONE DARK.jpg')")
     .archive
       .filters-container
+        a.back.text-uppercase(href="#") HOME
         h1.text-uppercase MEDIA ARCHIVE
+        .filters-position
+          .filters
+            a.filter-panel-btn.btn.text-uppercase(href="javascript:")
+              span.glyphicon.arrow-down-icon
+              span FILTER BY
       .archive-videos-container
         .related-videos-container.page1
           a.btn.previous(href="javascript:")
@@ -21,4 +27,6 @@ html(lang="en")
           a.btn.next(href="javascript:")
             span.glyphicon.next-icon
       .pagination-container
+        .pagination-text
+          .span PAGE&nbsp; 1&nbsp; OF&nbsp; 3
     include partials/footer

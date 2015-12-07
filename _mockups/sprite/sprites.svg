@@ -3,40 +3,52 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1422.274 353.485" style="enable-background:new 0 0 1422.274 353.485;" xml:space="preserve">
+<g id="sprite_x5F_speaker">
+	<g id="graphics_5_">
+		<g>
+			<polygon style="fill:#A7A79C;" points="585.715,132.489 585.715,137.689 588.965,137.689 592.865,141.589 592.865,128.589 
+				588.965,132.489 			"/>
+		</g>
+	</g>
+	<rect id="area_8_" x="579.487" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+</g>
+<g id="sprite_x5F_arrow-down">
+	<g id="graphics_9_">
+		<polygon style="fill:#808079;" points="548.987,133.928 553.987,125.928 543.987,125.928 		"/>
+	</g>
+	<rect id="area_13_" x="543.237" y="125" style="opacity:0;fill:#CCCCCC;" width="12.25" height="9.75"/>
+</g>
+<g id="sprite_x5F_arrow-up">
+	<g id="graphics_10_">
+		<polygon style="fill:#808079;" points="518.362,130.803 510.362,125.803 510.362,135.803 		"/>
+	</g>
+	<rect id="area_14_" x="509.612" y="125" style="opacity:0;fill:#CCCCCC;" width="9.625" height="11.625"/>
+</g>
 <g id="sprite_x5F_twitter">
 	<g id="graphics">
-		<path style="fill:#58584F;" d="M519.502,126.043c-4.971,0-9,4.031-9,9.001c0,4.97,4.03,8.999,9,8.999c4.971,0,9-4.029,9-8.999
-			C528.501,130.073,524.472,126.043,519.502,126.043z M524.036,133.229c0.004,0.097,0.006,0.195,0.006,0.293
+		<path style="fill:#58584F;" d="M475.724,126.043c-4.971,0-9,4.031-9,9.001c0,4.97,4.03,8.999,9,8.999c4.971,0,9-4.029,9-8.999
+			C484.723,130.073,480.694,126.043,475.724,126.043z M480.258,133.229c0.004,0.097,0.006,0.195,0.006,0.293
 			c0,2.998-2.281,6.454-6.453,6.454c-1.281,0-2.473-0.375-3.477-1.019c0.178,0.02,0.358,0.031,0.541,0.031
-			c1.063,0,2.041-0.363,2.817-0.971c-0.993-0.018-1.83-0.674-2.119-1.575c0.138,0.027,0.28,0.041,0.427,0.041
+			c1.063,0,2.041-0.363,2.817-0.971c-0.992-0.018-1.83-0.674-2.119-1.575c0.138,0.027,0.281,0.041,0.427,0.041
 			c0.207,0,0.407-0.027,0.597-0.079c-1.038-0.208-1.82-1.126-1.82-2.224c0-0.01,0-0.019,0-0.029c0.306,0.17,0.656,0.272,1.028,0.284
 			c-0.609-0.408-1.009-1.101-1.009-1.888c0-0.416,0.112-0.805,0.307-1.14c1.119,1.372,2.79,2.275,4.676,2.37
 			c-0.039-0.166-0.059-0.339-0.059-0.517c0-1.253,1.016-2.268,2.268-2.268c0.653,0,1.242,0.276,1.656,0.716
 			c0.517-0.101,1.002-0.291,1.441-0.55c-0.17,0.53-0.529,0.974-0.998,1.255c0.459-0.055,0.896-0.177,1.303-0.357
-			C524.864,132.509,524.479,132.909,524.036,133.229z"/>
+			C481.086,132.509,480.701,132.909,480.258,133.229z"/>
 	</g>
-	<rect id="area_6_" x="509.612" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_6_" x="465.834" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
 </g>
 <g id="sprite_x5F_previous">
 	<g id="graphics_7_">
-		<polyline style="fill:none;stroke:#777770;" points="483.612,127.5 458.612,165 483.612,202.5 		"/>
+		<polyline style="fill:none;stroke:#777770;" points="439.834,127.5 414.834,165 439.834,202.5 		"/>
 	</g>
-	<rect id="area_9_" x="456.612" y="125" style="opacity:0;fill:#CCCCCC;" width="29" height="80"/>
+	<rect id="area_9_" x="412.834" y="125" style="opacity:0;fill:#CCCCCC;" width="29" height="80"/>
 </g>
 <g id="sprite_x5F_next">
 	<g id="graphics_8_">
-		<polyline style="fill:none;stroke:#777770;" points="405.612,202.5 430.612,165 405.612,127.5 		"/>
+		<polyline style="fill:none;stroke:#777770;" points="361.834,202.5 386.834,165 361.834,127.5 		"/>
 	</g>
-	<rect id="area_12_" x="403.612" y="125" style="opacity:0;fill:#CCCCCC;" width="29" height="80"/>
-</g>
-<g id="sprite_x5F_speaker">
-	<g id="graphics_5_">
-		<g>
-			<polygon style="fill:#A7A79C;" points="366.062,132.489 366.062,137.689 369.312,137.689 373.212,141.589 373.212,128.589 
-				369.312,132.489 			"/>
-		</g>
-	</g>
-	<rect id="area_8_" x="359.834" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_12_" x="359.834" y="125" style="opacity:0;fill:#CCCCCC;" width="29" height="80"/>
 </g>
 <g id="sprite_x5F_twitter-hover">
 	<g id="graphics_3_">
