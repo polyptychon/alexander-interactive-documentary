@@ -59,3 +59,15 @@ a {
 .pull-right {
   float: right;
 }
+.top-button {
+  min-height: 100px;
+  a {
+    transition: all .4s ease;
+    //transition-timing-function: cubic-bezier(0.77,0,0.175,1);
+  }
+  &:hover {
+    a {
+      padding: 12px 0;
+    }
+  }
+}
