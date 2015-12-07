@@ -102,9 +102,15 @@
         transition-timing-function: cubic-bezier(0.77,0,0.175,1);
         a {
           .info {
-            background: #93938a;
+            background: rgba(#93938a, .6);
             color: #bdbcaf;
             -webkit-font-smoothing: subpixel-antialiased;
+          }
+          &:hover {
+            .info {
+              background: rgba(#93938a, 1);
+              color: #585852;
+            }
           }
         }
       }
