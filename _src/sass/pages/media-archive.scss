@@ -52,6 +52,14 @@
   color: #808079;
   a {
     color: #808079;
+    .arrow-down-icon {
+      transition: .4s ease-out;
+    }
+    &:hover {
+      .arrow-down-icon {
+        transform: rotate(-90deg);
+      }
+    }
   }
 }
 .btn-border {
