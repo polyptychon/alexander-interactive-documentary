@@ -1,14 +1,5 @@
-.gray-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(#231f20, .4);
-  //mix-blend-mode: multiply;
-}
 .filters-container, .pagination-container {
-  background: rgba(#231f20, .4);
+  background: rgba(#000, .4);
   position: absolute;
   width: 100%;
   top: 0;
