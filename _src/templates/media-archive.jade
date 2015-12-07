@@ -11,14 +11,18 @@ html(lang="en")
         .filters-position
           .filters
             .dropdown.pull-left
-              a.filter-panel-btn.btn.text-uppercase(href="javascript:")
+              a.dropdown-menu-btn.btn.text-uppercase(href="javascript:")
                 span.glyphicon.arrow-down-icon
                 span FILTER BY &nbsp;
             .dropdown.pull-right
-              a.filter-panel-btn.btn.text-uppercase(href="javascript:")
+              a.dropdown-menu-btn.btn.text-uppercase(href="javascript:")
                 span.glyphicon.arrow-down-icon
                 span SHORT BY &nbsp;
-              a.text-uppercase.btn-border TITLE
+              a.text-uppercase.btn-border VIDEO TITLE
+              ul.dropdown-menu
+                each item in [1,2,3,4]
+                  li
+                    a(href="javascript:") NAME (ASC)
       .archive-videos-container
         .related-videos-container.page1
           a.btn.previous(href="javascript:")
