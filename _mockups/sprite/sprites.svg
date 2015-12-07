@@ -6,17 +6,29 @@
 <g id="sprite_x5F_speaker">
 	<g id="graphics_5_">
 		<g>
-			<polygon style="fill:#A7A79C;" points="585.715,132.489 585.715,137.689 588.965,137.689 592.865,141.589 592.865,128.589 
-				588.965,132.489 			"/>
+			<polygon style="fill:#A7A79C;" points="648.84,132.489 648.84,137.689 652.09,137.689 655.99,141.589 655.99,128.589 
+				652.09,132.489 			"/>
 		</g>
 	</g>
-	<rect id="area_8_" x="579.487" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_8_" x="642.612" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
 </g>
 <g id="sprite_x5F_arrow-down">
 	<g id="graphics_9_">
-		<polygon style="fill:#808079;" points="548.987,133.928 553.987,125.928 543.987,125.928 		"/>
+		<polygon style="fill:#808079;" points="612.112,133.928 617.112,125.928 607.112,125.928 		"/>
 	</g>
-	<rect id="area_13_" x="543.237" y="125" style="opacity:0;fill:#CCCCCC;" width="12.25" height="9.75"/>
+	<rect id="area_13_" x="606.362" y="125" style="opacity:0;fill:#CCCCCC;" width="12.25" height="9.75"/>
+</g>
+<g id="sprite_x5F_previous-small">
+	<g id="graphics_11_">
+		<polyline style="fill:none;stroke:#9D9D93;" points="581.05,125.803 576.05,130.803 581.05,135.803 		"/>
+	</g>
+	<rect id="area_11_" x="574.8" y="125" style="opacity:0;fill:#CCCCCC;" width="7.562" height="11.625"/>
+</g>
+<g id="sprite_x5F_next-small">
+	<g id="graphics_copy">
+		<polyline style="fill:none;stroke:#9D9D93;" points="544.487,135.803 549.487,130.803 544.487,125.803 		"/>
+	</g>
+	<rect id="area_16_" x="543.237" y="125" style="opacity:0;fill:#CCCCCC;" width="7.562" height="11.625"/>
 </g>
 <g id="sprite_x5F_arrow-up">
 	<g id="graphics_10_">
