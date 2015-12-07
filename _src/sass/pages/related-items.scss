@@ -127,7 +127,6 @@
 
             @include my-translate($width, $vertical-gap);
             -webkit-font-smoothing: subpixel-antialiased;
-            font-smoothing: subpixel-antialiased;
             $delay: 0;
 
             @for $i from (($page - 2)*$items)+1 through (($page - 2)*$items)+$items {
@@ -143,7 +142,7 @@
               }
             }
             $horizontal-gap: 0;
-            $vertical-gap: $gap;
+            $vertical-gap: 18px;
             $delay: 100ms;
             @for $i from ($page - 1)*$items+1 through ($page - 1)*$items+1+$items {
               &:nth-child(#{$i}) {
