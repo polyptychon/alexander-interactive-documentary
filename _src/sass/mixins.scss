@@ -49,3 +49,9 @@ $base: $font-size-base) {
   @return ($px / $base) * 1em;
 }
 
+@mixin my-translate($x, $y) {
+  -webkit-transform: translate($x, $y); /* Chrome, Safari, Opera */
+  -moz-transform: translate($x, $y); /* Firefox */
+  -ms-transform: translate($x, $y);
+  transform: translate($x, $y);
+}

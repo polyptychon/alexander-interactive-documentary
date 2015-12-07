@@ -1,0 +1,23 @@
+.filters-container, .pagination-container {
+  background: rgba(#221e1a, .85);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: calc((100% - 368px)/2);
+}
+.pagination-container {
+  top: auto;
+  bottom: 0;
+}
+.filters-container {
+  h1 {
+    color: #a7a79c;
+    font-size: 34px;
+    font-weight: normal;
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100%;
+  }
+}
