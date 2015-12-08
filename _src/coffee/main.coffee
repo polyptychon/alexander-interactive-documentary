@@ -7,8 +7,9 @@ require "bootstrap/assets/javascripts/bootstrap/tab"
 require "bootstrap/assets/javascripts/bootstrap/dropdown"
 require "bootstrap/assets/javascripts/bootstrap/collapse"
 require "bootstrap/assets/javascripts/bootstrap/carousel"
-require "./player-animation.coffee"
-require "./archive-animation.coffee"
 
 isTouchDevice =  require "./detectTouchDevice"
 $('html').addClass('hasTouch') if isTouchDevice()
+
+require "./player-animation.coffee"
+require "./archive-animation.coffee"
