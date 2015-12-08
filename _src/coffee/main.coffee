@@ -13,3 +13,9 @@ $('html').addClass('hasTouch') if isTouchDevice()
 
 require "./player-animation.coffee"
 require "./archive-animation.coffee"
+
+$('.dropdown-menu-btn').bind('click', ()->
+  $(this).closest('.dropdown-menu').toggleClass('visible')
+  $(this).find('.dropdown-menu').toggleClass('visible')
+  $(this).parent().find('.dropdown-menu').toggleClass('visible')
+)

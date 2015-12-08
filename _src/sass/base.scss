@@ -74,8 +74,8 @@ a {
 .dropdown {
   position: relative;
 }
-.dropdown-menu {
-  //display: none;
+ul.dropdown-menu {
+  display: none;
   position: absolute;
   background: rgba(black, .95);
   list-style: none;
@@ -83,6 +83,9 @@ a {
   margin: 5px 0 0;
   width: 100%;
   width: calc(100% - 40px);
+  &.visible {
+    display: block;
+  }
   li {
     padding: 0;
     width: 100%;
@@ -95,6 +98,8 @@ a {
     display: block;
     width: 100%;
     border-bottom: 1px solid #808079;
+    min-height: 26px;
+    
   }
   .check-icon {
     display: none;
