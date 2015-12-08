@@ -75,7 +75,7 @@ a {
   position: relative;
 }
 .dropdown-menu {
-  display: none;
+  //display: none;
   position: absolute;
   background: rgba(black, .95);
   list-style: none;
@@ -95,5 +95,13 @@ a {
     display: block;
     width: 100%;
     border-bottom: 1px solid #808079;
+  }
+  .check-icon {
+    display: none;
+  }
+  .selected {
+    .check-icon {
+      display: inline-block;
+    }
   }
 }

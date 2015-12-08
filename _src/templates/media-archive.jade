@@ -22,7 +22,9 @@ html(lang="en")
               ul.dropdown-menu
                 each item in [1,2,3,4]
                   li
-                    a(href="javascript:") NAME (ASC)
+                    a(href="javascript:" class=item==1?'selected':'')
+                      span.glyphicon.check-icon
+                      span NAME (ASC)
       .archive-videos-container
         .related-videos-container.page1
           a.btn.previous(href="javascript:")
