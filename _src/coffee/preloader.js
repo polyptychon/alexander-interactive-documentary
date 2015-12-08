@@ -9,8 +9,8 @@ window.requestAnimFrame = (function () {
     };
 })();
 
-module.exports = function(progress) {
-  progress = 360*progress
+module.exports = function(progress, callback) {
+  progress = Math.ceil(360 * progress);
   var canvas = document.getElementById('preloader'),
     width = canvas.width,
     height = canvas.height,
@@ -20,6 +20,11 @@ module.exports = function(progress) {
   var step = -90,
     startAngle = -90,
     endAngle = progress+(startAngle*2);
+
+  var x = width / 2, // center x
+    y = height / 2, // center y
+    radius = width / 3,
+    counterClockwise = false;
 
   ctx.beginPath();
   ctx.imageSmoothingEnabled = true;
@@ -33,20 +38,12 @@ module.exports = function(progress) {
   imd = ctx.getImageData(0, 0, width, height);
 
   function draw() {
-    if (step <= endAngle-startAngle) {
-      drawArc(startAngle * Math.PI/180, step * Math.PI/180);
-      step+=4;
-    }
+    drawArc(startAngle * Math.PI/180, step * Math.PI/180);
+    step+=4;
   }
   function drawArc(s, e) {
-    var x = width / 2, // center x
-      y = height / 2, // center y
-      radius = width / 3,
-      counterClockwise = false;
-
-    ctx.closePath();
-    ctx.fill();
-
+    ctx.fillStyle = '#221e1a';
+    ctx.strokeStyle = '#221e1a';
     ctx.putImageData(imd, 0, 0);
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -67,6 +64,10 @@ module.exports = function(progress) {
 
   (function onEnterFrame() {
     draw();
-    requestAnimFrame(onEnterFrame, canvas);
+    if (step <= endAngle-startAngle) {
+      requestAnimFrame(onEnterFrame, canvas);
+    } else if (step>=274) {
+      callback();
+    }
   }());
 }

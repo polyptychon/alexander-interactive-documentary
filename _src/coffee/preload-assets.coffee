@@ -2,12 +2,13 @@ global.$ = global.jQuery = $ = require "jquery"
 require "preloadjs/lib/preloadjs-0.6.2.min"
 preloader = require "./preloader";
 
-handleProgress = (e) -> preloader(e.progress)
-handleComplete = (e) -> console.log(queue.getResult("alexander"))
+handleCompleteAnimation = () -> console.log(queue.getResult("alexander"))
+handleProgress = (e) -> preloader(e.progress, handleCompleteAnimation)
+#handleComplete = (e) -> console.log(queue.getResult("alexander"))
 
 queue = new createjs.LoadQueue()
 queue.installPlugin(createjs.Sound)
-queue.on("complete", handleComplete, this)
+#queue.on("complete", handleComplete, this)
 queue.on("progress", handleProgress, this)
 queue.loadManifest([
   { id: "alexander", src: "assets/images/alexander.jpg" }
