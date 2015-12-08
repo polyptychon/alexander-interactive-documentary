@@ -35,7 +35,7 @@ module.exports = function(progress) {
   function draw() {
     if (step <= endAngle-startAngle) {
       drawArc(startAngle * Math.PI/180, step * Math.PI/180);
-      step+=2;
+      step+=4;
     }
   }
   function drawArc(s, e) {

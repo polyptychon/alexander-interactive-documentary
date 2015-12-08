@@ -19,5 +19,3 @@ queue.loadManifest([
   { id: "stoneLight", src: "assets/images/stone-light.jpg" }
   { id: "thumbnail", src: "assets/images/thumbnail.jpg" }
 ])
-
-
