@@ -11,6 +11,7 @@ require "bootstrap/assets/javascripts/bootstrap/carousel"
 isTouchDevice =  require "./detectTouchDevice"
 $('html').addClass('hasTouch') if isTouchDevice()
 
+require "./preload-assets.coffee"
 require "./player-animation.coffee"
 require "./archive-animation.coffee"
 

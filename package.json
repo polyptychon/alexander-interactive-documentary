@@ -75,6 +75,7 @@
   },
   "napa": {
     "bootstrap": "twbs/bootstrap-sass",
-    "ihover": "gudh/ihover"
+    "ihover": "gudh/ihover",
+    "preloadjs": "CreateJS/PreloadJS"
   }
 }
