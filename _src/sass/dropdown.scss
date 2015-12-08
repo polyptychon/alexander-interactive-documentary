@@ -49,6 +49,9 @@
       margin: 10px 0;
       padding: 5px 10px;
       border: 1px solid #808079;
+      &:hover {
+        color: #a7a79c;
+      }
     }
   }
   &.visible {
@@ -67,7 +70,9 @@
       text-align: left;
       border-bottom: 1px solid #808079;
       min-height: 26px;
-
+      &:hover {
+        color: #a7a79c;
+      }
     }
   }
   .check-icon {
