@@ -2,11 +2,12 @@ global.$ = global.jQuery = $ = require "jquery"
 require "preloadjs/lib/preloadjs-0.6.2.min"
 preloader = require "./preloader";
 
-module.exports = ()->
+module.exports = (callback=null)->
   handleCompleteAnimation = () ->
     $('.preloader').css('opacity', 0)
     $('.landing').css('background-image', "url(#{queue.getItem("landing-bg").src})")
     $('.landing').addClass('visible')
+    callback() if callback
 
   handleProgress = (e) -> preloader(e.progress, handleCompleteAnimation)
   queue = new createjs.LoadQueue()
