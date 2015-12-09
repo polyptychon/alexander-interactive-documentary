@@ -13,33 +13,15 @@ $('html').addClass('hasTouch') if isTouchDevice()
 
 require "./player-animation.coffee"
 require "./archive-animation.coffee"
-pageTimeoutId = -1;
-displayPage = (previousPage, nextPage, background)->
-  clearTimeout(pageTimeoutId);
-  $(previousPage).removeClass('visible')
-  $(nextPage).addClass('visible').css('background-image', "url(#{background})")
-  pageTimeoutId = setTimeout(()->
-    $(previousPage).addClass('hidden')
-    $(nextPage).removeClass('hidden')
-  ,1000)
 
-handleLoadComplete = ()->
-  displayPage('.preloader', '.landing', queue.getItem("landing-bg").src)
+displayPage = require "./displayPage.coffee"
+play = require "./play.coffee"
+handleLoadComplete = ()-> displayPage('.landing', queue.getItem("landing-bg").src, '')
 
 $('.play-documentary-btn').bind('click', ()->
-  displayPage('.landing', '.chapter', queue.getItem("chapter-1-bg").src)
-  pageTimeoutId = setTimeout(()->
-    displayPage('.chapter', '.video-player', queue.getItem("hades").src)
-  ,4000)
+  play(1, 0, queue.getItem("chapter-1-bg").src)
 )
 $('.btn-footer.btn-home').bind('click', ()->
-  activeClassName = '.'+$('body > .visible').attr('class').replace(' visible', '')
-  displayPage(activeClassName, '.landing', queue.getItem("landing-bg").src)
+  displayPage('.landing', queue.getItem("landing-bg").src)
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
-
-$('.dropdown-menu-btn').bind('click', ()->
-  $(this).closest('.dropdown-menu').toggleClass('visible')
-  $(this).find('.dropdown-menu').toggleClass('visible')
-  $(this).parent().find('.dropdown-menu').toggleClass('visible')
-)
