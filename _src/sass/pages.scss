@@ -1,7 +1,7 @@
-.landing {
+.landing, .chapter {
   opacity: 0;
   position: absolute;
-  top: 0;
+  top: -100%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -9,4 +9,8 @@
   background-size: cover;
   transition: 1s opacity;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  &.visible {
+    top: 0;
+    opacity: 1;
+  }
 }
