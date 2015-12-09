@@ -29,6 +29,7 @@ toggleMiniBar = ()->
   $('.player-footer-container').removeClass('open-related-items')
   $('.player-footer-container').removeClass('completed')
   $('.player-footer-container').toggleClass('mini')
+  $('footer').toggleClass('hidden')
   clearInterval(miniInterval);
   miniInterval = setInterval(()->
     $('.player-footer-container').addClass('completed')
