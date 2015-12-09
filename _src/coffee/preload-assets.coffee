@@ -4,9 +4,6 @@ preloader = require "./preloader";
 
 module.exports = (callback=null)->
   handleCompleteAnimation = () ->
-    $('.preloader').css('opacity', 0)
-    $('.landing').css('background-image', "url(#{queue.getItem("landing-bg").src})")
-    $('.landing').addClass('visible')
     callback() if callback
 
   handleProgress = (e) -> preloader(e.progress, handleCompleteAnimation)
