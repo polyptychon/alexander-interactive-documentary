@@ -85,4 +85,4 @@ module.exports = function(progress, callback) {
       callback();
     }
   }());
-}
+};
