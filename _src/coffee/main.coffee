@@ -15,13 +15,15 @@ require "./player-animation.coffee"
 require "./archive-animation.coffee"
 
 displayPage = require "./displayPage.coffee"
-play = require "./play.coffee"
+player = require "./play.coffee"
 handleLoadComplete = ()-> displayPage('.landing', queue.getItem("landing-bg").src, '')
 
 $('.play-documentary-btn').bind('click', ()->
-  play(1, 0, queue.getItem("chapter-1-bg").src)
+  player.stop()
+  player.play(1, 0, queue.getItem("chapter-1-bg").src)
 )
 $('.btn-footer.btn-home').bind('click', ()->
+  player.stop()
   displayPage('.landing', queue.getItem("landing-bg").src)
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
