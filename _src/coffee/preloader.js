@@ -8,7 +8,7 @@ window.requestAnimFrame = (function () {
       window.setTimeout(callback, 1000 / 60);
     };
 })();
-
+var previousProgress = 0;
 module.exports = function(progress, callback) {
   progress = Math.ceil(360 * progress);
   var canvas = document.getElementById('preloader'),
@@ -42,9 +42,23 @@ module.exports = function(progress, callback) {
     step+=4;
   }
   function drawArc(s, e) {
+    ctx.clearRect(0,0,width, height);
+
+    ctx.fillStyle = 'rgba(34,30,26,.4)';
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, radius, s, 275 * Math.PI/180, counterClockwise);
+    ctx.fill();
+
     ctx.fillStyle = '#221e1a';
     ctx.strokeStyle = '#221e1a';
-    ctx.putImageData(imd, 0, 0);
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, radius, s, previousProgress * Math.PI/180, counterClockwise);
+    ctx.fill();
+
+    previousProgress = progress;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.arc(x, y, radius, s, e, counterClockwise);
