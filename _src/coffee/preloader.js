@@ -59,6 +59,7 @@ module.exports = function(progress, callback) {
     ctx.fill();
 
     previousProgress = progress;
+    ctx.putImageData(imd, 0, 0);
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.arc(x, y, radius, s, e, counterClockwise);
