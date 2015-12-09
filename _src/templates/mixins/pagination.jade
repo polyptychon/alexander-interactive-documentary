@@ -1,8 +1,0 @@
-mixin pagination(options)
-  - options = options || {}
-  - classes = options.classes || ''
-  - items = options.items || 5
-  ul.pagination(class=options.classes)
-    - for (var i=0; i<items; i++)
-      li(class=i==0?"active":"")
-        a(href='#')=i+1

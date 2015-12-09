@@ -1,0 +1,16 @@
+.chapter-title
+  .chapter-gradient.light
+  header.bottom.intro
+    h1
+      span.glyphicon.title-intro-icon
+    a.btn.play-documentary-btn(href="chapter-title.html") PLAY DOCUMENTARY
+    a.btn.chapters-btn(href="javascript:") CHAPTERS
+    a.btn.archive-btn(href="media-archive.html") MEDIA ARCHIVE
+.chapters.intro
+  a.back(href="#") BACK
+  .chapters-container
+    h1 CHAPTERS
+    ul
+      each item in [1,2,3,4,5,6,7]
+        li
+          a(href="javascript:") #{item} - CHAPTER TITLE
