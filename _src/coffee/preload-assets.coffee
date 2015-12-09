@@ -6,7 +6,6 @@ handleCompleteAnimation = () ->
   $('.preloader').css('opacity', 0)
   $('.landing').css('background-image', "url(#{queue.getItem("alexander").src})")
   $('.landing').css('opacity', 1)
-  console.log(queue.getResult("alexander"), queue.getItem("alexander").src)
   
 handleProgress = (e) -> preloader(e.progress, handleCompleteAnimation)
 #handleComplete = (e) -> console.log(queue.getResult("alexander"))
