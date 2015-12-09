@@ -14,7 +14,7 @@ module.exports = function(progress, callback) {
   var canvas = document.getElementById('preloader'),
     width = canvas.width,
     height = canvas.height,
-    ctx = canvas.getContext('2d')
+    ctx = canvas.getContext('2d'),
     imd = null;
 
   var step = -90,
