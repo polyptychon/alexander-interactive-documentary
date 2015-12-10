@@ -5,8 +5,10 @@ module.exports = {
   play: (chapter, time, chapterBg)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', chapterBg)
+    $('.player-footer-container').addClass('mini')
     pageTimeoutId = setTimeout(()->
       $('body').addClass('is-playing')
+      $('.player-footer-container').removeClass('mini')
       displayPage('.video-player', chapterBg)
     , 4000)
   stop: ()->
