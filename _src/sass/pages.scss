@@ -26,6 +26,24 @@
     opacity: 1;
   }
 }
+.chapter {
+  &.hidden {
+    header {
+      opacity: 0;
+    }
+    .bg {
+      transform: scale(1, 1);
+    }
+  }
+  &.visible {
+    header {
+      opacity: 1;
+    }
+    .bg {
+      transform: scale(2, 2) translate(0, 0);
+    }
+  }
+}
 .landing {
   &.visible {
     .intro-buttons {
@@ -44,7 +62,7 @@
     position: absolute;
     top: 0;
     opacity: 0;
-    transform: translate(0, 100%);
+    transform: translate(0, 100%) scale(.9,.9);
   }
   &.visible {
     transform: translate(0, 0);
