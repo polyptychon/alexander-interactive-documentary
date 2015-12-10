@@ -3,19 +3,13 @@ away = require('away')
 
 $('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
-  e.stopImmediatePropagation()
-  return false
 )
 $('.chapters .back').bind('click', (e)->
   $('body').toggleClass('show-chapters')
-  e.stopImmediatePropagation()
-  return false
 )
 $('.related-items-btn').bind('click', (e)->
   $('body').removeClass('show-chapters')
   $('.player-footer-container').toggleClass('open-related-items')
-  e.stopImmediatePropagation()
-  return false
 )
 
 timer = away(10000)
