@@ -2,6 +2,9 @@
   transition: .5s opacity;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
+.landing .chapter-title header {
+  transition: all .4s ease-out;
+}
 .chapter {
   .bg {
     transition: all 40s ease;
@@ -39,4 +42,12 @@ footer, .chapters, .player-footer-container, .related-items-container {
   //transition-timing-function: cubic-bezier(0.23,1,0.32,1);
   //transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
   transition-timing-function: cubic-bezier(0.77,0,0.175,1);
+}
+.landing {
+  .chapters {
+    transition: opacity .4s ease-out;
+  }
+  .chapters a {
+    transition: all .4s ease-out;
+  }
 }

@@ -35,12 +35,15 @@ header.bottom.intro {
   }
 }
 .chapters.intro {
-  display: none;
+  display: table;
   position: absolute;
   top: 0;
+  left: 0;
+  opacity: 0;
   list-style: none;
   width: 100%;
   height: 100%;
+  transform: translate(0, 100%);
   background: rgba(black, .7);
   .back {
     position: absolute;
@@ -77,13 +80,13 @@ header.bottom.intro {
   }
 }
 .show-chapters {
-  .intro {
-    display: none;
+  .chapter-title header {
+    opacity: 0;
   }
   .chapters {
     bottom: 0 !important;
     transform: translate(0, 0) !important;
-    display: table !important;
+    opacity: 1 !important;
   }
 }
 .intro-buttons {
