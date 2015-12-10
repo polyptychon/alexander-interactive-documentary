@@ -3,15 +3,15 @@ html(lang="en")
   head
     include partials/header
   body(style="background-color: black;")
-    .preloader.visible
+    .page.preloader.visible
       canvas(id="preloader" width="100" height="100")
-    .landing.hidden
+    .page.landing.hidden
       include pages/landing
-    .chapter.hidden
+    .page.chapter.hidden
       include pages/chapter-title
-    .video-player.hidden
+    .page.video-player.hidden
       include pages/video-player
-    .archive.hidden
+    .page.archive.hidden
       include pages/archive
 
     include partials/footer
