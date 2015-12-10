@@ -1,7 +1,7 @@
 header.bottom.intro {
   bottom: 34px;
   h1 {
-    margin-bottom: 50px;
+    margin-bottom: 180px;
     @media (max-width: 720px) {
       display: none;
     }
@@ -84,5 +84,21 @@ header.bottom.intro {
     bottom: 0 !important;
     transform: translate(0, 0) !important;
     display: table !important;
+  }
+}
+.intro-buttons {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.visible {
+  .intro-buttons {
+    transform: translate(0, 0);
+  }
+}
+.hidden {
+  .intro-buttons {
+    transform: translate(0, 150px);
   }
 }

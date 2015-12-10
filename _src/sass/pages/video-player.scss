@@ -1,11 +1,3 @@
-footer, .chapters, .player-footer-container, .related-items-container {
-  transition: all .4s ease-out;
-  //transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
-.video-player-controls, .progress-bar-container, .related-items, .bar-bg, .bar-progress, .bar-progress-control {
-  transition: all .4s ease-out;
-  //transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
 .hasTouch {
   .player-footer-container {
     .previous, .next {

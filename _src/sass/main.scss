@@ -84,7 +84,7 @@ $pathToFonts : '../fonts/';
 //  text-align: center;
 //}
 
-//@import "transition";
+@import "transition";
 
 @import "base";
 @import "sprites";
@@ -109,6 +109,6 @@ $pathToFonts : '../fonts/';
 @import "pages/splash";
 @import "pages/chapter-titles";
 @import "pages/video-player";
-@import "pages/intro";
+@import "pages/landing";
 @import "pages/media-archive";
 @import "pages/related-items";

@@ -3,9 +3,12 @@
   header.bottom.intro
     h1
       span.glyphicon.title-intro-icon
-    a.btn.play-documentary-btn(href="javascript:") PLAY DOCUMENTARY
-    a.btn.chapters-btn(href="javascript:") CHAPTERS
-    a.btn.archive-btn(href="javascript:") MEDIA ARCHIVE
+    .intro-buttons
+      .intro-play-buttons
+        a.btn.play-documentary-btn(href="javascript:") PLAY DOCUMENTARY
+      .intro-media-buttons
+        a.btn.chapters-btn(href="javascript:") CHAPTERS
+        a.btn.archive-btn(href="javascript:") MEDIA ARCHIVE
 .chapters.intro
   a.back(href="#") BACK
   .chapters-container
