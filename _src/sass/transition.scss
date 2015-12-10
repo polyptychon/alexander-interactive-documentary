@@ -1,3 +1,12 @@
+.preloader, .landing, .chapter, .video-player, .archive {
+  transition: .5s opacity;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.archive {
+  transition: .5s all ease-out;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
 footer, .chapters, .player-footer-container, .related-items-container {
   transition: all .4s ease-out;
   //transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -8,6 +17,9 @@ footer, .chapters, .player-footer-container, .related-items-container {
 }
 .intro-buttons, .intro-buttons a {
   transition: all .4s ease-out;
+}
+.intro-buttons {
+  transition-delay: .4s;
 }
 .filters a .arrow-down-icon {
   transition: all .4s ease-out;

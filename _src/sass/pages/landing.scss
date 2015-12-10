@@ -92,13 +92,4 @@ header.bottom.intro {
   bottom: 0;
   width: 100%;
 }
-.visible {
-  .intro-buttons {
-    transform: translate(0, 0);
-  }
-}
-.hidden {
-  .intro-buttons {
-    transform: translate(0, 150px);
-  }
-}
+

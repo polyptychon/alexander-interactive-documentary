@@ -14,11 +14,14 @@ $('.play-documentary-btn').bind('click', ()->
   player.stop()
   player.play(1, 0, queue.getItem("chapter-1-bg").src)
 )
-$('.btn-footer.btn-home, .archive .back').bind('click', ()->
+$('.btn-footer.btn-home').bind('click', ()->
   player.stop()
   displayPage('.landing', queue.getItem("landing-bg").src)
 )
 $('.archive-btn').bind('click', ()->
   displayPage('.archive', queue.getItem("stoneDark").src)
+)
+$('.archive .back').bind('click', ()->
+  displayPage('.landing', queue.getItem("landing-bg").src, '')
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)

@@ -7,8 +7,6 @@
   height: 100%;
   background-position: center center;
   background-size: cover;
-  transition: .5s opacity;
-  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   &.hidden {
     position: relative;
     top: 100%;
@@ -16,6 +14,31 @@
   &.visible {
     position: absolute;
     top: 0;
+    opacity: 1;
+  }
+}
+.landing {
+  &.visible {
+    .intro-buttons {
+      transform: translate(0, 0);
+    }
+  }
+  &.hidden {
+    .intro-buttons {
+      transform: translate(0, 150px);
+    }
+  }
+}
+.archive {
+  opacity: 1;
+  &.hidden {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  &.visible {
+    transform: translate(0, 0);
     opacity: 1;
   }
 }
