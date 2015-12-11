@@ -1,6 +1,6 @@
 global.$ = global.jQuery = $ = require "jquery"
 
-$('.archive')
+archive = $('.archive')
 $('.btn.next').bind('click', ()->
   next()
 )
@@ -18,18 +18,23 @@ width = 1000
 gap = 25
 
 next = ()->
-  currentItems = $('.archive').find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
-  nextItems = $('.archive').find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
+  currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
+  nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
   return if (nextItems.length==0)
   animatePageChange(currentItems, nextItems)
   currentPage++
+  showCurrentPage()
 
 previous = ()->
-  currentItems = $('.archive').find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
-  previousItems = $('.archive').find('.related-videos li').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
+  currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
+  previousItems = archive.find('.related-videos li').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
   return if (previousItems.length==0)
   animatePageChange(currentItems, previousItems, '')
   currentPage--
+  showCurrentPage()
+
+showCurrentPage = ()->
+  archive.find('.pagination-text .text').html("PAGE&nbsp;  #{currentPage}&nbsp; OF&nbsp; 3")
 
 animatePageChange = (currentItems, nextItems, direction = '-') ->
   top = gap
