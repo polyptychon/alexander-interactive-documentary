@@ -1,5 +1,5 @@
 global.$ = global.jQuery = $ = require "jquery"
-require "preloadjs/lib/preloadjs-0.6.2.min"
+require "./preloadjs-0.6.2.min"
 preloader = require "./preloader";
 
 module.exports = (callback=null)->

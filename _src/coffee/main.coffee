@@ -8,7 +8,9 @@ require "./archive-animation.coffee"
 
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
-handleLoadComplete = ()-> displayPage('.landing', queue.getItem("landing-bg").src, '')
+handleLoadComplete = ()->
+  displayPage('.landing', queue.getItem("landing-bg").src, '')
+  createjs.Sound.play("sound");
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
