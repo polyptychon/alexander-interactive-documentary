@@ -12,7 +12,7 @@ player = require "./play.coffee"
 
 handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
-#  SM.playMusic('music', -1, 3000)
+  SM.playMusic('music', -1, 3000)
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
