@@ -1,5 +1,6 @@
 global.$ = global.jQuery = $ = require "jquery"
 require "./preloadjs-0.6.2.min"
+require "./soundjs-0.6.2.min"
 preloader = require "./preloader";
 
 module.exports = (callback=null)->
@@ -11,6 +12,7 @@ module.exports = (callback=null)->
   queue.installPlugin(createjs.Sound)
   #queue.on("complete", handleComplete, this)
   queue.on("progress", handleProgress, this)
+  queue.loadFile({id:"music", src:"assets/sounds/soundtrack.mp3"});
   queue.loadManifest([
     { id: "landing-bg", src: "assets/images/alexander.jpg" }
     { id: "chapter-1-bg", src: "assets/images/stone-light.jpg" }
@@ -21,6 +23,5 @@ module.exports = (callback=null)->
     { id: "stoneDark", src: "assets/images/stone-dark.jpg" }
     { id: "stoneLight", src: "assets/images/stone-light.jpg" }
     { id: "thumbnail", src: "assets/images/thumbnail.jpg" }
-    { id: "music", src: "assets/sounds/soundtrack.mp3" }
   ])
   return queue

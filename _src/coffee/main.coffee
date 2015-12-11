@@ -10,7 +10,7 @@ displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
-  createjs.Sound.play("sound");
+  createjs.Sound.play("music");
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()

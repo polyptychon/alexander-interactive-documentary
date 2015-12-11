@@ -7,6 +7,7 @@ module.exports = {
     displayPage('.chapter', chapterBg)
     $('.player-footer-container').addClass('mini')
     pageTimeoutId = setTimeout(()->
+      createjs.Sound.stop("music");
       $('body').addClass('is-playing')
       $('.player-footer-container').removeClass('mini')
       displayPage('.video-player', chapterBg)
