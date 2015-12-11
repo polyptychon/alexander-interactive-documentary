@@ -1,5 +1,5 @@
 global.$ = global.jQuery = $ = require "jquery"
-
+slideSound = 'page-slide-back'
 archive = $('.archive')
 $('.btn.next').bind('click', ()->
   next()
@@ -19,7 +19,7 @@ next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
   return if (nextItems.length==0)
-  createjs.Sound.play("archive-slide");
+  createjs.Sound.play(slideSound);
   animatePageChange(currentItems, nextItems)
   currentPage++
   showCurrentPage()
@@ -28,7 +28,7 @@ previous = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   previousItems = archive.find('.related-videos li').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
   return if (previousItems.length==0)
-  createjs.Sound.play("archive-slide");
+  createjs.Sound.play(slideSound);
   animatePageChange(currentItems, previousItems, '')
   currentPage--
   showCurrentPage()
