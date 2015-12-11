@@ -19,6 +19,7 @@ next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
   return if (nextItems.length==0)
+  createjs.Sound.play("archive-slide");
   animatePageChange(currentItems, nextItems)
   currentPage++
   showCurrentPage()
@@ -27,6 +28,7 @@ previous = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   previousItems = archive.find('.related-videos li').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
   return if (previousItems.length==0)
+  createjs.Sound.play("archive-slide");
   animatePageChange(currentItems, previousItems, '')
   currentPage--
   showCurrentPage()
@@ -72,6 +74,9 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
     metr = 1 if (metr==pageLength+1)
   )
 
-nextItems = archive.find('.related-videos li').slice(0, 10)
-currentItems = archive.find('.related-videos li').slice(10)
-animatePageChange(currentItems, nextItems, '')
+resetPage = ()->
+  nextItems = archive.find('.related-videos li').slice(0, 10)
+  currentItems = archive.find('.related-videos li').slice(10)
+  animatePageChange(currentItems, nextItems, '')
+
+resetPage()

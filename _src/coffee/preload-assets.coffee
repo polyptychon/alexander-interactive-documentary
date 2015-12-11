@@ -29,5 +29,6 @@ module.exports = (callback=null)->
     {id:"over", src:"assets/sounds/FX_GenericMouseOver.mp3"}
     {id:"page-slide-back", src:"assets/sounds/FX_DossierPageSlideBack_1.mp3"}
     {id:"page-slide-up", src:"assets/sounds/FX_DossierPageSlideUp_1.mp3"}
+    {id:"archive-slide", src:"assets/sounds/FX_TimelineMenuIn_1.mp3"}
   ])
   return queue

@@ -13,7 +13,6 @@ handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
   SM.playMusic('music', -1, 3000)
 
-
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
   player.play(1, 0, queue.getItem("chapter-1-bg").src)
