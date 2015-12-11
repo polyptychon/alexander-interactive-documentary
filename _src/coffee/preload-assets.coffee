@@ -21,5 +21,6 @@ module.exports = (callback=null)->
     { id: "stoneDark", src: "assets/images/stone-dark.jpg" }
     { id: "stoneLight", src: "assets/images/stone-light.jpg" }
     { id: "thumbnail", src: "assets/images/thumbnail.jpg" }
+    { id: "music", src: "assets/sounds/soundtrack.mp3" }
   ])
   return queue

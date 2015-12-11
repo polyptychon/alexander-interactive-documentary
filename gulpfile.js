@@ -193,7 +193,7 @@ gulp.task('clean-css', function() {
     .pipe(gulpif(env === PRODUCTION, vinylPaths(del).on('error', gutil.log)))
 });
 gulp.task('images',['clean-images'], function() {
-  return gulp.src([MOCKUPS+'/{images,sprite}/**/*.{jpg,png,gif,svg}'])
+  return gulp.src([MOCKUPS+'/{images,sprite}/**/*.{jpg,png,gif,svg,ico}'])
     .pipe(duration('images'))
     .pipe(flatten().on('error', gutil.log))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, rev()))
