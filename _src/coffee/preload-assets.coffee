@@ -10,7 +10,7 @@ module.exports = (callback=null)->
   handleProgress = (e) -> preloader(e.progress, handleCompleteAnimation)
   queue = new createjs.LoadQueue()
   queue.installPlugin(createjs.Sound)
-  #queue.on("complete", handleComplete, this)
+#  queue.on("complete", handleComplete, this)
   queue.on("progress", handleProgress, this)
   queue.loadFile({id:"music", src:"assets/sounds/soundtrack.mp3"});
   queue.loadManifest([
@@ -23,5 +23,11 @@ module.exports = (callback=null)->
     { id: "stoneDark", src: "assets/images/stone-dark.jpg" }
     { id: "stoneLight", src: "assets/images/stone-light.jpg" }
     { id: "thumbnail", src: "assets/images/thumbnail.jpg" }
+
+#    {id:"music", src:"assets/sounds/soundtrack.mp3"}
+    {id:"click", src:"assets/sounds/FX_Click_1.mp3"}
+    {id:"over", src:"assets/sounds/FX_GenericMouseOver.mp3"}
+    {id:"page-slide-back", src:"assets/sounds/FX_DossierPageSlideBack_1.mp3"}
+    {id:"page-slide-up", src:"assets/sounds/FX_DossierPageSlideUp_1.mp3"}
   ])
   return queue

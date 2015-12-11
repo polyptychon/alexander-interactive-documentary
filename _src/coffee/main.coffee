@@ -5,12 +5,14 @@ $('html').addClass('hasTouch') if isTouchDevice()
 
 require "./player-animation.coffee"
 require "./archive-animation.coffee"
+require "./SoundWrapper"
 
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
-  createjs.Sound.play("music");
+  SM.playMusic('music', -1, 3000)
+
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
@@ -22,8 +24,16 @@ $('.btn-footer.btn-home').bind('click', ()->
 )
 $('.archive-btn').bind('click', ()->
   displayPage('.archive', queue.getItem("stoneDark").src)
+  createjs.Sound.play("page-slide-up");
 )
 $('.archive .back').bind('click', ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
+  createjs.Sound.play("page-slide-back");
+)
+$('.chapters li a, .intro-buttons a').bind('mouseover', ()->
+  createjs.Sound.play("over");
+)
+$('.chapters li a').bind('click', ()->
+  createjs.Sound.play("click");
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)

@@ -1,4 +1,6 @@
 displayPage = require "./displayPage.coffee"
+require "./SoundWrapper"
+
 pageTimeoutId = -1
 
 module.exports = {
@@ -7,7 +9,7 @@ module.exports = {
     displayPage('.chapter', chapterBg)
     $('.player-footer-container').addClass('mini')
     pageTimeoutId = setTimeout(()->
-      createjs.Sound.stop("music");
+      SM.stopMusic('music', 3000)
       $('body').addClass('is-playing')
       $('.player-footer-container').removeClass('mini')
       displayPage('.video-player', chapterBg)
@@ -15,4 +17,5 @@ module.exports = {
   stop: ()->
     clearTimeout(pageTimeoutId)
     $('body').removeClass('is-playing')
+    SM.playMusic('music', -1, 3000)
 }
