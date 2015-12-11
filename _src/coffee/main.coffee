@@ -37,7 +37,7 @@ $('.archive .back').bind('click', ()->
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
   createjs.Sound.play("over");
 )
-$('.chapters li a').bind('click', ()->
+$('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
   createjs.Sound.play("click");
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
