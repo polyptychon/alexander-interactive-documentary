@@ -111,7 +111,7 @@
         }
       }
       li {
-        $gap: 25px;
+        $gap: 20px;
         $horizontal-gap: 0;
         $vertical-gap: $gap;
         $left: 150px;
@@ -126,10 +126,10 @@
           &:nth-child(#{$i}) {
             @include my-translate($horizontal-gap, $vertical-gap);
           }
-          $horizontal-gap: $horizontal-gap + $left + $gap;
+          $horizontal-gap: $horizontal-gap + 5 + $left + $gap;
           @if $i % $items-per-column == 0 {
             $horizontal-gap: 0;
-            $vertical-gap: $vertical-gap + $left;
+            $vertical-gap: $vertical-gap+5 + $left;
           }
         }
       }

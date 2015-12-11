@@ -14,8 +14,6 @@ $('.dropdown-menu-btn').bind('click', ()->
 )
 currentPage = 1;
 pageLength = 10
-width = 1000
-gap = 25
 
 next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
@@ -36,32 +34,44 @@ previous = ()->
 showCurrentPage = ()->
   archive.find('.pagination-text .text').html("PAGE&nbsp;  #{currentPage}&nbsp; OF&nbsp; 3")
 
+width = 1000
+gap = 25
+
 animatePageChange = (currentItems, nextItems, direction = '-') ->
   top = gap
-  left = 0
   metr = 1
   delay = 15
+  cellWidth = 150
+  cellHeight = 128 + 25 -10
   currentItems.each(()->
+    top = gap if (metr==1)
     $(this).css('transform', "translate(#{direction}#{width}px, #{top}px)")
     $(this).css('transition-delay', "#{delay}ms")
     delay = delay - 15
     if (metr==pageLength/2)
-      top = 150 + gap
+      top = cellHeight + gap
       delay = 75
     metr++
+    metr = 1 if (metr==pageLength+1)
   )
   top = gap
   left = 0
   metr = 1
   delay = 15
   nextItems.each(()->
+    top = gap if (metr==1)
     $(this).css('transform', "translate(#{left}px, #{top}px)")
     $(this).css('transition-delay', "#{delay}ms")
-    left += 150 + gap
+    left += cellWidth + gap
     delay = delay + 15
     if (metr==pageLength/2)
-      top = 150 + gap
+      top = cellHeight + gap
       left = 0
       delay = 0
     metr++
+    metr = 1 if (metr==pageLength+1)
   )
+
+nextItems = archive.find('.related-videos li').slice(0, 10)
+currentItems = archive.find('.related-videos li').slice(10)
+animatePageChange(currentItems, nextItems, '')
