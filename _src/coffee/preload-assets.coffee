@@ -12,7 +12,7 @@ module.exports = (callback=null)->
   queue.installPlugin(createjs.Sound)
 #  queue.on("complete", handleComplete, this)
   queue.on("progress", handleProgress, this)
-  queue.loadFile({id:"music", src:"assets/sounds/soundtrack.mp3"});
+#  queue.loadFile({id:"music", src:"assets/sounds/soundtrack.mp3"});
   queue.loadManifest([
     { id: "landing-bg", src: "assets/images/alexander.jpg" }
     { id: "chapter-1-bg", src: "assets/images/stone-light.jpg" }
@@ -24,7 +24,7 @@ module.exports = (callback=null)->
     { id: "stoneLight", src: "assets/images/stone-light.jpg" }
     { id: "thumbnail", src: "assets/images/thumbnail.jpg" }
 
-#    {id:"music", src:"assets/sounds/soundtrack.mp3"}
+    {id:"music", src:"assets/sounds/soundtrack.mp3"}
     {id:"click", src:"assets/sounds/FX_Click_1.mp3"}
     {id:"over", src:"assets/sounds/FX_GenericMouseOver.mp3"}
     {id:"page-slide-back", src:"assets/sounds/FX_DossierPageSlideBack_1.mp3"}
