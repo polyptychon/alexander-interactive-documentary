@@ -9,7 +9,7 @@ module.exports = {
     displayPage('.chapter', chapterBg)
     $('.player-footer-container').addClass('mini')
     pageTimeoutId = setTimeout(()->
-      SM.stopMusic('music', 3000)
+      SM.stopMusic('music', 6000)
       $('body').addClass('is-playing')
       $('.player-footer-container').removeClass('mini')
       displayPage('.video-player', chapterBg)

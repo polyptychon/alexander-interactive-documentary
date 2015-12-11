@@ -121,83 +121,18 @@
 
         @include my-translate($width, $vertical-gap);
         -webkit-font-smoothing: subpixel-antialiased;
-        $delay: 0;
 
         @for $i from 1 through 10 {
           &:nth-child(#{$i}) {
             @include my-translate($horizontal-gap, $vertical-gap);
-            transition-delay: $delay;
           }
-          $delay: $delay - 20ms;
           $horizontal-gap: $horizontal-gap + $left + $gap;
           @if $i % $items-per-column == 0 {
             $horizontal-gap: 0;
-            $delay: 100ms;
             $vertical-gap: $vertical-gap + $left;
           }
         }
       }
-      //@for $page from 1 through 3 {
-      //  &.page#{$page} {
-      //    li {
-      //      $gap: 25px;
-      //      $horizontal-gap: 0;
-      //      $vertical-gap: $gap;
-      //      $left: 150px;
-      //      $items: 10;
-      //      $columns: 2;
-      //      $items-per-column: floor($items / $columns);
-      //
-      //      @include my-translate($width, $vertical-gap);
-      //      -webkit-font-smoothing: subpixel-antialiased;
-      //      $delay: 0;
-      //
-      //      @for $i from (($page - 2)*$items)+1 through (($page - 2)*$items)+$items {
-      //        &:nth-child(#{$i}) {
-      //          @include my-translate(-$width, $vertical-gap);
-      //          transition-delay: $delay;
-      //        }
-      //        $horizontal-gap: $horizontal-gap + $left + $gap;
-      //        $delay: $delay + 20ms;
-      //        @if $i % $items-per-column == 0 {
-      //          $vertical-gap: $vertical-gap + $left;
-      //          $delay: 0;
-      //        }
-      //      }
-      //      $horizontal-gap: 0;
-      //      $vertical-gap: 18px;
-      //      $delay: 100ms;
-      //      @for $i from ($page - 1)*$items+1 through ($page - 1)*$items+1+$items {
-      //        &:nth-child(#{$i}) {
-      //          @include my-translate($horizontal-gap, $vertical-gap);
-      //          transition-delay: $delay;
-      //        }
-      //        $delay: $delay - 20ms;
-      //        $horizontal-gap: $horizontal-gap + $left + $gap;
-      //        @if $i % $items-per-column == 0 {
-      //          $horizontal-gap: 0;
-      //          $delay: 100ms;
-      //          $vertical-gap: $vertical-gap + $left;
-      //        }
-      //      }
-      //      $horizontal-gap: $width;
-      //      $vertical-gap: $gap;
-      //      $delay: 0;
-      //      @for $i from $page*$items+1 through $page*$items+$items {
-      //        &:nth-child(#{$i}) {
-      //          @include my-translate($width, $vertical-gap);
-      //          transition-delay: $delay;
-      //        }
-      //        $delay: $delay + 20ms;
-      //        $horizontal-gap: $horizontal-gap + $left + $gap;
-      //        @if $i % $items-per-column == 0 {
-      //          $delay: 0;
-      //          $vertical-gap: $vertical-gap + $left;
-      //        }
-      //      }
-      //    }
-      //  }
-      //}
     }
   }
 }
