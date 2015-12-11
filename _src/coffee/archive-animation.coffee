@@ -75,8 +75,12 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
   )
 
 resetPage = ()->
+  currentPage = 1
   nextItems = archive.find('.related-videos li').slice(0, 10)
   currentItems = archive.find('.related-videos li').slice(10)
   animatePageChange(currentItems, nextItems, '')
+  showCurrentPage()
 
 resetPage()
+
+module.exports = resetPage

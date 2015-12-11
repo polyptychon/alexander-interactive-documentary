@@ -4,11 +4,12 @@ isTouchDevice =  require "./detectTouchDevice"
 $('html').addClass('hasTouch') if isTouchDevice()
 
 require "./player-animation.coffee"
-require "./archive-animation.coffee"
 require "./SoundWrapper"
 
+resetArchive = require "./archive-animation.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
+
 handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
   SM.playMusic('music', -1, 3000)
@@ -19,17 +20,21 @@ $('.play-documentary-btn').bind('click', ()->
 )
 $('.btn-footer.btn-home').bind('click', ()->
   player.stop()
-  displayPage('.landing', queue.getItem("landing-bg").src)
+  if ($('.page.visible').hasClass('archive'))
+    $('.archive .back').trigger('click')
+  else
+    displayPage('.landing', queue.getItem("landing-bg").src)
 )
 $('.archive-btn').bind('click', ()->
   displayPage('.archive', queue.getItem("stoneDark").src)
   createjs.Sound.play("page-slide-up");
 )
 $('.archive .back').bind('click', ()->
+  resetArchive()
   displayPage('.landing', queue.getItem("landing-bg").src, '')
   createjs.Sound.play("page-slide-back");
 )
-$('.chapters li a, .intro-buttons a').bind('mouseover', ()->
+$('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
   createjs.Sound.play("over");
 )
 $('.chapters li a').bind('click', ()->
