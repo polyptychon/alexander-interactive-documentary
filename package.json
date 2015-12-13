@@ -66,6 +66,7 @@
     "jquery.transit": "^0.9.12",
     "photoswipe": "^4.0.7",
     "picturefill": "^2.3.0",
+    "play-audio": "^0.1.0",
     "poly-form-select2": "git://github.com/polyptychon/poly-form-select2",
     "select2": "^3.5.2-browserify"
   },

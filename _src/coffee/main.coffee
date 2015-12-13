@@ -9,10 +9,13 @@ require "./SoundWrapper"
 resetArchive = require "./archive-animation.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
+play = require "play-audio"
 
 handleLoadComplete = ()->
   displayPage('.landing', queue.getItem("landing-bg").src, '')
   SM.playMusic('music', -1, 3000)
+
+  play('assets/sounds/soundtrack.mp3').volume(1).loop().play()
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()

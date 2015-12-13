@@ -1,5 +1,4 @@
 var requestAnimFrame = require("animationframe");
-var previousProgress = 0;
 
 var canvas = document.getElementById('preloader'),
   width = canvas.width,
@@ -27,7 +26,7 @@ function draw() {
   drawArc(startAngle * Math.PI/180 - 90 * Math.PI/180, step * Math.PI/180 - 90 * Math.PI/180);
   if (step<endAngle) {
     step += 4;
-    percent = Math.floor(step/360*100);
+    percent = Math.ceil(step/360*100);
   }
 }
 function drawArc(s, e) {
