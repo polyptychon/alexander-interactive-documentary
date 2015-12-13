@@ -8,6 +8,7 @@ var canvas = document.getElementById('preloader'),
   progress = 0;
 
 var step = 0,
+  percent = 0,
   startAngle = 0,
   endAngle = 0;
 
@@ -26,6 +27,7 @@ function draw() {
   drawArc(startAngle * Math.PI/180 - 90 * Math.PI/180, step * Math.PI/180 - 90 * Math.PI/180);
   if (step<endAngle) {
     step += 4;
+    percent = Math.floor(step/360*100);
   }
 }
 function drawArc(s, e) {
@@ -44,6 +46,11 @@ function drawArc(s, e) {
   ctx.moveTo(x, y);
   ctx.arc(x, y, radius, s, e, counterClockwise);
   ctx.fill();
+
+  ctx.fillStyle = 'rgba(255,255,255,.2)';
+  ctx.font = "24px ProximaNova center";
+  ctx.textAlign = "center";
+  ctx.fillText(percent.toString(), 50, 57);
 }
 function onEnterFrame() {
   draw();
