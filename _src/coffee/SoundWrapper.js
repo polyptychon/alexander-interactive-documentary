@@ -1,6 +1,7 @@
 require("./soundjs-0.6.2.min");
 
 global.SM = (function(){
+  var play = require("play-audio");
   var musics = {};
   /**
    * CreateJS Sound Manager
@@ -25,36 +26,72 @@ global.SM = (function(){
     }
     repeat = repeat||0;
     fadeIn = (!fadeIn)?0:fadeIn;
-    var instance = createjs.Sound.play(id);
-    instance.volume = (fadeIn!==0)?0:1;
-    var o = {
-      instance    : instance,
-      playing     : true,
-      repeat      : (repeat>=0)?repeat:0,
-      loop        : (repeat===-1)?true:false,
-      fadeStep    : 1000/(60*fadeIn),
-      fadeType    : "FADE_IN"
-    };
-    musics[id] = o;
-    instance.addEventListener("complete",function(){
-      SM.musicComplete(o);
-    });
+    var instance = null;
+    if (id=='music') {
+      instance = play('assets/sounds/soundtrack.mp3').volume(1).loop().play();
+      instance.volume((fadeIn !== 0) ? 0 : 1);
+      var o = {
+        instance: instance,
+        playing: true,
+        repeat: (repeat >= 0) ? repeat : 0,
+        loop: (repeat === -1) ? true : false,
+        fadeStep: 1000 / (60 * fadeIn),
+        fadeType: "FADE_IN"
+      };
+      musics[id] = o;
+      instance.on("complete", function () {
+        SM.musicComplete(o);
+      });
+    } else {
+      instance = createjs.Sound.play(id);
+      instance.volume = (fadeIn !== 0) ? 0 : 1;
+      var o = {
+        instance: instance,
+        playing: true,
+        repeat: (repeat >= 0) ? repeat : 0,
+        loop: (repeat === -1) ? true : false,
+        fadeStep: 1000 / (60 * fadeIn),
+        fadeType: "FADE_IN"
+      };
+      musics[id] = o;
+      instance.addEventListener("complete", function () {
+        SM.musicComplete(o);
+      });
+    }
   };
   SM.update = function(){
     for(var id in musics){
       var o = musics[id];
       if(!isNaN(o.fadeStep) && o.playing){
         if(o.fadeType === "FADE_IN"){
-          o.instance.volume += o.fadeStep;
-          if(o.instance.volume >= 1){
-            o.instance.volume = 1;
+          if (id=="music") {
+            if(o.fadeStep + o.instance.volume() >= 1){
+              o.instance.volume(1);
+            } else {
+              o.instance.volume(o.fadeStep + o.instance.volume());
+            }
+          } else {
+            o.instance.volume += o.fadeStep;
+            if(o.instance.volume >= 1){
+              o.instance.volume = 1;
+            }
           }
         }else{
-          o.instance.volume -= o.fadeStep;
-          if(o.instance.volume <= 0){
-            o.instance.volume = 0;
-            o.playing = false;
-            SM.stopMusic(id);
+          if (id=="music") {
+            if( o.instance.volume() - o.fadeStep <= 0){
+              o.playing = false;
+              o.instance.volume(0);
+              o.instance.pause().currentTime(0);
+            } else {
+              o.instance.volume(o.instance.volume()-o.fadeStep);
+            }
+          } else {
+            o.instance.volume -= o.fadeStep;
+            if(o.instance.volume <= 0){
+              o.instance.volume = 0;
+              o.playing = false;
+              SM.stopMusic(id);
+            }
           }
         }
       }
@@ -83,7 +120,11 @@ global.SM = (function(){
     fadeOut = (!fadeOut)?0:fadeOut;
     if(o && o.playing){
       o.fadeType = "FADE_OUT";
-      o.fadeStep = (o.instance.volume*1000)/(60*fadeOut);
+      if (id=="music") {
+        o.fadeStep = (o.instance.volume()*1000)/(60*fadeOut);
+      } else {
+        o.fadeStep = (o.instance.volume*1000)/(60*fadeOut);
+      }
     }
   };
   /**
