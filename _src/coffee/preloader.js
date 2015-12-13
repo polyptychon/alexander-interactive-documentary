@@ -18,12 +18,13 @@ var x = width / 2, // center x
 
 ctx.imageSmoothingEnabled = true;
 ctx.lineWidth = 0;
-ctx.fillStyle = '#221e1a';
-ctx.strokeStyle = '#221e1a';
 ctx.lineCap = 'square';
 
+function degreesToRadians(degrees) {
+  return degrees * Math.PI/180;
+}
 function draw() {
-  drawArc(startAngle * Math.PI/180 - 90 * Math.PI/180, step * Math.PI/180 - 90 * Math.PI/180);
+  drawArc(degreesToRadians(startAngle-90), degreesToRadians(step-90));
   if (step<endAngle) {
     step += 4;
     percent = Math.ceil(step/360*100);
@@ -35,7 +36,7 @@ function drawArc(s, e) {
   ctx.fillStyle = 'rgba(34,30,26,.4)';
   ctx.beginPath();
   ctx.moveTo(x, y);
-  ctx.arc(x, y, radius, s, 360 * Math.PI/180, counterClockwise);
+  ctx.arc(x, y, radius, s, degreesToRadians(360), counterClockwise);
   ctx.fill();
 
   ctx.fillStyle = '#221e1a';
