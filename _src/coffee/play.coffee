@@ -4,7 +4,7 @@ require "./SoundWrapper"
 pageTimeoutId = -1
 
 module.exports = {
-  play: (chapter, time, chapterBg)->
+  play: (chapter, time, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('.player-footer-container').addClass('mini')

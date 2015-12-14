@@ -1,12 +1,6 @@
 global.$ = global.jQuery = $ = require "jquery"
 away = require('away')
 
-$('.chapters-btn').bind('click', (e)->
-  $('body').toggleClass('show-chapters')
-)
-$('.chapters .back').bind('click', (e)->
-  $('body').toggleClass('show-chapters')
-)
 $('.related-items-btn').bind('click', (e)->
   $('body').removeClass('show-chapters')
   $('.player-footer-container').toggleClass('open-related-items')
