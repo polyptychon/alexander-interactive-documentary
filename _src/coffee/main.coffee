@@ -2,6 +2,7 @@ global.$ = global.jQuery = $ = require "jquery"
 
 isTouchDevice =  require "./detectTouchDevice"
 $('html').addClass('hasTouch') if isTouchDevice()
+requestAnimFrame = require("animationframe")
 
 require "./player-animation.coffee"
 require "./SoundWrapper"
@@ -10,6 +11,15 @@ resetArchive = require "./archive-animation.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 play = require "play-audio"
+resetPageAnimation = (callback)->
+  $('.page').css('transitionDuration', '0ms');
+  $('.page').removeClass('slide-up').removeClass('slide-down')
+  requestAnimFrame(()->
+    requestAnimFrame(()->
+      $('.page').css('transitionDuration', '500ms');
+      callback()
+    )
+  )
 
 handleLoadComplete = ()->
   $('.landing').find('.bg').css('background-image', "url(#{queue.getItem("landing-bg").src})")
@@ -26,12 +36,13 @@ $('.play-documentary-btn').bind('click', ()->
 )
 $('.btn-footer.btn-home').bind('click', ()->
   $('body').removeClass('show-chapters')
-  $('.page').removeClass('slide-up').removeClass('slide-down')
-  player.stop()
-  if ($('.page.visible').hasClass('archive'))
-    $('.archive .back').trigger('click')
-  else
-    displayPage('.landing', '')
+  resetPageAnimation(()->
+    player.stop()
+    if ($('.page.visible').hasClass('archive'))
+      $('.archive .back').trigger('click')
+    else
+      displayPage('.landing', '')
+  )
 )
 $('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
@@ -60,10 +71,12 @@ $('.archive .related-videos a').bind('click', ()->
   $('.video-player-compact').addClass('slide-down')
   SM.stopMusic('music', 6000)
   displayPage('.video-player-compact', '')
+  createjs.Sound.play("page-slide-up")
 )
 $('.video-player-compact .back').bind('click', ()->
   displayPage('.archive', '')
   createjs.Sound.play("page-slide-back")
   SM.playMusic('music', -1, 0)
+  createjs.Sound.play("page-slide-back")
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
