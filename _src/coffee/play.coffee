@@ -70,13 +70,16 @@ mouseMoveHandler = (e)->
   e.stopImmediatePropagation()
   return false
 
+stopUpdateTime = ()->
+  progressBarContainer.unbind('mouseup')
+  $(window).unbind('mousemove').unbind('mouseup')
+  currentVideo.play()
+
 progressBarContainer.bind('mousedown', (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
-  $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler)
+  $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
+  progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
 )
-progressBarContainer.bind('mouseup', (e)->
-  $(window).unbind('mousemove')
-  currentVideo.play()
-)
+
