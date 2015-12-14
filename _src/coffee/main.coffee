@@ -26,11 +26,12 @@ $('.play-documentary-btn').bind('click', ()->
 )
 $('.btn-footer.btn-home').bind('click', ()->
   $('body').removeClass('show-chapters')
+  $('.page').removeClass('slide-up').removeClass('slide-down')
   player.stop()
   if ($('.page.visible').hasClass('archive'))
     $('.archive .back').trigger('click')
   else
-    displayPage('.landing')
+    displayPage('.landing', '')
 )
 $('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
@@ -43,6 +44,7 @@ $('.archive-btn').bind('click', ()->
   createjs.Sound.play("page-slide-up")
 )
 $('.archive .back').bind('click', ()->
+  $('.archive').removeClass('slide-up')
   resetArchive()
   displayPage('.landing', '')
   createjs.Sound.play("page-slide-back")
@@ -53,7 +55,9 @@ $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
   createjs.Sound.play("click")
 )
-$('.related-videos a').bind('click', ()->
+$('.archive .related-videos a').bind('click', ()->
+  $('.page.visible').addClass('slide-up')
+  $('.video-player-compact').addClass('slide-down')
   SM.stopMusic('music', 6000)
   displayPage('.video-player-compact', '')
 )

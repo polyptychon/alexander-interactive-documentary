@@ -2,6 +2,12 @@
   transition: .5s opacity;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
+.preloader, .landing, .chapter, .video-player, .archive, .video-player-compact {
+  &.slide-up, &.slide-down, &.slide-scale-up, &.slide-scale-down {
+    transition: .5s transform ease-out;
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+}
 .landing .chapter-title header {
   transition: all .4s ease-out;
 }
@@ -18,7 +24,6 @@
   transition: .5s all ease-out;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
-
 
 footer, .chapters, .player-footer-container, .related-items-container {
   transition: all .4s ease-out;

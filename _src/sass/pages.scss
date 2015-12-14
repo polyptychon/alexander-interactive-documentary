@@ -56,16 +56,30 @@
     }
   }
 }
-.archive {
+.archive, .video-player-compact {
   opacity: 1;
   &.hidden {
     position: absolute;
     top: 0;
     opacity: 0;
     transform: translate(0, 100%) scale(.9,.9);
+    &.slide-up {
+      opacity: 1;
+      transform: translate(0, -100%) scale(1,1);
+    }
+    &.slide-down {
+      opacity: 1;
+      transform: translate(0, 100%) scale(1,1);
+    }
   }
   &.visible {
     transform: translate(0, 0);
     opacity: 1;
+    &.slide-up, &.slide-down {
+      position: absolute;
+      top: 0;
+      opacity: 1;
+      transform: translate(0, 0) scale(1,1);
+    }
   }
 }
