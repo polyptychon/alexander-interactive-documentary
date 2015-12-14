@@ -219,6 +219,7 @@
         .duration-info {
           float: right;
           color: #9d9d93;
+          pointer-events: none;
         }
       }
       .bar-progress, .bar-bg {
