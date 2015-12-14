@@ -1,4 +1,4 @@
-.preloader, .landing, .chapter, .video-player, .archive {
+.preloader, .landing, .chapter, .video-player, .archive, .video-player-compact {
   transition: .5s opacity;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
@@ -50,4 +50,8 @@ footer, .chapters, .player-footer-container, .related-items-container {
   .chapters a {
     transition: all .4s ease-out;
   }
+}
+.top-button a {
+  transition: all .4s ease;
+  //transition-timing-function: cubic-bezier(0.77,0,0.175,1);
 }

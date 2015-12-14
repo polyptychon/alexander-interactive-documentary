@@ -28,17 +28,24 @@ $('.btn-footer.btn-home').bind('click', ()->
 )
 $('.archive-btn').bind('click', ()->
   displayPage('.archive', queue.getItem("stoneDark").src)
-  createjs.Sound.play("page-slide-up");
+  createjs.Sound.play("page-slide-up")
 )
 $('.archive .back').bind('click', ()->
   resetArchive()
   displayPage('.landing', queue.getItem("landing-bg").src, '')
-  createjs.Sound.play("page-slide-back");
+  createjs.Sound.play("page-slide-back")
 )
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
-  createjs.Sound.play("over");
+  createjs.Sound.play("over")
 )
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
-  createjs.Sound.play("click");
+  createjs.Sound.play("click")
+)
+$('.related-videos a').bind('click', ()->
+  displayPage('.video-player-compact', queue.getItem("stoneDark").src, '')
+)
+$('.video-player-compact .back').bind('click', ()->
+  displayPage('.archive', queue.getItem("stoneDark").src, '')
+  createjs.Sound.play("page-slide-back")
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)

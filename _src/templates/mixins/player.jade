@@ -1,5 +1,8 @@
+include ../mixins/top-button
 mixin player(type)
   - type = type || ''
+  if type=="compact"
+    +topButton('BACK')
   .bg
   .player-footer-container(class=type)
     .video-player-controls
