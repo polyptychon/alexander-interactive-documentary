@@ -72,7 +72,7 @@ mouseMoveHandler = (e)->
 
 progressBarContainer.bind('mousedown', (e)->
   currentVideo.pause()
-  updateTime(e.offsetX)
+  updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
   $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler)
 )
