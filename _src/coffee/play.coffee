@@ -65,7 +65,7 @@ updateTime = (x)->
   currentVideo.currentTime = duration * position
 
 mouseMoveHandler = (e)->
-  updateTime(e.clientX-144)
+  updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
   e.stopImmediatePropagation()
   return false
