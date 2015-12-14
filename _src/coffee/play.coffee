@@ -39,16 +39,19 @@ formatTime = (totalSec)->
     result = (if minutes < 10 then  "0" + minutes else minutes) + ":" + (if seconds  < 10 then "0" + seconds else seconds)
   return result
 
+updateProgressBar = ()->
+  duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
+  currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
+  progress = currentTime/duration * 100
+
+  progressBar.css('transition-duration', "16ms")
+  progressBar.css('width', "#{progress}%")
+  durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
+
 videoItem.on('play', ()->
   updateProgress = ()->
     requestAnimFrame(()->
-      duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
-      currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
-      progress = currentTime/duration * 100
-
-      progressBar.css('transition-duration', "16ms")
-      progressBar.css('width', "#{progress}%")
-      durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
+      updateProgressBar()
       updateProgress() if !currentVideo.paused
     )
   updateProgress()
@@ -56,24 +59,21 @@ videoItem.on('play', ()->
 videoItem.on('ended', (e)->
 
 )
-mouseMoveHandler = (e)->
+updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
-  position = (e.clientX-144) / progressBarContainer.width()
+  position = (x) / progressBarContainer.width()
   currentVideo.currentTime = duration * position
-  currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
-  progress = currentTime/duration * 100
-  progressBar.css('width', "#{progress}%")
+
+mouseMoveHandler = (e)->
+  updateTime(e.clientX-144)
+  updateProgressBar()
   e.stopImmediatePropagation()
   return false
 
 progressBarContainer.bind('mousedown', (e)->
   currentVideo.pause()
-  duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
-  position = e.offsetX / $(this).width()
-  currentVideo.currentTime = duration * position
-  currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
-  progress = currentTime/duration * 100
-  progressBar.css('width', "#{progress}%")
+  updateTime(e.offsetX)
+  updateProgressBar()
   $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler)
 )
 progressBarContainer.bind('mouseup', (e)->
