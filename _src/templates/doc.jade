@@ -1,3 +1,4 @@
+include mixins/player
 doctype html
 html(lang="en")
   head
@@ -10,7 +11,7 @@ html(lang="en")
     .page.chapter.hidden
       include pages/chapter-title
     .page.video-player.hidden
-      include pages/video-player
+      +player()
     .page.archive.hidden
       include pages/archive
 
