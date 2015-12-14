@@ -12,7 +12,10 @@ player = require "./play.coffee"
 play = require "play-audio"
 
 handleLoadComplete = ()->
-  displayPage('.landing', queue.getItem("landing-bg").src, '')
+  $('.landing').find('.bg').css('background-image', "url(#{queue.getItem("landing-bg").src})")
+  $('.archive').find('.bg').css('background-image', "url(#{queue.getItem("stoneDark").src})")
+  $('.video-player').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
+  displayPage('.landing', '')
   SM.playMusic('music', -1, 3000)
 
 $('.play-documentary-btn').bind('click', ()->
@@ -24,15 +27,15 @@ $('.btn-footer.btn-home').bind('click', ()->
   if ($('.page.visible').hasClass('archive'))
     $('.archive .back').trigger('click')
   else
-    displayPage('.landing', queue.getItem("landing-bg").src)
+    displayPage('.landing')
 )
 $('.archive-btn').bind('click', ()->
-  displayPage('.archive', queue.getItem("stoneDark").src)
+  displayPage('.archive')
   createjs.Sound.play("page-slide-up")
 )
 $('.archive .back').bind('click', ()->
   resetArchive()
-  displayPage('.landing', queue.getItem("landing-bg").src, '')
+  displayPage('.landing', '')
   createjs.Sound.play("page-slide-back")
 )
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
@@ -42,10 +45,10 @@ $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
   createjs.Sound.play("click")
 )
 $('.related-videos a').bind('click', ()->
-  displayPage('.video-player-compact', queue.getItem("stoneDark").src, '')
+  displayPage('.video-player-compact', '')
 )
 $('.video-player-compact .back').bind('click', ()->
-  displayPage('.archive', queue.getItem("stoneDark").src, '')
+  displayPage('.archive', '')
   createjs.Sound.play("page-slide-back")
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
