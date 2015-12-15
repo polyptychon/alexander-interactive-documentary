@@ -65,6 +65,7 @@ formatTime = (totalSec)->
   return result
 
 updateProgressBar = ()->
+  offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
   progress = currentTime/duration * 100
@@ -74,7 +75,7 @@ updateProgressBar = ()->
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
   if !isInfoVisible
     if item = isTimeOverRelatedItem(currentVideo.currentTime, 10)
-      infoPopup.css('left', "#{item.position().left+30}px");
+      infoPopup.css('left', "#{item.position().left+offset}px");
       infoPopup.removeClass('compact')
       infoPopup.removeClass('hidden')
       infoPopup.find('.info').html(item.find('.info').html())
@@ -108,7 +109,8 @@ updateTime = (x)->
   currentVideo.currentTime = duration * position
 
 mouseMoveHandler = (e)->
-  updateTime(e.clientX-progressBarContainer.offset().left-30)
+  offset = parseInt(progressBarContainer.css('padding-left'))
+  updateTime(e.clientX-progressBarContainer.offset().left-offset)
   updateProgressBar()
   e.stopImmediatePropagation()
   return false
@@ -118,8 +120,9 @@ stopUpdateTime = ()->
   $(window).unbind('mousemove').unbind('mouseup')
   currentVideo.play() if $('body').hasClass('is-playing')
 controlProgress = (e)->
+  offset = parseInt(progressBarContainer.css('padding-left'))
   currentVideo.pause()
-  updateTime(e.clientX-progressBarContainer.offset().left-30)
+  updateTime(e.clientX-progressBarContainer.offset().left-offset)
   updateProgressBar()
   $(window).unbind('mousemove').unbind('mouseup').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
@@ -139,17 +142,18 @@ isTimeOverRelatedItem = (currentTime, displayTime=null)->
   return item
 
 updateInfo = (e)->
+  offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   left = e.clientX-progressBarContainer.offset().left
-  infoTime = Math.ceil(duration * ((left-30) / progressBarContainer.find('.bar-container').width()))
+  infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
   else
     infoPopup.addClass('compact')
 
-  if (left-30>=0 && left-30<=progressBarContainer.find('.bar-container').width())
+  if (left-offset>=0 && left-offset<=progressBarContainer.find('.bar-container').width())
     if item
-      infoPopup.css('left', "#{item.position().left+30}px");
+      infoPopup.css('left', "#{item.position().left+offset}px");
     else
       infoPopup.css('left', "#{left}px");
 
