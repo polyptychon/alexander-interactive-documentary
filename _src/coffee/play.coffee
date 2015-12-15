@@ -74,6 +74,7 @@ updateProgressBar = ()->
       infoPopup.css('left', "#{item.position().left+30}px");
       infoPopup.removeClass('compact')
       infoPopup.css('display', 'block')
+      infoPopup.find('.info').html(item.find('.info').html())
     else
       infoPopup.addClass('compact')
       infoPopup.css('display', 'none')
