@@ -20,15 +20,16 @@ mixin player(type)
       .progress-bar
         .progress-bar-container
           .container.related-container
-            .related-items
-              .related-item(style="left:10%;")
-              .related-item(style="left:17%;")
-              .related-item(style="left:20%;")
-              .related-item(style="left:50%;")
-                .related-item-popup
-                  .img
-                    img(src="assets/images/thumbnail.jpg")
-                  .info RELATED VIDEO TITLE
+            if type!="compact"
+              .related-items
+                .related-item(style="left:10%;")
+                .related-item(style="left:17%;")
+                .related-item(style="left:20%;")
+                .related-item(style="left:50%;")
+                  .related-item-popup
+                    .img
+                      img(src="assets/images/thumbnail.jpg")
+                    .info RELATED VIDEO TITLE
           .container.bar-container
             .bar-bg
             .bar-progress
@@ -43,7 +44,7 @@ mixin player(type)
                 li
                   a(href="javascript:") #{item} - CHAPTER TITLE
         .progress-bar-container
-          .info-popup
+          .info-popup.compact
             .related-item-popup
               .img
                 img(src="assets/images/thumbnail.jpg")

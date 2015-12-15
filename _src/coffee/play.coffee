@@ -8,6 +8,7 @@ progressBarContainer = null
 progressBar = null
 durationInfo = null
 infoPopup = null
+relatedItems = null
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -15,6 +16,7 @@ setVideoControls = (parent)->
   progressBar = parent.find('.bar-progress')
   durationInfo = parent.find('.duration-info')
   infoPopup = parent.find('.info-popup')
+  relatedItems = parent.find('.related-container .related-item')
 
 setVideoControls($('.page.video-player'))
 
@@ -109,10 +111,25 @@ controlProgress = (e)->
   $(window).unbind('mousemove').unbind('mouseup').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
 
+isTimeOverRelatedItem = (currentTime)->
+  duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
+  position = Math.ceil(currentTime / duration * 100)
+  item = null
+  relatedItems.each(()->
+    p = parseInt($(this).attr('style').replace('left:',''), 10)
+    item = $(this) if p==position || p-1==position || p+1==position
+  )
+  return item
+
 updateInfo = (e)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   left = e.clientX-progressBarContainer.offset().left
   infoTime = Math.ceil(duration * ((left-30) / progressBarContainer.find('.bar-container').width()))
+  if item = isTimeOverRelatedItem(infoTime)
+    infoPopup.removeClass('compact')
+  else
+    infoPopup.addClass('compact')
+
   if (left-30>=0 && left-30<=progressBarContainer.find('.bar-container').width())
     infoPopup.css('left', "#{left}px");
     infoPopup.find('.info').html(formatTime(infoTime))

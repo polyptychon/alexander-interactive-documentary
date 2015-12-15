@@ -95,6 +95,12 @@
     .video-player-controls {
       height: 30px;
       bottom: 34px;
+      .info-popup {
+        top: 0;
+        .related-item-popup {
+          bottom: 2px;
+        }
+      }
       .chapters-btn {
         display: none;
       }
@@ -200,7 +206,7 @@
         //display: none;
         position: absolute;
         transform: translate(-50%, 0);
-        bottom: 16px;
+        bottom: 32px;
         left: 2px;
         background: #d1d1c5;
         padding: 5px 0;
@@ -217,14 +223,21 @@
         }
         .img {
           @extend .center-img;
-          display: none;
         }
         .info {
           padding: 5px 5px 0 5px;
           font-size: 11px;
           text-align: center;
-          width: 150px;
           @include text-ellipsis;
+        }
+      }
+      &.compact {
+        .img {
+          height: 0;
+          width: 90px;
+        }
+        .info {
+          width: 90px;
         }
       }
     }
