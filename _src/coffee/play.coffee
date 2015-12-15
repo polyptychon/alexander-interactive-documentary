@@ -16,13 +16,14 @@ setVideoControls = (parent)->
 
 setVideoControls($('.page.video-player'))
 
-playVideo = (src=null)->
+playVideo = (src=null, time=0)->
   SM.stopMusic('music', 6000)
   $('body').addClass('is-playing')
   $('.page.visible').find('.player-footer-container').removeClass('mini')
   setVideoControls($('.page.visible'))
   $(currentVideo).unbind('play').bind('play', updateProgress)
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
+  currentVideo.currentTime = time
   currentVideo.play()
 
 module.exports = {
@@ -31,10 +32,11 @@ module.exports = {
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('.player-footer-container').addClass('mini')
+    setVideoControls($('.page.video-player'))
     currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
-      playVideo()
+      playVideo(null, time)
     , 4000)
   stop: ()->
     currentVideo.pause() if currentVideo
