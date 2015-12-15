@@ -30,8 +30,8 @@ playVideo = (src=null, time=0)->
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
   progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
   $(currentVideo).unbind('click').bind('click', togglePlay)
-  infoPopup.unbind('mouseover').unbind('click').unbind('mousemove')
-    .bind('mousemove', stopPropagation)
+  infoPopup.unbind('mouseover').unbind('click').unbind('mousemove').unbind('mousedown').unbind('mouseup')
+    .bind('mousemove', stopPropagation).bind('mousedown', stopPropagation).bind('mouseup', stopPropagation)
     .bind('mouseover', handleInfoMouseOver).bind('click', stopPropagation)
   currentVideo.currentTime = time
   currentVideo.play()
@@ -118,9 +118,6 @@ stopUpdateTime = ()->
   $(window).unbind('mousemove').unbind('mouseup')
   currentVideo.play() if $('body').hasClass('is-playing')
 controlProgress = (e)->
-  if $(e.target).closest('.info-popup') && $(e.target).closest('.info-popup').length>0
-    $(e.target).closest('.info-popup').css('display', 'block')
-    return false
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
