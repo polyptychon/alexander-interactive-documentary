@@ -57,6 +57,7 @@ function onEnterFrame() {
   if (step<360) {
     requestAnimFrame(onEnterFrame, ctx);
   } else {
+    draw();
     callback();
   }
 }
