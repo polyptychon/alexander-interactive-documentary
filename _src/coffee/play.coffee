@@ -30,6 +30,9 @@ playVideo = (src=null, time=0)->
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
   progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
   $(currentVideo).unbind('click').bind('click', togglePlay)
+  infoPopup.unbind('mouseover').unbind('click').unbind('mousemove')
+    .bind('mousemove', stopPropagation)
+    .bind('mouseover', handleInfoMouseOver).bind('click', stopPropagation)
   currentVideo.currentTime = time
   currentVideo.play()
 
@@ -70,7 +73,7 @@ updateProgressBar = ()->
   progressBar.css('width', "#{progress}%")
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
   if !isInfoVisible
-    if item = isTimeOverRelatedItem(currentVideo.currentTime)
+    if item = isTimeOverRelatedItem(currentVideo.currentTime, 10)
       infoPopup.css('left', "#{item.position().left+30}px");
       infoPopup.removeClass('compact')
       infoPopup.css('display', 'block')
@@ -115,19 +118,26 @@ stopUpdateTime = ()->
   $(window).unbind('mousemove').unbind('mouseup')
   currentVideo.play() if $('body').hasClass('is-playing')
 controlProgress = (e)->
+  if $(e.target).closest('.info-popup') && $(e.target).closest('.info-popup').length>0
+    $(e.target).closest('.info-popup').css('display', 'block')
+    return false
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
   $(window).unbind('mousemove').unbind('mouseup').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
 
-isTimeOverRelatedItem = (currentTime)->
+isTimeOverRelatedItem = (currentTime, displayTime=null)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   position = Math.ceil(currentTime / duration * 100)
   item = null
   relatedItems.each(()->
     p = parseInt($(this).attr('style').replace('left:',''), 10)
-    item = $(this) if p==position || p-1==position || p+1==position
+    if displayTime
+      d = p / 100 * duration
+      item = $(this) if (d>currentTime-displayTime && d<currentTime+displayTime)
+    else
+      item = $(this) if p==position || p-1==position || p+1==position
   )
   return item
 
@@ -158,6 +168,15 @@ showCurrentInfo = (e)->
   infoPopup.css('display', 'block')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
+
+handleInfoMouseOver = (e)->
+  infoPopup.css('display', 'block')
+
+
+stopPropagation = (e)->
+  infoPopup.css('display', 'block')
+  e.stopImmediatePropagation()
+  return false
 
 togglePlay = ()->
   if this.paused
