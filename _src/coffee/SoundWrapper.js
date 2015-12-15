@@ -1,7 +1,7 @@
 require("./soundjs-0.6.2.min");
 
 global.SM = (function(){
-  var play = require("play-audio");
+  var play = require("play-audio")('assets/sounds/soundtrack.mp3');
   var musics = {};
   /**
    * CreateJS Sound Manager
@@ -28,7 +28,7 @@ global.SM = (function(){
     fadeIn = (!fadeIn)?0:fadeIn;
     var instance = null;
     if (id=='music') {
-      instance = play('assets/sounds/soundtrack.mp3').volume(1).loop().play();
+      instance = play.volume(1).loop().play();
       instance.volume((fadeIn !== 0) ? 0 : 1);
       var o = {
         instance: instance,
