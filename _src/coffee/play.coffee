@@ -7,12 +7,14 @@ currentVideo = null
 progressBarContainer = null
 progressBar = null
 durationInfo = null
+infoPopup = null
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
   progressBarContainer = parent.find('.progress-bar-container')
   progressBar = parent.find('.bar-progress')
   durationInfo = parent.find('.duration-info')
+  infoPopup = parent.find('.info-popup')
 
 setVideoControls($('.page.video-player'))
 
@@ -23,6 +25,7 @@ playVideo = (src=null, time=0)->
   setVideoControls($('.page.visible'))
   $(currentVideo).unbind('play').bind('play', updateProgress)
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
+  progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
   currentVideo.currentTime = time
   currentVideo.play()
 
@@ -76,6 +79,13 @@ updateProgress = ()->
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
 )
+$(currentVideo).bind('waiting', ()->
+  console.log 'waiting...'
+)
+$(currentVideo).bind('playing', ()->
+  console.log 'playing...'
+)
+
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   position = (x) / progressBarContainer.width()
@@ -91,13 +101,28 @@ stopUpdateTime = ()->
   progressBarContainer.unbind('mouseup')
   $(window).unbind('mousemove').unbind('mouseup')
   currentVideo.play()
-
 controlProgress = (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
-  $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
+  $(window).unbind('mousemove').unbind('mouseup').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
+
+updateInfo = (e)->
+  duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
+  left = e.clientX-progressBarContainer.offset().left
+  infoTime = Math.ceil(duration * (left / progressBarContainer.width()))
+  infoPopup.css('left', "#{left}px");
+  infoPopup.find('.info').html(formatTime(infoTime))
+
+stopShowCurrentInfo = (e)->
+  infoPopup.css('display', 'none')
+  progressBarContainer.unbind('mousemove').unbind('mouseout')
+
+showCurrentInfo = (e)->
+  infoPopup.css('display', 'block')
+  progressBarContainer.unbind('mousemove').unbind('mouseout')
+    .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
 
 leftKey = 37
 rightKey = 39
