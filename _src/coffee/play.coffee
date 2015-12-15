@@ -76,11 +76,11 @@ updateProgressBar = ()->
     if item = isTimeOverRelatedItem(currentVideo.currentTime, 10)
       infoPopup.css('left', "#{item.position().left+30}px");
       infoPopup.removeClass('compact')
-      infoPopup.css('display', 'block')
+      infoPopup.removeClass('hidden')
       infoPopup.find('.info').html(item.find('.info').html())
     else
       infoPopup.addClass('compact')
-      infoPopup.css('display', 'none')
+      infoPopup.addClass('hidden')
 
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
@@ -157,21 +157,21 @@ updateInfo = (e)->
 
 stopShowCurrentInfo = (e)->
   isInfoVisible = false
-  infoPopup.css('display', 'none')
+  infoPopup.addClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
 
 showCurrentInfo = (e)->
   isInfoVisible = true
-  infoPopup.css('display', 'block')
+  infoPopup.removeClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
 
 handleInfoMouseOver = (e)->
-  infoPopup.css('display', 'block')
+  infoPopup.removeClass('hidden')
 
 
 stopPropagation = (e)->
-  infoPopup.css('display', 'block')
+  infoPopup.removeClass('hidden')
   e.stopImmediatePropagation()
   return false
 
