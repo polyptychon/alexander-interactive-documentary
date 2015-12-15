@@ -112,8 +112,9 @@ updateInfo = (e)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   left = e.clientX-progressBarContainer.offset().left
   infoTime = Math.ceil(duration * ((left-30) / progressBarContainer.find('.bar-container').width()))
-  infoPopup.css('left', "#{left}px");
-  infoPopup.find('.info').html(formatTime(infoTime))
+  if (left-30>=0 && left-30<=progressBarContainer.find('.bar-container').width())
+    infoPopup.css('left', "#{left}px");
+    infoPopup.find('.info').html(formatTime(infoTime))
 
 stopShowCurrentInfo = (e)->
   infoPopup.css('display', 'none')
