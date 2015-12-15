@@ -13,13 +13,13 @@ module.exports = {
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('.player-footer-container').addClass('mini')
+    currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
       SM.stopMusic('music', 6000)
       $('body').addClass('is-playing')
       $('.player-footer-container').removeClass('mini')
       displayPage('.video-player')
       currentVideo.play()
-      currentVideo.currentTime = time
     , 4000)
   stop: ()->
     currentVideo.pause() if currentVideo
