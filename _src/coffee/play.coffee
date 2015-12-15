@@ -4,7 +4,7 @@ video = require("media").video
 require "./SoundWrapper"
 
 pageTimeoutId = -1
-videoItem = video('https://drive.google.com/uc?export=download&confirm=r1i8&id=0Bw8k9x-W_uS_QXRUeEE5bnBLRTg', $('.page.video-player .video')[0])
+videoItem = video('https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg', $('.page.video-player .video')[0])
 currentVideo = videoItem.element()
 progressBarContainer = $('.page.video-player .progress-bar-container')
 progressBar = $('.page.video-player .bar-progress')
