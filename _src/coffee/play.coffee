@@ -3,23 +3,38 @@ displayPage = require "./displayPage.coffee"
 require "./SoundWrapper"
 
 pageTimeoutId = -1
-currentVideo = $('.page.video-player .video video')[0]
-progressBarContainer = $('.page.video-player .progress-bar-container')
-progressBar = $('.page.video-player .bar-progress')
-durationInfo = $('.page.video-player .container.info-container .duration-info')
+currentVideo = null
+progressBarContainer = null
+progressBar = null
+durationInfo = null
+
+setVideoControls = (parent)->
+  currentVideo = parent.find('.video video')[0]
+  progressBarContainer = parent.find('.progress-bar-container')
+  progressBar = parent.find('.bar-progress')
+  durationInfo = parent.find('.duration-info')
+
+setVideoControls($('.page.video-player'))
+
+playVideo = (src=null)->
+  SM.stopMusic('music', 6000)
+  $('body').addClass('is-playing')
+  $('.page.visible').find('.player-footer-container').removeClass('mini')
+  setVideoControls($('.page.visible'))
+  $(currentVideo).unbind('play').bind('play', updateProgress)
+  progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
+  currentVideo.play()
 
 module.exports = {
+  playVideo: playVideo,
   play: (chapter, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('.player-footer-container').addClass('mini')
     currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
-      SM.stopMusic('music', 6000)
-      $('body').addClass('is-playing')
-      $('.player-footer-container').removeClass('mini')
       displayPage('.video-player')
-      currentVideo.play()
+      playVideo()
     , 4000)
   stop: ()->
     currentVideo.pause() if currentVideo
@@ -49,14 +64,13 @@ updateProgressBar = ()->
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
 )
-$(currentVideo).bind('play', ()->
-  updateProgress = ()->
-    requestAnimFrame(()->
-      updateProgressBar()
-      updateProgress() if !currentVideo.paused
-    )
-  updateProgress()
-)
+
+updateProgress = ()->
+  requestAnimFrame(()->
+    updateProgressBar()
+    updateProgress() if !currentVideo.paused
+  )
+
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
 )
@@ -76,11 +90,19 @@ stopUpdateTime = ()->
   $(window).unbind('mousemove').unbind('mouseup')
   currentVideo.play()
 
-progressBarContainer.bind('mousedown', (e)->
+controlProgress = (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
   updateProgressBar()
   $(window).unbind('mousemove').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
-)
 
+leftKey = 37
+rightKey = 39
+
+$(window).bind('keyup', (e)->
+  if !currentVideo.paused
+    currentVideo.currentTime -= 10 if e.keyCode==37
+    currentVideo.currentTime += 10 if e.keyCode==39
+    currentVideo.play()
+)

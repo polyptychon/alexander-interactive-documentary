@@ -72,11 +72,13 @@ $('.archive .related-videos a').bind('click', ()->
   SM.stopMusic('music', 6000)
   displayPage('.video-player-compact', '')
   createjs.Sound.play("page-slide-up")
+  player.playVideo()
 )
 $('.video-player-compact .back').bind('click', ()->
   displayPage('.archive', '')
   createjs.Sound.play("page-slide-back")
   SM.playMusic('music', -1, 0)
   createjs.Sound.play("page-slide-back")
+  player.stop()
 )
 queue = require("./preload-assets.coffee")(handleLoadComplete)
