@@ -1,11 +1,9 @@
 requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
-video = require("media").video
 require "./SoundWrapper"
 
 pageTimeoutId = -1
-videoItem = video('https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg', $('.page.video-player .video')[0])
-currentVideo = videoItem.element()
+currentVideo = $('.page.video-player .video video')[0]
 progressBarContainer = $('.page.video-player .progress-bar-container')
 progressBar = $('.page.video-player .bar-progress')
 durationInfo = $('.page.video-player .container.info-container .duration-info')
@@ -48,7 +46,10 @@ updateProgressBar = ()->
   progressBar.css('width', "#{progress}%")
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
 
-videoItem.on('play', ()->
+$(currentVideo).bind('ended', ()->
+  console.log 'ended...'
+)
+$(currentVideo).bind('play', ()->
   updateProgress = ()->
     requestAnimFrame(()->
       updateProgressBar()
@@ -56,8 +57,8 @@ videoItem.on('play', ()->
     )
   updateProgress()
 )
-videoItem.on('ended', (e)->
-
+$(currentVideo).bind('ended', ()->
+  console.log 'ended...'
 )
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
