@@ -9,6 +9,7 @@ progressBar = null
 durationInfo = null
 infoPopup = null
 relatedItems = null
+isInfoVisible = false
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -68,6 +69,14 @@ updateProgressBar = ()->
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
+  if !isInfoVisible
+    if item = isTimeOverRelatedItem(currentVideo.currentTime)
+      infoPopup.css('left', "#{item.position().left+30}px");
+      infoPopup.removeClass('compact')
+      infoPopup.css('display', 'block')
+    else
+      infoPopup.addClass('compact')
+      infoPopup.css('display', 'none')
 
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
@@ -139,10 +148,12 @@ updateInfo = (e)->
     infoPopup.find('.info').html(formatTime(infoTime))
 
 stopShowCurrentInfo = (e)->
+  isInfoVisible = false
   infoPopup.css('display', 'none')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
 
 showCurrentInfo = (e)->
+  isInfoVisible = true
   infoPopup.css('display', 'block')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
@@ -159,8 +170,8 @@ leftKey = 37
 rightKey = 39
 
 $(window).bind('keyup', (e)->
-  if !currentVideo.paused
+  if currentVideo
     currentVideo.currentTime -= 10 if e.keyCode==37
     currentVideo.currentTime += 10 if e.keyCode==39
-    currentVideo.play()
+    currentVideo.play() if !currentVideo.paused
 )

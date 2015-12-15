@@ -55,6 +55,12 @@
         .chapters-btn, .player-buttons, .info-container, .duration-info {
           display: none;
         }
+        .info-popup {
+          top: 0;
+          .related-item-popup {
+            bottom: 10px;
+          }
+        }
         .progress-bar-container {
           padding: 0;
           margin: 0;
