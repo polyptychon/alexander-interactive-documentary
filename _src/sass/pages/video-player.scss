@@ -98,7 +98,7 @@
       .info-popup {
         top: 0;
         .related-item-popup {
-          bottom: 2px;
+          bottom: 0;
         }
       }
       .chapters-btn {
@@ -196,9 +196,9 @@
       position: absolute;
       display: none;
       top: 50%;
-      width: 4px;
-      height: 4px;
-      margin-top: -2px;
+      width: 0;
+      height: 0;
+      margin-top: 0;
       margin-left: -2px;
       border-radius: 50%;
       background: #a72428;
@@ -206,7 +206,7 @@
         //display: none;
         position: absolute;
         transform: translate(-50%, 0);
-        bottom: 32px;
+        bottom: 30px;
         left: 2px;
         background: #d1d1c5;
         padding: 5px 0;

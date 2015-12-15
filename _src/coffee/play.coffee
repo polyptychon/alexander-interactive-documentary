@@ -131,7 +131,11 @@ updateInfo = (e)->
     infoPopup.addClass('compact')
 
   if (left-30>=0 && left-30<=progressBarContainer.find('.bar-container').width())
-    infoPopup.css('left', "#{left}px");
+    if item
+      infoPopup.css('left', "#{item.position().left+30}px");
+    else
+      infoPopup.css('left', "#{left}px");
+
     infoPopup.find('.info').html(formatTime(infoTime))
 
 stopShowCurrentInfo = (e)->
