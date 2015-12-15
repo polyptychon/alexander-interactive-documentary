@@ -26,6 +26,7 @@ playVideo = (src=null, time=0)->
   $(currentVideo).unbind('play').bind('play', updateProgress)
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
   progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
+  $(currentVideo).unbind('click').bind('click', togglePlay)
   currentVideo.currentTime = time
   currentVideo.play()
 
@@ -100,7 +101,7 @@ mouseMoveHandler = (e)->
 stopUpdateTime = ()->
   progressBarContainer.unbind('mouseup')
   $(window).unbind('mousemove').unbind('mouseup')
-  currentVideo.play()
+  currentVideo.play() if $('body').hasClass('is-playing')
 controlProgress = (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-30)
@@ -124,6 +125,14 @@ showCurrentInfo = (e)->
   infoPopup.css('display', 'block')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
+
+togglePlay = ()->
+  if this.paused
+    this.play()
+    $('body').addClass('is-playing')
+  else
+    this.pause()
+    $('body').removeClass('is-playing')
 
 leftKey = 37
 rightKey = 39
