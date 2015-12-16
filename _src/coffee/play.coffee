@@ -73,6 +73,7 @@ formatTime = (totalSec)->
   return result
 
 updateProgressBar = ()->
+  return if !currentVideo
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
@@ -98,7 +99,7 @@ $(currentVideo).bind('ended', ()->
 updateProgress = ()->
   requestAnimFrame(()->
     updateProgressBar()
-    updateProgress() if !currentVideo.paused
+    updateProgress() if currentVideo && !currentVideo.paused
   )
 
 $(currentVideo).bind('ended', ()->

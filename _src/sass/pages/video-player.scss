@@ -106,6 +106,14 @@
         .related-item-popup {
           bottom: 0;
         }
+        &.compact {
+          .img {
+            width: 100px;
+          }
+          .info {
+            width: 90px;
+          }
+        }
       }
       .chapters-btn {
         display: none;
