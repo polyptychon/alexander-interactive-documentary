@@ -26,6 +26,8 @@ playVideo = (src=null, time=0)->
   $('body').addClass('is-playing')
   $('.page.visible').find('.player-footer-container').removeClass('mini')
   setVideoControls($('.page.visible'))
+  $('footer').removeClass('hidden')
+  $('html').removeClass('leanback')
   $(currentVideo).unbind('play').bind('play', updateProgress)
   progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
   progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
