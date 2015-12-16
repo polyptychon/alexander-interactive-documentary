@@ -1,7 +1,6 @@
 requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
 require "./SoundWrapper"
-require('./jquery.mobile.custom')
 
 pageTimeoutId = -1
 currentVideo = null
@@ -125,7 +124,8 @@ controlProgress = (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-offset)
   updateProgressBar()
-  $(window).unbind('mousemove').unbind('mouseup').bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
+  $(window).unbind('mousemove').unbind('mouseup')
+    .bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
   progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
 
 isTimeOverRelatedItem = (currentTime, displayTime=null)->
