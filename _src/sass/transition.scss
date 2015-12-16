@@ -43,6 +43,9 @@ footer, .chapters, .player-footer-container, .related-items-container {
 .buffering {
   transition: all .4s;
   transition-delay: 1s;
+  &.hidden {
+    transition-delay: 0s;
+  }
 }
 .info-popup {
   transition: transform .4s, opacity .4s;

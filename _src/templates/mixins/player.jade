@@ -1,8 +1,9 @@
 include ../mixins/top-button
-mixin player(type)
+mixin player(type, backLabel)
   - type = type || ''
+  - backLabel = backLabel || 'BACK'
   if type=="compact"
-    +topButton('BACK')
+    +topButton(backLabel)
   .bg
   .video
     video(preload="true")
