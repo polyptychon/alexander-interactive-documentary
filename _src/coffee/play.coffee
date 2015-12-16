@@ -44,6 +44,7 @@ module.exports = {
   play: (src=null, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
+    $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
     setVideoControls($('.page.video-player'))
     currentVideo.currentTime = time
@@ -100,6 +101,8 @@ updateProgress = ()->
 
 $(currentVideo).bind('ended', ()->
   console.log 'ended...'
+  module.exports.stop()
+  module.exports.play()
 )
 $(currentVideo).bind('waiting', ()->
   console.log 'waiting...'
