@@ -41,7 +41,7 @@ module.exports = {
   resumeVideo: ()->
     setVideoControls($('.page.visible'))
     playVideo(null, currentVideo.currentTime)
-  play: (chapter, time=0, chapterBg=null)->
+  play: (src=null, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('.player-footer-container').addClass('mini')
@@ -49,9 +49,10 @@ module.exports = {
     currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
-      playVideo(null, time)
+      playVideo(src, time)
     , 4000)
   stop: ()->
+    currentVideo.pause() if currentVideo
     setVideoControls($('.page.visible'))
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
