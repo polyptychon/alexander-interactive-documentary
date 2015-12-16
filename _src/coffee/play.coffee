@@ -140,7 +140,7 @@ isTimeOverRelatedItem = (currentTime, displayTime=null)->
     p = parseInt($(this).attr('style').replace('left:',''), 10)
     if displayTime
       d = p / 100 * duration
-      item = $(this) if (d>currentTime-displayTime && d<currentTime+displayTime)
+      item = $(this) if (d>currentTime-displayTime/2 && d<currentTime+displayTime/2)
     else
       item = $(this) if p==position || p-1==position || p+1==position
   )
