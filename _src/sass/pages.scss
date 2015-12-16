@@ -1,4 +1,4 @@
-.preloader, .landing, .chapter, .video-player, .archive, .video-player-compact {
+.preloader, .landing, .chapter, .video-player, .archive, .video-player-compact, .video-player-compact-documentary {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -74,7 +74,7 @@
     }
   }
 }
-.archive, .video-player-compact {
+.archive, .video-player-compact, .video-player-compact-documentary {
   opacity: 1;
   &.hidden {
     position: absolute;

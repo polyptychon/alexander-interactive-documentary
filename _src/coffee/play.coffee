@@ -32,12 +32,15 @@ playVideo = (src=null, time=0)->
   $(currentVideo).unbind('click').bind('click', togglePlay)
   infoPopup.unbind('mouseover').unbind('click').unbind('mousemove').unbind('mousedown').unbind('mouseup')
     .bind('mousemove', stopPropagation).bind('mousedown', stopPropagation).bind('mouseup', stopPropagation)
-    .bind('mouseover', handleInfoMouseOver).bind('click', stopPropagation)
+    .bind('mouseover', handleInfoMouseOver).bind('click', handleInfoPopupClick)
   currentVideo.currentTime = time
   currentVideo.play()
 
 module.exports = {
   playVideo: playVideo,
+  resumeVideo: ()->
+    setVideoControls($('.page.visible'))
+    playVideo(null, currentVideo.currentTime)
   play: (chapter, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
@@ -49,6 +52,7 @@ module.exports = {
       playVideo(null, time)
     , 4000)
   stop: ()->
+    setVideoControls($('.page.visible'))
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
     $('body').removeClass('is-playing')
@@ -197,3 +201,12 @@ $(window).bind('keyup', (e)->
     currentVideo.currentTime += 10 if e.keyCode==39
     currentVideo.play() if !currentVideo.paused
 )
+handleInfoPopupClick = (e)->
+  stopPropagation(e)
+  currentVideo.pause() if currentVideo
+  infoPopup.addClass('hidden')
+  $('.video-player-compact-documentary').addClass('slide-down')
+  displayPage('.video-player-compact-documentary', '')
+  $('.video-player-compact-documentary .player-footer-container').removeClass('mini')
+  createjs.Sound.play("page-slide-up")
+  playVideo()
