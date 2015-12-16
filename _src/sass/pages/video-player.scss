@@ -236,6 +236,7 @@
           @extend .center-img;
           background-position: center center;
           background-size: cover;
+          width: 160px;
         }
         .info {
           padding: 5px 5px 0 5px;
@@ -250,10 +251,10 @@
         cursor: default;
         .img {
           height: 0;
-          width: 100px;
+          width: 160px;
         }
         .info {
-          width: 90px;
+          width: 150px;
         }
       }
     }
