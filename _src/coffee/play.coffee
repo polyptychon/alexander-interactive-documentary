@@ -153,8 +153,10 @@ updateInfo = (e)->
   infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
+    infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime(infoTime))
   else
     infoPopup.addClass('compact')
+    infoPopup.find('.info').html(formatTime(infoTime))
 
   if (left-offset>=0 && left-offset<=progressBarContainer.find('.bar-container').width())
     if item
@@ -162,7 +164,6 @@ updateInfo = (e)->
     else
       infoPopup.css('left', "#{left}px");
 
-    infoPopup.find('.info').html(formatTime(infoTime))
 
 stopShowCurrentInfo = (e)->
   isInfoVisible = false
