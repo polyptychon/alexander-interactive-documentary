@@ -37,7 +37,10 @@ footer, .chapters, .player-footer-container, .related-items-container {
   transition: all .4s ease-out;
   //transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-.info-popup .info, .info-popup .img {
+.info-popup .info {
+  transition: all .4s ease-out;
+}
+.info-popup .img {
   transition: all .4s ease-out;
 }
 .info-popup {

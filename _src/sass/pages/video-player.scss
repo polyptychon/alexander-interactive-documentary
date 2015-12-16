@@ -242,6 +242,7 @@
           font-size: 11px;
           text-align: center;
           line-height: 16px;
+          width: 150px;
           //@include text-ellipsis;
         }
       }
@@ -249,7 +250,7 @@
         cursor: default;
         .img {
           height: 0;
-          width: 90px;
+          width: 100px;
         }
         .info {
           width: 90px;
