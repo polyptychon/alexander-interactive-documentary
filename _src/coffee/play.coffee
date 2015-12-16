@@ -198,9 +198,13 @@ stopPropagation = (e)->
 togglePlay = ()->
   if this.paused
     this.play()
+    $(currentVideo).parent().find('.pause').addClass('hidden')
+    $(currentVideo).parent().find('.play').removeClass('hidden')
     $('body').addClass('is-playing')
   else
     this.pause()
+    $(currentVideo).parent().find('.play').addClass('hidden')
+    $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
 
 leftKey = 37
