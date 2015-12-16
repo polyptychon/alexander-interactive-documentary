@@ -203,6 +203,7 @@
         transform: scale(0,0);
         opacity: 0;
       }
+      cursor: pointer;
       opacity: 1;
       transform: scale(1,1);
       position: absolute;
@@ -214,7 +215,6 @@
       border-radius: 50%;
       background: #a72428;
       .related-item-popup {
-        //display: none;
         position: absolute;
         transform: translate(-50%, 0);
         bottom: 30px;
@@ -234,6 +234,8 @@
         }
         .img {
           @extend .center-img;
+          background-position: center center;
+          background-size: cover;
         }
         .info {
           padding: 5px 5px 0 5px;
@@ -243,6 +245,7 @@
         }
       }
       &.compact {
+        cursor: default;
         .img {
           height: 0;
           width: 90px;
