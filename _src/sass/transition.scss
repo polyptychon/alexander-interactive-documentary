@@ -40,6 +40,10 @@ footer, .chapters, .player-footer-container, .related-items-container {
 .info-popup .info, .info-popup .img {
   transition: all .4s ease-out;
 }
+.buffering {
+  transition: all .4s;
+  transition-delay: 1s;
+}
 .info-popup {
   transition: transform .4s, opacity .4s;
   transition-timing-function: cubic-bezier(0.77,0,0.175,1);

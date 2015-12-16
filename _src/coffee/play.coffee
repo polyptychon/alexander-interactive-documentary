@@ -108,10 +108,12 @@ $(currentVideo).bind('ended', ()->
   module.exports.play()
 )
 $(currentVideo).bind('waiting', ()->
-  console.log 'waiting...'
+#  console.log 'waiting...'
+  $('.page.visible .buffering').removeClass('hidden')
 )
 $(currentVideo).bind('playing', ()->
-  console.log 'playing...'
+#  console.log 'playing...'
+  $('.page.visible .buffering').addClass('hidden')
 )
 
 updateTime = (x)->
