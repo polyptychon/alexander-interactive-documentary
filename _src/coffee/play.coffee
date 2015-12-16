@@ -1,6 +1,7 @@
 requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
 require "./SoundWrapper"
+require('./jquery.mobile.custom')
 
 pageTimeoutId = -1
 currentVideo = null
