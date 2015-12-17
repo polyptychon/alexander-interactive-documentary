@@ -3,6 +3,7 @@ displayPage = require "./displayPage.coffee"
 require "./SoundWrapper"
 
 pageTimeoutId = -1
+videoTimeoutId = -1
 currentVideo = null
 progressBarContainer = null
 progressBar = null
@@ -59,8 +60,9 @@ playVideo = (src=null, time=0)->
   setVideoControls($('.page.visible'))
   $('footer').removeClass('hidden')
   $('html').removeClass('leanback')
-  currentVideo.currentTime = time
-  currentVideo.play()
+  if currentVideo
+    currentVideo.currentTime = time
+    currentVideo.play()
 
 module.exports = {
   playVideo: playVideo,
@@ -69,12 +71,17 @@ module.exports = {
     playVideo(null, currentVideo.currentTime)
   play: (src=null, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
+    clearTimeout(videoTimeoutId)
+    $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
+    $('.chapter h2 .number').html(chapterManager.currentChapterPlaying+1)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
-    setVideoSource(src, $('.page.video-player .video'))
-    setVideoControls($('.page.video-player'))
-    currentVideo.currentTime = time
+    videoTimeoutId = setTimeout(()->
+      setVideoSource(src, $('.page.video-player .video'))
+      setVideoControls($('.page.video-player'))
+      currentVideo.currentTime = time
+    , 500)
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
       playVideo(null, time)
@@ -85,6 +92,7 @@ module.exports = {
       .unbind('ended').unbind('waiting').unbind('playing')
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
+    clearTimeout(videoTimeoutId)
     $('body').removeClass('is-playing')
     SM.playMusic('music', -1, 3000)
 }
@@ -124,8 +132,9 @@ $(currentVideo).bind('ended', ()->
 
 updateProgress = ()->
   requestAnimFrame(()->
-    updateProgressBar()
-    updateProgress() if currentVideo && !currentVideo.paused
+    if currentVideo && !currentVideo.paused
+      updateProgressBar()
+      updateProgress()
   )
 
 handleVideoEnded = ()->
