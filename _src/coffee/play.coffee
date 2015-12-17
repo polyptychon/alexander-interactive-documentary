@@ -4,6 +4,7 @@ require "./SoundWrapper"
 
 pageTimeoutId = -1
 videoTimeoutId = -1
+infoTimeout = -1
 currentVideo = null
 progressBarContainer = null
 progressBar = null
@@ -74,6 +75,7 @@ module.exports = {
   play: (src=null, time=0, chapterBg=null)->
     clearTimeout(pageTimeoutId)
     clearTimeout(videoTimeoutId)
+    clearTimeout(infoTimeout)
     $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
     $('.chapter h2 .number').html(chapterManager.currentChapterPlaying+1)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
@@ -95,6 +97,7 @@ module.exports = {
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
     clearTimeout(videoTimeoutId)
+    clearTimeout(infoTimeout)
     $('body').removeClass('is-playing')
     SM.playMusic('music', -1, 3000)
 }
@@ -228,9 +231,8 @@ updateInfo = (e)->
     else
       infoPopup.css('left', "#{left}px");
 
-infoTimeout = -1
 handleInfoMouseOut = (e)->
-  clearInterval(infoTimeout)
+  clearTimeout(infoTimeout)
   if (!$(this).hasClass('compact'))
     infoTimeout = setTimeout(()->
       stopShowCurrentInfo()
@@ -243,7 +245,7 @@ stopShowCurrentInfo = (e)->
   progressBarContainer.unbind('mousemove').unbind('mouseout')
 
 showCurrentInfo = (e)->
-  clearInterval(infoTimeout)
+  clearTimeout(infoTimeout)
   isInfoVisible = true
   infoPopup.removeClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
