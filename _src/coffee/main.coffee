@@ -8,6 +8,7 @@ require "./player-animation.coffee"
 require "./SoundWrapper"
 
 resetArchive = require "./archive-animation.coffee"
+chapterManager = require "./chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 play = require "play-audio"
@@ -32,7 +33,7 @@ handleLoadComplete = ()->
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
-  player.play(1, 0)
+  player.play(chapterManager.getCurrentChapterSource())
 )
 $('.btn-footer.btn-home').bind('click', ()->
   $('body').removeClass('show-chapters')

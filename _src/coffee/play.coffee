@@ -10,6 +10,7 @@ durationInfo = null
 infoPopup = null
 relatedItems = null
 isInfoVisible = false
+chapterManager = require "./chapters.coffee"
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -19,22 +20,45 @@ setVideoControls = (parent)->
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
 
+  $(currentVideo)
+    .unbind('play').bind('play', updateProgress)
+    .unbind('click').bind('click', togglePlay)
+    .unbind('ended').bind('ended', handleVideoEnded)
+    .unbind('waiting').bind('waiting', handleVideoWaiting)
+    .unbind('playing').bind('playing', handleVideoPlaying)
+  progressBarContainer
+    .unbind('mousedown').bind('mousedown', controlProgress)
+    .unbind('mouseover').bind('mouseover', showCurrentInfo)
+  infoPopup
+    .unbind('mouseover').bind('mouseover', handleInfoMouseOver)
+    .unbind('click').bind('click', handleInfoPopupClick)
+    .unbind('mousemove').bind('mousemove', stopPropagation)
+    .unbind('mousedown').bind('mousedown', stopPropagation)
+    .unbind('mouseup').bind('mouseup', stopPropagation)
+  $(window).unbind('keyup').bind('keyup', handleKeyEvents)
+
 setVideoControls($('.page.video-player'))
 
+setVideoSource = (src, parent=null)->
+  parent = $('.page.visible .video') if parent==null
+  if src && parent.length>0
+    videoHTML =  "<video preload=\"true\">"
+    videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
+    videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
+    videoHTML += "</video>"
+    videoHTML += "<div class=\"buffering hidden\"></div>"
+    videoHTML += "<div class=\"play hidden\"></div>"
+    videoHTML += "<div class=\"pause hidden\"></div>"
+    parent.html(videoHTML)
+
 playVideo = (src=null, time=0)->
+  setVideoSource(src)
   SM.stopMusic('music', 6000)
   $('body').addClass('is-playing')
   $('.page.visible').find('.player-footer-container').removeClass('mini')
   setVideoControls($('.page.visible'))
   $('footer').removeClass('hidden')
   $('html').removeClass('leanback')
-  $(currentVideo).unbind('play').bind('play', updateProgress)
-  progressBarContainer.unbind('mousedown').bind('mousedown', controlProgress)
-  progressBarContainer.unbind('mouseover').bind('mouseover', showCurrentInfo)
-  $(currentVideo).unbind('click').bind('click', togglePlay)
-  infoPopup.unbind('mouseover').unbind('click').unbind('mousemove').unbind('mousedown').unbind('mouseup')
-    .bind('mousemove', stopPropagation).bind('mousedown', stopPropagation).bind('mouseup', stopPropagation)
-    .bind('mouseover', handleInfoMouseOver).bind('click', handleInfoPopupClick)
   currentVideo.currentTime = time
   currentVideo.play()
 
@@ -49,14 +73,15 @@ module.exports = {
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
     setVideoControls($('.page.video-player'))
+    setVideoSource(src)
     currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
-      playVideo(src, time)
+      playVideo(null, time)
     , 4000)
   stop: ()->
-    currentVideo.pause() if currentVideo
-    setVideoControls($('.page.visible'))
+    $(currentVideo).unbind('play').unbind('click')
+      .unbind('ended').unbind('waiting').unbind('playing')
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
     $('body').removeClass('is-playing')
@@ -102,19 +127,25 @@ updateProgress = ()->
     updateProgress() if currentVideo && !currentVideo.paused
   )
 
-$(currentVideo).bind('ended', ()->
-  console.log 'ended...'
+handleVideoEnded = ()->
+#  console.log 'ended...'
+  chapterManager.currentChapterPlaying++
+  $('footer').removeClass('hidden')
   module.exports.stop()
-  module.exports.play()
-)
-$(currentVideo).bind('waiting', ()->
+  if chapterManager.currentChapterPlaying<chapterManager.chapters.length
+    module.exports.play(chapterManager.getCurrentChapterSource())
+  else
+    chapterManager.currentChapterPlaying = 0
+    displayPage('.landing')
+
+handleVideoWaiting = ()->
 #  console.log 'waiting...'
   $('.page.visible .buffering').removeClass('hidden')
-)
-$(currentVideo).bind('playing', ()->
+
+handleVideoPlaying = ()->
 #  console.log 'playing...'
   $('.page.visible .buffering').addClass('hidden')
-)
+
 
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
@@ -211,7 +242,7 @@ LEFT_KEY = 37
 RIGHT_KEY = 39
 SPACE_KEY = 32
 
-$(window).bind('keyup', (e)->
+handleKeyEvents = (e)->
   if currentVideo
     currentVideo.currentTime -= 10 if e.keyCode==LEFT_KEY
     currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
@@ -219,7 +250,7 @@ $(window).bind('keyup', (e)->
       togglePlay()
     else
       currentVideo.play() if !currentVideo.paused
-)
+
 handleInfoPopupClick = (e)->
   stopPropagation(e)
   currentVideo.pause() if currentVideo
