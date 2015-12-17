@@ -142,6 +142,8 @@ updateProgress = ()->
     if currentVideo && !currentVideo.paused
       updateProgressBar()
       updateProgress()
+    else
+      infoPopup.addClass('hidden')
   )
 
 handleVideoEnded = ()->
@@ -162,6 +164,7 @@ handleVideoWaiting = ()->
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
+  infoPopup.addClass('hidden')
   $('.page.visible .buffering').addClass('hidden')
 
 
@@ -194,6 +197,7 @@ isTimeOverRelatedItem = (currentTime, displayTime=null)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   position = Math.ceil(currentTime / duration * 100)
   item = null
+  return null if isNaN(duration) || isNaN(position)
   relatedItems.each(()->
     p = parseInt($(this).attr('style').replace('left:',''), 10)
     if displayTime

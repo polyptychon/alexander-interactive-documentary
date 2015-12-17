@@ -21,7 +21,6 @@ chapterManager.chapters.forEach((item, index)->
 chapterContainers.html(chapterList)
 
 chapterContainers.find('a').bind('click', (e)->
-  console.log $(this).parent().index()
   $('body').removeClass('show-chapters')
   player.stop()
   chapterManager.currentChapterPlaying = $(this).parent().index()
