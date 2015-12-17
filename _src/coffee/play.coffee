@@ -32,6 +32,7 @@ setVideoControls = (parent)->
     .unbind('mouseover').bind('mouseover', showCurrentInfo)
   infoPopup
     .unbind('mouseover').bind('mouseover', handleInfoMouseOver)
+    .unbind('mouseout').bind('mouseout', handleInfoMouseOut)
     .unbind('click').bind('click', handleInfoPopupClick)
     .unbind('mousemove').bind('mousemove', stopPropagation)
     .unbind('mousedown').bind('mousedown', stopPropagation)
@@ -227,13 +228,22 @@ updateInfo = (e)->
     else
       infoPopup.css('left', "#{left}px");
 
+infoTimeout = -1
+handleInfoMouseOut = (e)->
+  clearInterval(infoTimeout)
+  if (!$(this).hasClass('compact'))
+    infoTimeout = setTimeout(()->
+      stopShowCurrentInfo()
+    , 400)
+    e.stopImmediatePropagation()
+    return false
 
 stopShowCurrentInfo = (e)->
   isInfoVisible = false
-#  infoPopup.addClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
 
 showCurrentInfo = (e)->
+  clearInterval(infoTimeout)
   isInfoVisible = true
   infoPopup.removeClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
