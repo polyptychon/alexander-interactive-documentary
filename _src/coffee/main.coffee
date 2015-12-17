@@ -48,6 +48,7 @@ handleLoadComplete = ()->
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
+  chapterManager.currentChapterPlaying = 0
   player.play(chapterManager.getCurrentChapterSource())
 )
 $('.btn-footer.btn-home').bind('click', ()->
