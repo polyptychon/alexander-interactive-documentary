@@ -2,6 +2,7 @@ global.$ = global.jQuery = $ = require "jquery"
 away = require('away')
 
 $('.related-items-btn').bind('click', (e)->
+  $('.info-popup').addClass('hidden')
   $('body').removeClass('show-chapters')
   $('.player-footer-container').toggleClass('open-related-items')
 )

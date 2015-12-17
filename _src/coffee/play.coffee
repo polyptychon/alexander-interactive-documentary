@@ -60,6 +60,7 @@ playVideo = (src=null, time=0)->
   setVideoControls($('.page.visible'))
   $('footer').removeClass('hidden')
   $('html').removeClass('leanback')
+  infoPopup.addClass('hidden')
   if currentVideo
     currentVideo.currentTime = time
     currentVideo.play()
@@ -156,6 +157,7 @@ handleVideoEnded = ()->
 
 handleVideoWaiting = ()->
 #  console.log 'waiting...'
+  infoPopup.addClass('hidden')
   $('.page.visible .buffering').removeClass('hidden')
 
 handleVideoPlaying = ()->

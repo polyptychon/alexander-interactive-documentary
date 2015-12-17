@@ -12,6 +12,22 @@ chapterManager = require "./chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 play = require "play-audio"
+
+chapterContainers = $('.chapters-container ul, .player-footer-container .chapters ul')
+chapterList = ""
+chapterManager.chapters.forEach((item, index)->
+  chapterList += "<li><a href=\"javascript:\">#{index+1} - #{item.title}</a></li>"
+)
+chapterContainers.html(chapterList)
+
+chapterContainers.find('a').bind('click', (e)->
+  console.log $(this).parent().index()
+  $('body').removeClass('show-chapters')
+  player.stop()
+  chapterManager.currentChapterPlaying = $(this).parent().index()
+  player.play(chapterManager.getCurrentChapterSource())
+)
+
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');
   $('.page').removeClass('slide-up').removeClass('slide-down')
@@ -47,6 +63,7 @@ $('.btn-footer.btn-home').bind('click', ()->
 )
 $('.chapters-btn').bind('click', (e)->
   $('body').toggleClass('show-chapters')
+  $('.info-popup').addClass('hidden')
 )
 $('.chapters .back').bind('click', (e)->
   $('body').toggleClass('show-chapters')
