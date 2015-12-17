@@ -2,6 +2,10 @@ requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
 require "./SoundWrapper"
 
+LEFT_KEY = 37
+RIGHT_KEY = 39
+SPACE_KEY = 32
+
 pageTimeoutId = -1
 videoTimeoutId = -1
 infoTimeout = -1
@@ -128,7 +132,7 @@ updateProgressBar = ()->
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
-  if !isInfoVisible
+  if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentVideo.currentTime, 10)
       infoPopup.css('left', "#{item.position().left+offset}px");
       infoPopup.removeClass('compact')
@@ -241,6 +245,7 @@ handleInfoMouseOut = (e)->
 
 stopShowCurrentInfo = (e)->
   isInfoVisible = false
+  infoPopup.addClass('hidden')
   progressBarContainer.unbind('mousemove').unbind('mouseout')
 
 showCurrentInfo = (e)->
@@ -270,10 +275,6 @@ togglePlay = ()->
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
-
-LEFT_KEY = 37
-RIGHT_KEY = 39
-SPACE_KEY = 32
 
 handleKeyEvents = (e)->
   if currentVideo
