@@ -196,25 +196,29 @@ stopPropagation = (e)->
   return false
 
 togglePlay = ()->
-  if this.paused
-    this.play()
+  if currentVideo.paused
+    currentVideo.play()
     $(currentVideo).parent().find('.pause').addClass('hidden')
     $(currentVideo).parent().find('.play').removeClass('hidden')
     $('body').addClass('is-playing')
   else
-    this.pause()
+    currentVideo.pause()
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
 
-leftKey = 37
-rightKey = 39
+LEFT_KEY = 37
+RIGHT_KEY = 39
+SPACE_KEY = 32
 
 $(window).bind('keyup', (e)->
   if currentVideo
-    currentVideo.currentTime -= 10 if e.keyCode==37
-    currentVideo.currentTime += 10 if e.keyCode==39
-    currentVideo.play() if !currentVideo.paused
+    currentVideo.currentTime -= 10 if e.keyCode==LEFT_KEY
+    currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
+    if e.keyCode==SPACE_KEY
+      togglePlay()
+    else
+      currentVideo.play() if !currentVideo.paused
 )
 handleInfoPopupClick = (e)->
   stopPropagation(e)
