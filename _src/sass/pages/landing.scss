@@ -8,7 +8,7 @@ header.bottom.intro {
   }
 }
 .intro {
-  .play-documentary-btn, .chapters-btn, .archive-btn {
+  .resume-documentary-btn, .play-documentary-btn, .chapters-btn, .archive-btn {
     color: #a7a79c;
     font-size: 22px;
     width: 100%;
@@ -32,6 +32,22 @@ header.bottom.intro {
     width: 50%;
     float: left;
     padding: 10px 0;
+  }
+  .resume-documentary-btn {
+    display: none;
+  }
+  .resume {
+    .play-documentary-btn {
+      border-left: 1px solid #a7a79c;
+      margin-left: -1px;
+    }
+    .resume-documentary-btn, .play-documentary-btn {
+      display: block;
+      font-size: 22px;
+      width: 50%;
+      float: left;
+      padding: 20px 0;
+    }
   }
 }
 .chapters.intro {
