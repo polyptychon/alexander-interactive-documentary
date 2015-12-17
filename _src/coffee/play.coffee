@@ -72,14 +72,15 @@ module.exports = {
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
+    setVideoSource(src, $('.page.video-player .video'))
     setVideoControls($('.page.video-player'))
-    setVideoSource(src)
     currentVideo.currentTime = time
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
       playVideo(null, time)
     , 4000)
   stop: ()->
+    stopShowCurrentInfo()
     $(currentVideo).unbind('play').unbind('click')
       .unbind('ended').unbind('waiting').unbind('playing')
     currentVideo.pause() if currentVideo

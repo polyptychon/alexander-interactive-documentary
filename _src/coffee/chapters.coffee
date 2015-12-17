@@ -23,7 +23,6 @@ class Chapters extends singleton
       }
     ]
   getCurrentChapterSource: ()->
-    console.log this.currentChapterPlaying
     this.chapters[this.currentChapterPlaying].source
 
 module.exports = Chapters.get()
