@@ -28,6 +28,7 @@ setVideoControls = (parent)->
     .unbind('ended').bind('ended', handleVideoEnded)
     .unbind('waiting').bind('waiting', handleVideoWaiting)
     .unbind('playing').bind('playing', handleVideoPlaying)
+    .unbind('canplaythrough').bind('canplaythrough', handleVideoPlaying)
   progressBarContainer
     .unbind('mousedown').bind('mousedown', controlProgress)
     .unbind('mouseover').bind('mouseover', showCurrentInfo)
@@ -143,11 +144,9 @@ $(currentVideo).bind('ended', ()->
 
 updateProgress = ()->
   requestAnimFrame(()->
-    if currentVideo && !currentVideo.paused
-      updateProgressBar()
-      updateProgress()
-    else
-      infoPopup.addClass('hidden')
+    updateProgressBar()
+    updateProgress() if currentVideo && !currentVideo.paused
+
   )
 
 handleVideoEnded = ()->
