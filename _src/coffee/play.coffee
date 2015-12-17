@@ -275,10 +275,11 @@ handleKeyEvents = (e)->
 
 handleInfoPopupClick = (e)->
   stopPropagation(e)
+  clearTimeout(videoTimeoutId)
   currentVideo.pause() if currentVideo
   infoPopup.addClass('hidden')
   $('.video-player-compact-documentary').addClass('slide-down')
-  displayPage('.video-player-compact-documentary', '')
+  displayPage('.video-player-compact-documentary')
   $('.video-player-compact-documentary .player-footer-container').removeClass('mini')
   createjs.Sound.play("page-slide-up")
   playVideo()
