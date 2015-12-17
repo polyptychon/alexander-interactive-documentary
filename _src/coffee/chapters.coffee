@@ -4,19 +4,19 @@ class Chapters extends singleton
   chapters:
     [
       {
-        title: "The Age of Heroes"
+        title: "THE AGE OF HEROES"
         source:
           webm: "https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg"
           mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_aHZDWDVyal9tSm8"
       }
       {
-        title: "The Classical Revolution"
+        title: "THE CLASSICAL REVOLUTION"
         source:
           webm: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEpSaEstQjgzcVk"
           mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_bkF5eVNqckNYeWM"
       }
       {
-        title: "The Long Shadow"
+        title: "THE LONG SHADOW"
         source:
           webm: "https://googledrive.com/host/0Bw8k9x-W_uS_WDBjM0huRnlaMUU"
           mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S1ZRUkZwSUFteGs"
