@@ -11,6 +11,7 @@ resetArchive = require "./archive-animation.coffee"
 chapterManager = require "./chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
+ls = require 'local-storage'
 play = require "play-audio"
 
 chapterContainers = $('.chapters-container ul, .player-footer-container .chapters ul')
@@ -50,6 +51,12 @@ $('.play-documentary-btn').bind('click', ()->
   player.stop()
   chapterManager.setCurrentChapterPlaying(0)
   player.play(chapterManager.getCurrentChapterSource())
+)
+$('.resume-documentary-btn').bind('click', ()->
+  player.stop()
+  console.log ls.get(chapterManager.LOCAL_STORAGE_CHAPTER), ls.get(chapterManager.LOCAL_STORAGE_TIME)
+  chapterManager.setCurrentChapterPlaying(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
+  player.play(chapterManager.getCurrentChapterSource(),ls.get(chapterManager.LOCAL_STORAGE_TIME))
 )
 $('.btn-footer.btn-home').bind('click', ()->
   $('body').removeClass('show-chapters')

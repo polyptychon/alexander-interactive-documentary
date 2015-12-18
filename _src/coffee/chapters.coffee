@@ -1,5 +1,7 @@
 singleton = require 'singleton'
 class Chapters extends singleton
+  LOCAL_STORAGE_CHAPTER: 'chapter'
+  LOCAL_STORAGE_TIME: 'time'
   currentChapterPlaying: 0
   chapters:
     [
@@ -23,7 +25,10 @@ class Chapters extends singleton
       }
     ]
   setCurrentChapterPlaying: (value)->
-    this.currentChapterPlaying = value
+    if (value>this.getTotalChapter() || value<0)
+      this.currentChapterPlaying = 0
+    else
+      this.currentChapterPlaying = value
   getCurrentChapterPlaying: ()->
     return this.currentChapterPlaying
   getTotalChapter: ()->

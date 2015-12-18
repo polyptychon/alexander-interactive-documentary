@@ -2,6 +2,7 @@ require "./SoundWrapper"
 requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
 chapterManager = require "./chapters.coffee"
+ls = require 'local-storage'
 
 LEFT_KEY = 37
 RIGHT_KEY = 39
@@ -96,6 +97,8 @@ module.exports = {
       setVideoSource(src, $('.page.video-player .video'))
       setVideoControls($('.page.video-player'))
       currentVideo.currentTime = time
+      ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
+      ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
       currentVideo.load()
     , 500)
     pageTimeoutId = setTimeout(()->
@@ -133,6 +136,7 @@ updateProgressBar = ()->
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
+  ls.set(chapterManager.LOCAL_STORAGE_TIME, currentTime)
   progress = currentTime/duration * 100
   progress = if isNaN(progress) then 0 else progress
 
@@ -169,6 +173,7 @@ handleVideoEnded = ()->
     chapterManager.setCurrentChapterPlaying(chapterManager.getCurrentChapterPlaying()+1)
     module.exports.play(chapterManager.getCurrentChapterSource())
   else
+    ls.clear()
     chapterManager.setCurrentChapterPlaying(0)
     displayPage('.landing')
 
