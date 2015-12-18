@@ -75,7 +75,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     currentVideo.play()
-    chapterInfo.html(chapterManager.getCurrentChapterTitle())
+    chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
 module.exports = {
   playVideo: playVideo,
@@ -184,6 +184,7 @@ handleVideCanPlayThrough = ()->
 
 handleVideoStalled = ()->
   console.log 'stalled...The stalled event is fired when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.'
+  $('.page.visible .buffering').removeClass('hidden')
 
 handleVideoError = ()->
   console.log 'error...'
