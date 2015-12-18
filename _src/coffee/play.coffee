@@ -37,7 +37,7 @@ setVideoControls = (parent)->
     .unbind('ended').bind('ended', handleVideoEnded)
     .unbind('waiting').bind('waiting', handleVideoWaiting)
     .unbind('playing').bind('playing', handleVideoPlaying)
-    .unbind('loadedmetadata')
+    .unbind('loadedmetadata').bind('loadedmetadata', updateProgressBar)
     .unbind('canplay')
     .unbind('canplaythrough').bind('canplaythrough', handleVideCanPlayThrough)
     .unbind('stalled').bind('stalled', handleVideoStalled)
@@ -108,6 +108,7 @@ module.exports = {
       currentVideo.play()
       currentVideo.muted = true
       $(currentVideo).bind('canplaythrough', currentVideo.pause)
+        .bind('loadedmetadata', updateProgressBar)
     , 500)
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
