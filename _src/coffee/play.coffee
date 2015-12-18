@@ -82,7 +82,6 @@ setVideoControls = (parent)->
   removeEvents()
   addEvents()
 
-
 setVideoControls($('.page.video-player'))
 
 setVideoSource = (src, parent=null)->
