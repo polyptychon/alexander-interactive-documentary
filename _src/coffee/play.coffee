@@ -1,7 +1,8 @@
 require "./SoundWrapper"
-requestAnimFrame = require("animationframe")
+requestAnimFrame = require "animationframe"
 displayPage = require "./displayPage.coffee"
 chapterManager = require "./chapters.coffee"
+srtParser = require "subtitles-parser"
 ls = require 'local-storage'
 
 LEFT_KEY = 37
@@ -20,6 +21,7 @@ durationInfo = null
 infoPopup = null
 relatedItems = null
 isInfoVisible = false
+subtitlesButton = false
 
 clearTimeOuts = ()->
   clearTimeout(pageTimeoutId)
@@ -50,6 +52,8 @@ removeEvents = ()->
     .unbind('mouseup')
   $(window)
     .unbind('keyup')
+  subtitlesButton
+    .unbind('click')
 
 addEvents = ()->
   $(currentVideo)
@@ -74,6 +78,8 @@ addEvents = ()->
     .bind('mouseup', stopPropagation)
   $(window)
     .bind('keyup', handleKeyEvents)
+  subtitlesButton
+    .bind('click', handleSubtitles)
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -84,6 +90,7 @@ setVideoControls = (parent)->
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
+  subtitlesButton = parent.find('.subs-btn')
   removeEvents()
   addEvents()
 
@@ -139,6 +146,7 @@ module.exports = {
       ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
       currentVideo.play()
       currentVideo.muted = true
+      loadSubtitles()
       $(currentVideo)
         .bind('canplaythrough', currentVideo.pause)
         .bind('loadedmetadata', updateProgressBar)
@@ -360,3 +368,12 @@ handleInfoPopupClick = (e)->
   $('.video-player-compact-documentary .player-footer-container').removeClass('mini')
   createjs.Sound.play("page-slide-up")
   playVideo(chapterManager.getCurrentChapterSource())
+
+loadSubtitles = ()->
+  if !chapterManager.getCurrentChapterSubtitle()
+    $.get chapterManager.getCurrentChapterSubtitleURL(), (data)->
+      chapterManager.setCurrentChapterSubtitle srtParser.fromSrt(data, true)
+
+handleSubtitles = ()->
+  chapterManager.showSubtitles = !chapterManager.showSubtitles
+  loadSubtitles()
