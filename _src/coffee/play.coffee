@@ -21,6 +21,11 @@ infoPopup = null
 relatedItems = null
 isInfoVisible = false
 
+clearTimeOuts = ()->
+  clearTimeout(pageTimeoutId)
+  clearTimeout(videoTimeoutId)
+  clearTimeout(infoTimeout)
+
 removeEvents = ()->
   $(currentVideo)
     .unbind('play')
@@ -120,9 +125,7 @@ module.exports = {
     setVideoControls($('.page.visible'))
     playVideo(null, currentVideo.currentTime)
   play: (src=null, time=0, chapterBg=null)->
-    clearTimeout(pageTimeoutId)
-    clearTimeout(videoTimeoutId)
-    clearTimeout(infoTimeout)
+    clearTimeOuts()
     $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
     $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
@@ -136,7 +139,8 @@ module.exports = {
       ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
       currentVideo.play()
       currentVideo.muted = true
-      $(currentVideo).bind('canplaythrough', currentVideo.pause)
+      $(currentVideo)
+        .bind('canplaythrough', currentVideo.pause)
         .bind('loadedmetadata', updateProgressBar)
     , 500)
     pageTimeoutId = setTimeout(()->
@@ -146,11 +150,9 @@ module.exports = {
   stop: ()->
     stopShowCurrentInfo()
     removeEvents()
+    clearTimeOuts()
     $('.buffering').addClass('hidden')
     currentVideo.pause() if currentVideo
-    clearTimeout(pageTimeoutId)
-    clearTimeout(videoTimeoutId)
-    clearTimeout(infoTimeout)
     $('body').removeClass('is-playing')
     SM.playMusic('music', -1, 3000)
 }
