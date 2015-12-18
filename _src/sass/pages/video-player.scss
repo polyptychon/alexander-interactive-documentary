@@ -443,6 +443,7 @@
   color: white;
   text-shadow: #000 1px 1px .1em;
   display: none;
+  pointer-events: none;
 }
 .show-subtitles .subtitles {
   display: block;
