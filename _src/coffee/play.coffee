@@ -74,6 +74,7 @@ playVideo = (src=null, time=0)->
   infoPopup.addClass('hidden')
   if currentVideo
     currentVideo.currentTime = time
+    updateProgressBar()
     currentVideo.play()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
@@ -128,17 +129,16 @@ formatTime = (totalSec)->
   return result
 
 updateProgressBar = ()->
-  return if !currentVideo
   offset = parseInt(progressBarContainer.css('padding-left'))
-  duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
-  currentTime = if !currentVideo? || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
+  duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
+  currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
   progress = currentTime/duration * 100
 
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
   if !isInfoVisible && !$('body').hasClass('show-chapters')
-    if item = isTimeOverRelatedItem(currentVideo.currentTime, 10)
+    if item = isTimeOverRelatedItem(currentTime, 10)
       infoPopup.css('left', "#{item.position().left+offset}px");
       infoPopup.removeClass('compact')
       infoPopup.removeClass('hidden')
