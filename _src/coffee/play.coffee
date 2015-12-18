@@ -12,6 +12,7 @@ infoTimeout = -1
 currentVideo = null
 progressBarContainer = null
 progressBar = null
+chapterInfo = null
 durationInfo = null
 infoPopup = null
 relatedItems = null
@@ -23,6 +24,7 @@ setVideoControls = (parent)->
   progressBarContainer = parent.find('.progress-bar-container')
   progressBar = parent.find('.bar-progress')
   durationInfo = parent.find('.duration-info')
+  chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
 
@@ -73,6 +75,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     currentVideo.play()
+    chapterInfo.html(chapterManager.getCurrentChapterTitle())
 
 module.exports = {
   playVideo: playVideo,
@@ -155,7 +158,7 @@ updateProgress = ()->
 
   )
 handleVideoEnded = ()->
-#  console.log 'ended...'
+#  console.log 'ended...	Sent when playback completes.'
   chapterManager.currentChapterPlaying++
   $('footer').removeClass('hidden')
   module.exports.stop()
@@ -180,7 +183,7 @@ handleVideCanPlayThrough = ()->
   $('.page.visible .buffering').addClass('hidden')
 
 handleVideoStalled = ()->
-  console.log 'stalled...'
+  console.log 'stalled...The stalled event is fired when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.'
 
 handleVideoError = ()->
   console.log 'error...'
