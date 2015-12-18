@@ -202,7 +202,10 @@ updateProgressBar = ()->
 
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
 
-  if chapterManager.getCurrentChapterSubtitle() && $('body').hasClass('show-subtitles')
+  if (chapterManager.getCurrentChapterSubtitle() &&
+      $('body').hasClass('show-subtitles') &&
+      !playerContainer.hasClass('compact'))
+    
     sub = getCurrentSubtitle(currentTime)
     subtitles.html(sub) if sub != currentSub
     currentSub = sub
