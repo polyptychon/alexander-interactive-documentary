@@ -96,7 +96,7 @@ $('.archive .related-videos a').bind('click', ()->
   SM.stopMusic('music', 6000)
   displayPage('.video-player-compact', '')
   createjs.Sound.play("page-slide-up")
-  player.playVideo()
+  player.playVideo(chapterManager.getCurrentChapterSource())
 )
 $('.video-player-compact .back').bind('click', ()->
   displayPage('.archive', '')
