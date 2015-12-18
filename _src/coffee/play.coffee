@@ -87,14 +87,15 @@ setVideoControls($('.page.video-player'))
 setVideoSource = (src, parent=null)->
   parent = $('.page.visible .video') if parent==null
   if src && parent.length>0
-    videoHTML =  "<video preload=\"auto\">"
-    videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
-    videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
-    videoHTML += "</video>"
-    videoHTML += "<div class=\"buffering hidden\"></div>"
-    videoHTML += "<div class=\"play hidden\"></div>"
-    videoHTML += "<div class=\"pause hidden\"></div>"
-    parent.html(videoHTML)
+    if parent.find('source[type="video/webm"]').attr('src')!=src.webm && parent.find('source[type="video/mp4"]').attr('src')!=src.mp4
+      videoHTML =  "<video preload=\"auto\">"
+      videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
+      videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
+      videoHTML += "</video>"
+      videoHTML += "<div class=\"buffering hidden\"></div>"
+      videoHTML += "<div class=\"play hidden\"></div>"
+      videoHTML += "<div class=\"pause hidden\"></div>"
+      parent.html(videoHTML)
 
 playVideo = (src=null, time=0)->
   setVideoSource(src)
