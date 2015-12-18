@@ -205,6 +205,7 @@ updateProgressBar = ()->
   if chapterManager.getCurrentChapterSubtitle() && !subtitles.hasClass('hidden')
     sub = getCurrentSubtitle(currentTime)
     subtitles.html(sub) if sub != currentSub
+    currentSub = sub
 
   if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentTime, 10)
