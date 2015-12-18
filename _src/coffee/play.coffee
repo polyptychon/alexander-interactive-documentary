@@ -303,6 +303,7 @@ togglePlay = ()->
     $('body').addClass('is-playing')
   else
     currentVideo.pause()
+    $('.buffering').addClass('hidden')
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
