@@ -442,9 +442,10 @@
   line-height: 1em;
   color: white;
   text-shadow: #000 1px 1px .1em;
-  &.hidden {
-    display: none;
-  }
+  display: none;
+}
+.show-subtitles .subtitles {
+  display: block;
 }
 .leanback .subtitles {
   bottom: 60px;

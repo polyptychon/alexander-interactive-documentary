@@ -111,7 +111,7 @@ setVideoSource = (src, parent=null)->
       videoHTML += "<div class=\"buffering hidden\"></div>"
       videoHTML += "<div class=\"play hidden\"></div>"
       videoHTML += "<div class=\"pause hidden\"></div>"
-      videoHTML += "<div class=\"subtitles hidden\"></div>"
+      videoHTML += "<div class=\"subtitles\"></div>"
       parent.html(videoHTML)
 
 playVideo = (src=null, time=0)->
@@ -202,7 +202,7 @@ updateProgressBar = ()->
 
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
 
-  if chapterManager.getCurrentChapterSubtitle() && !subtitles.hasClass('hidden')
+  if chapterManager.getCurrentChapterSubtitle() && $('body').hasClass('show-subtitles')
     sub = getCurrentSubtitle(currentTime)
     subtitles.html(sub) if sub != currentSub
     currentSub = sub
@@ -390,5 +390,5 @@ loadSubtitles = ()->
       chapterManager.setCurrentChapterSubtitle srtParser.fromSrt(data, true)
 
 handleSubtitles = ()->
-  subtitles.toggleClass('hidden')
+  $('body').toggleClass('show-subtitles')
   loadSubtitles()
