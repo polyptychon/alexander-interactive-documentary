@@ -339,6 +339,7 @@
         font-size: 11px;
         .chapter-info {
           float: left;
+          pointer-events: none;
         }
         .duration-info {
           float: right;

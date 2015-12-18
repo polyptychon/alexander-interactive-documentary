@@ -137,7 +137,7 @@ updateProgressBar = ()->
 
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
-  
+
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
   if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentTime, 10)
