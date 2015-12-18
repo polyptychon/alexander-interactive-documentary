@@ -126,7 +126,7 @@ module.exports = {
       .unbind('canplaythrough')
       .unbind('stalled')
       .unbind('error')
-    $('.buffering').removeClass('hidden')
+    $('.buffering').addClass('hidden')
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
     clearTimeout(videoTimeoutId)
