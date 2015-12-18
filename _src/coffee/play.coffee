@@ -12,6 +12,7 @@ pageTimeoutId = -1
 videoTimeoutId = -1
 infoTimeout = -1
 currentVideo = null
+playerContainer = null
 progressBarContainer = null
 progressBar = null
 chapterInfo = null
@@ -23,6 +24,7 @@ isInfoVisible = false
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
   progressBarContainer = parent.find('.progress-bar-container')
+  playerContainer = parent.find('.player-footer-container')
   progressBar = parent.find('.bar-progress')
   durationInfo = parent.find('.duration-info')
   chapterInfo = parent.find('.chapter-info')
@@ -35,6 +37,8 @@ setVideoControls = (parent)->
     .unbind('ended').bind('ended', handleVideoEnded)
     .unbind('waiting').bind('waiting', handleVideoWaiting)
     .unbind('playing').bind('playing', handleVideoPlaying)
+    .unbind('loadedmetadata')
+    .unbind('canplay')
     .unbind('canplaythrough').bind('canplaythrough', handleVideCanPlayThrough)
     .unbind('stalled').bind('stalled', handleVideoStalled)
     .unbind('error').bind('error', handleVideoError)
@@ -55,7 +59,7 @@ setVideoControls($('.page.video-player'))
 setVideoSource = (src, parent=null)->
   parent = $('.page.visible .video') if parent==null
   if src && parent.length>0
-    videoHTML =  "<video preload=\"true\">"
+    videoHTML =  "<video preload=\"auto\">"
     videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
     videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
     videoHTML += "</video>"
@@ -76,6 +80,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     updateProgressBar()
+    currentVideo.muted = false
     currentVideo.play()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
@@ -99,7 +104,10 @@ module.exports = {
       currentVideo.currentTime = time
       ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
       ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-      currentVideo.load()
+      currentVideo.preload = 'auto'
+      currentVideo.play()
+      currentVideo.muted = true
+      $(currentVideo).bind('canplaythrough', currentVideo.pause)
     , 500)
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
@@ -136,7 +144,7 @@ updateProgressBar = ()->
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
-  ls.set(chapterManager.LOCAL_STORAGE_TIME, currentTime)
+  ls.set(chapterManager.LOCAL_STORAGE_TIME, currentTime) if !playerContainer.hasClass('compact')
   progress = currentTime/duration * 100
   progress = if isNaN(progress) then 0 else progress
 

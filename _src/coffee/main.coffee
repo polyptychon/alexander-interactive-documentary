@@ -54,7 +54,6 @@ $('.play-documentary-btn').bind('click', ()->
 )
 $('.resume-documentary-btn').bind('click', ()->
   player.stop()
-  console.log ls.get(chapterManager.LOCAL_STORAGE_CHAPTER), ls.get(chapterManager.LOCAL_STORAGE_TIME)
   chapterManager.setCurrentChapterPlaying(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
   player.play(chapterManager.getCurrentChapterSource(),ls.get(chapterManager.LOCAL_STORAGE_TIME))
 )
