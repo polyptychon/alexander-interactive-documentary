@@ -104,7 +104,6 @@ module.exports = {
       currentVideo.currentTime = time
       ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
       ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-      currentVideo.preload = 'auto'
       currentVideo.play()
       currentVideo.muted = true
       $(currentVideo).bind('canplaythrough', currentVideo.pause)
