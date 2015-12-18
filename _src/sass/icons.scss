@@ -56,7 +56,7 @@ $play-color: #ededed;
   width: 54px;
   height: 54px;
   margin: -15px 0 0 -15px;
-  background: rgba($play-color, .5);
+  background: rgba(#000, .5);
   border-radius: 50%;
   &.hidden {
     -webkit-animation: none;
@@ -74,12 +74,12 @@ $play-color: #ededed;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -16px 0 0 -10px;
+    margin: -12px 0 0 -8px;
     width: 0;
     height: 0;
-    border-top: 16px solid transparent;
-    border-left: 24px solid $play-color;
-    border-bottom: 16px solid transparent;
+    border-top: 12px solid transparent;
+    border-left: 20px solid $play-color;
+    border-bottom: 12px solid transparent;
   }
 }
 .pause {
@@ -88,11 +88,11 @@ $play-color: #ededed;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -14px 0 0 -12px;
-    width: 8px;
-    height: 30px;
-    border-right: 8px solid $play-color;
-    border-left: 8px solid $play-color;
+    margin: -12px 0 0 -9px;
+    width: 6px;
+    height: 26px;
+    border-right: 6px solid $play-color;
+    border-left: 6px solid $play-color;
   }
 }
 @-webkit-keyframes zoomAndFadeOut {
