@@ -188,20 +188,20 @@ handleVideoEnded = ()->
 handleVideoWaiting = ()->
 #  console.log 'waiting...'
   infoPopup.addClass('hidden')
-  $('.page.visible .buffering').removeClass('hidden')
+  $('.buffering').removeClass('hidden')
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
   infoPopup.addClass('hidden')
-  $('.page.visible .buffering').addClass('hidden')
+  $('.buffering').addClass('hidden')
 
 handleVideCanPlayThrough = ()->
 #  console.log 'canplaythrough...'
-  $('.page.visible .buffering').addClass('hidden')
+  $('.buffering').addClass('hidden')
 
 handleVideoStalled = ()->
-  console.log 'stalled...The stalled event is fired when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.'
-  $('.page.visible .buffering').removeClass('hidden')
+#  console.log 'stalled...The stalled event is fired when the user agent is trying to fetch media data, but data is unexpectedly not forthcoming.'
+  $('.buffering').removeClass('hidden')
 
 handleVideoError = ()->
   console.log 'error...'
