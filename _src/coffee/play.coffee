@@ -391,4 +391,5 @@ loadSubtitles = ()->
 
 handleSubtitles = ()->
   $('body').toggleClass('show-subtitles')
+  ls.set(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES, $('body').hasClass('show-subtitles'))
   loadSubtitles()

@@ -2,6 +2,7 @@ singleton = require 'singleton'
 class Chapters extends singleton
   LOCAL_STORAGE_CHAPTER: 'chapter'
   LOCAL_STORAGE_TIME: 'time'
+  LOCAL_STORAGE_SHOW_SUBTITLES: 'subtitles'
   currentChapterPlaying: 0
   showSubtitles: false
   chapters:

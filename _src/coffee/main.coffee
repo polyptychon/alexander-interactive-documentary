@@ -21,6 +21,8 @@ chapterManager.chapters.forEach((item, index)->
 )
 chapterContainers.html(chapterList)
 
+$('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
+
 chapterContainers.find('a').bind('click', (e)->
   $('body').removeClass('show-chapters')
   player.stop()
