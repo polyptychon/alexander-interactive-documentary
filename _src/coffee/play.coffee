@@ -21,6 +21,55 @@ infoPopup = null
 relatedItems = null
 isInfoVisible = false
 
+removeEvents = ()->
+  $(currentVideo)
+    .unbind('play')
+    .unbind('click')
+    .unbind('ended')
+    .unbind('waiting')
+    .unbind('playing')
+    .unbind('loadedmetadata')
+    .unbind('canplay')
+    .unbind('canplaythrough')
+    .unbind('stalled')
+    .unbind('error')
+  progressBarContainer
+    .unbind('mousedown')
+    .unbind('mouseover')
+  infoPopup
+    .unbind('mouseover')
+    .unbind('mouseout')
+    .unbind('click')
+    .unbind('mousemove')
+    .unbind('mousedown')
+    .unbind('mouseup')
+  $(window)
+    .unbind('keyup')
+
+addEvents = ()->
+  $(currentVideo)
+    .bind('play', updateProgress)
+    .bind('click', togglePlay)
+    .bind('ended', handleVideoEnded)
+    .bind('waiting', handleVideoWaiting)
+    .bind('playing', handleVideoPlaying)
+    .bind('loadedmetadata', updateProgressBar)
+    .bind('canplaythrough', handleVideCanPlayThrough)
+    .bind('stalled', handleVideoStalled)
+    .bind('error', handleVideoError)
+  progressBarContainer
+    .bind('mousedown', controlProgress)
+    .bind('mouseover', showCurrentInfo)
+  infoPopup
+    .bind('mouseover', handleInfoMouseOver)
+    .bind('mouseout', handleInfoMouseOut)
+    .bind('click', handleInfoPopupClick)
+    .bind('mousemove', stopPropagation)
+    .bind('mousedown', stopPropagation)
+    .bind('mouseup', stopPropagation)
+  $(window)
+    .bind('keyup', handleKeyEvents)
+
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
   progressBarContainer = parent.find('.progress-bar-container')
@@ -30,29 +79,9 @@ setVideoControls = (parent)->
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
+  removeEvents()
+  addEvents()
 
-  $(currentVideo)
-    .unbind('play').bind('play', updateProgress)
-    .unbind('click').bind('click', togglePlay)
-    .unbind('ended').bind('ended', handleVideoEnded)
-    .unbind('waiting').bind('waiting', handleVideoWaiting)
-    .unbind('playing').bind('playing', handleVideoPlaying)
-    .unbind('loadedmetadata').bind('loadedmetadata', updateProgressBar)
-    .unbind('canplay')
-    .unbind('canplaythrough').bind('canplaythrough', handleVideCanPlayThrough)
-    .unbind('stalled').bind('stalled', handleVideoStalled)
-    .unbind('error').bind('error', handleVideoError)
-  progressBarContainer
-    .unbind('mousedown').bind('mousedown', controlProgress)
-    .unbind('mouseover').bind('mouseover', showCurrentInfo)
-  infoPopup
-    .unbind('mouseover').bind('mouseover', handleInfoMouseOver)
-    .unbind('mouseout').bind('mouseout', handleInfoMouseOut)
-    .unbind('click').bind('click', handleInfoPopupClick)
-    .unbind('mousemove').bind('mousemove', stopPropagation)
-    .unbind('mousedown').bind('mousedown', stopPropagation)
-    .unbind('mouseup').bind('mouseup', stopPropagation)
-  $(window).unbind('keyup').bind('keyup', handleKeyEvents)
 
 setVideoControls($('.page.video-player'))
 
@@ -115,17 +144,7 @@ module.exports = {
     , 4000)
   stop: ()->
     stopShowCurrentInfo()
-    $(currentVideo)
-      .unbind('play')
-      .unbind('click')
-      .unbind('ended')
-      .unbind('waiting')
-      .unbind('playing')
-      .unbind('loadedmetadata')
-      .unbind('canplay')
-      .unbind('canplaythrough')
-      .unbind('stalled')
-      .unbind('error')
+    removeEvents()
     $('.buffering').addClass('hidden')
     currentVideo.pause() if currentVideo
     clearTimeout(pageTimeoutId)
