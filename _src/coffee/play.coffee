@@ -162,10 +162,10 @@ updateProgress = ()->
   )
 handleVideoEnded = ()->
 #  console.log 'ended...	Sent when playback completes.'
-  chapterManager.setCurrentChapterPlaying(chapterManager.setCurrentChapterPlaying()+1)
+  chapterManager.setCurrentChapterPlaying(chapterManager.getCurrentChapterPlaying()+1)
   $('footer').removeClass('hidden')
   module.exports.stop()
-  if chapterManager.getCurrentChapterPlaying()<chapterManager.chapters.length
+  if chapterManager.getCurrentChapterPlaying()<chapterManager.getTotalChapter()
     module.exports.play(chapterManager.getCurrentChapterSource())
   else
     chapterManager.setCurrentChapterPlaying(0)

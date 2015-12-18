@@ -26,6 +26,8 @@ class Chapters extends singleton
     this.currentChapterPlaying = value
   getCurrentChapterPlaying: ()->
     return this.currentChapterPlaying
+  getTotalChapter: ()->
+    return this.chapters.length
   getCurrentChapterSource: ()->
     this.chapters[this.currentChapterPlaying].source
   getCurrentChapterTitle: ()->
