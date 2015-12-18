@@ -32,7 +32,9 @@ setVideoControls = (parent)->
     .unbind('ended').bind('ended', handleVideoEnded)
     .unbind('waiting').bind('waiting', handleVideoWaiting)
     .unbind('playing').bind('playing', handleVideoPlaying)
-    .unbind('canplaythrough').bind('canplaythrough', handleVideoPlaying)
+    .unbind('canplaythrough').bind('canplaythrough', handleVideCanPlayThrough)
+    .unbind('stalled').bind('stalled', handleVideoStalled)
+    .unbind('error').bind('error', handleVideoError)
   progressBarContainer
     .unbind('mousedown').bind('mousedown', controlProgress)
     .unbind('mouseover').bind('mouseover', showCurrentInfo)
@@ -152,7 +154,6 @@ updateProgress = ()->
     updateProgress() if currentVideo && !currentVideo.paused
 
   )
-
 handleVideoEnded = ()->
 #  console.log 'ended...'
   chapterManager.currentChapterPlaying++
@@ -174,6 +175,15 @@ handleVideoPlaying = ()->
   infoPopup.addClass('hidden')
   $('.page.visible .buffering').addClass('hidden')
 
+handleVideCanPlayThrough = ()->
+#  console.log 'canplaythrough...'
+  $('.page.visible .buffering').addClass('hidden')
+
+handleVideoStalled = ()->
+  console.log 'stalled...'
+
+handleVideoError = ()->
+  console.log 'error...'
 
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
