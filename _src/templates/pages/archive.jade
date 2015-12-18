@@ -7,7 +7,7 @@ include ../mixins/top-button
     .filters-position
       .filters
         .dropdown.pull-left
-          a.dropdown-menu-btn.btn.text-uppercase(href="javascript:")
+          a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
             span FILTER BY &nbsp;
           .dropdown-menu.multiple
@@ -18,33 +18,33 @@ include ../mixins/top-button
                   ul
                     each item in [1,2,3,4,5,6,7,8]
                       li
-                        a(href="javascript:")
+                        a
                           span.glyphicon.check-icon
                           span FILTER NAME
-            a.btn.apply-filter-btn(href="javascript:") APPLY FILTERS
+            a.btn.apply-filter-btn APPLY FILTERS
         .dropdown.pull-right
-          a.dropdown-menu-btn.btn.text-uppercase(href="javascript:")
+          a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
             span SHORT BY &nbsp;
           a.text-uppercase.btn-border VIDEO TITLE
           ul.dropdown-menu
             each item in [1,2,3,4]
               li
-                a(href="javascript:" class=item==1?'selected':'')
+                a(class=item==1?'selected':'')
                   span.glyphicon.check-icon
                   span NAME (ASC)
   .archive-videos-container
     .related-videos-container.page1
-      a.btn.previous(href="javascript:")
+      a.btn.previous
         span.glyphicon.previous-icon
       .related-videos-mask
         ul.related-videos
           each item in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
             li
-              a(href="javascript:")
+              a
                 .img(style="background-image: url(assets/images/thumbnail.jpg)")
                 .info #{item}. RELATED VIDEO TITLE
-      a.btn.next(href="javascript:")
+      a.btn.next
         span.glyphicon.next-icon
   .pagination-container
     .pagination-text
