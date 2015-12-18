@@ -205,6 +205,7 @@ handleVideoStalled = ()->
 
 handleVideoError = ()->
   console.log 'error...'
+  $('.buffering').addClass('hidden')
 
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
