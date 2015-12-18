@@ -432,3 +432,20 @@
     }
   }
 }
+.subtitles {
+  position: absolute;
+  bottom: 150px;
+  padding: 0 20px;
+  left: 0;
+  width: calc(100% - 40px);
+  font-size: 36px;
+  line-height: 1em;
+  color: white;
+  text-shadow: #000 1px 1px .1em;
+  &.hidden {
+    display: none;
+  }
+}
+.leanback .subtitles {
+  bottom: 50px;
+}

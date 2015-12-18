@@ -22,6 +22,8 @@ infoPopup = null
 relatedItems = null
 isInfoVisible = false
 subtitlesButton = false
+subtitles = null
+currentSub = ''
 
 clearTimeOuts = ()->
   clearTimeout(pageTimeoutId)
@@ -91,6 +93,7 @@ setVideoControls = (parent)->
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
   subtitlesButton = parent.find('.subs-btn')
+  subtitles = parent.find('.subtitles')
   removeEvents()
   addEvents()
 
@@ -108,6 +111,7 @@ setVideoSource = (src, parent=null)->
       videoHTML += "<div class=\"buffering hidden\"></div>"
       videoHTML += "<div class=\"play hidden\"></div>"
       videoHTML += "<div class=\"pause hidden\"></div>"
+      videoHTML += "<div class=\"subtitles hidden\"></div>"
       parent.html(videoHTML)
 
 playVideo = (src=null, time=0)->
@@ -179,6 +183,11 @@ formatTime = (totalSec)->
   else
     result = (if minutes < 10 then  "0" + minutes else minutes) + ":" + (if seconds  < 10 then "0" + seconds else seconds)
   return result
+getCurrentSubtitle = (currentTime)->
+  subs = chapterManager.getCurrentChapterSubtitle()
+  currentTime = Math.ceil(currentTime*1000)
+  return sub.text.replace('\n', '<br>') for sub in subs when sub.startTime<=currentTime && sub.endTime>=currentTime
+  return ''
 
 updateProgressBar = ()->
   offset = parseInt(progressBarContainer.css('padding-left'))
@@ -192,6 +201,11 @@ updateProgressBar = ()->
   progressBar.css('width', "#{progress}%")
 
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
+
+  if chapterManager.getCurrentChapterSubtitle() && !subtitles.hasClass('hidden')
+    sub = getCurrentSubtitle(currentTime)
+    subtitles.html(sub) if sub != currentSub
+
   if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentTime, 10)
       infoPopup.css('left', "#{item.position().left+offset}px");
@@ -375,5 +389,5 @@ loadSubtitles = ()->
       chapterManager.setCurrentChapterSubtitle srtParser.fromSrt(data, true)
 
 handleSubtitles = ()->
-  chapterManager.showSubtitles = !chapterManager.showSubtitles
+  subtitles.toggleClass('hidden')
   loadSubtitles()
