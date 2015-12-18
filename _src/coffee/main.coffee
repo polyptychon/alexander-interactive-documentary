@@ -23,7 +23,7 @@ chapterContainers.html(chapterList)
 chapterContainers.find('a').bind('click', (e)->
   $('body').removeClass('show-chapters')
   player.stop()
-  chapterManager.setCurrentChapterPlaying((this).parent().index())
+  chapterManager.setCurrentChapterPlaying($(this).parent().index())
   player.play(chapterManager.getCurrentChapterSource())
 )
 
