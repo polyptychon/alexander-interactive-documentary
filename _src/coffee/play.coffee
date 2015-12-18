@@ -87,7 +87,7 @@ module.exports = {
     clearTimeout(videoTimeoutId)
     clearTimeout(infoTimeout)
     $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
-    $('.chapter h2 .number').html(chapterManager.currentChapterPlaying+1)
+    $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
@@ -159,13 +159,13 @@ updateProgress = ()->
   )
 handleVideoEnded = ()->
 #  console.log 'ended...	Sent when playback completes.'
-  chapterManager.currentChapterPlaying++
+  chapterManager.setCurrentChapterPlaying(chapterManager.setCurrentChapterPlaying()+1)
   $('footer').removeClass('hidden')
   module.exports.stop()
-  if chapterManager.currentChapterPlaying<chapterManager.chapters.length
+  if chapterManager.getCurrentChapterPlaying()<chapterManager.chapters.length
     module.exports.play(chapterManager.getCurrentChapterSource())
   else
-    chapterManager.currentChapterPlaying = 0
+    chapterManager.setCurrentChapterPlaying(0)
     displayPage('.landing')
 
 handleVideoWaiting = ()->

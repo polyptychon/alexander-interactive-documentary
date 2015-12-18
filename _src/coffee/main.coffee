@@ -23,7 +23,7 @@ chapterContainers.html(chapterList)
 chapterContainers.find('a').bind('click', (e)->
   $('body').removeClass('show-chapters')
   player.stop()
-  chapterManager.currentChapterPlaying = $(this).parent().index()
+  chapterManager.setCurrentChapterPlaying((this).parent().index())
   player.play(chapterManager.getCurrentChapterSource())
 )
 
@@ -48,7 +48,7 @@ handleLoadComplete = ()->
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
-  chapterManager.currentChapterPlaying = 0
+  chapterManager.setCurrentChapterPlaying(0)
   player.play(chapterManager.getCurrentChapterSource())
 )
 $('.btn-footer.btn-home').bind('click', ()->

@@ -22,6 +22,10 @@ class Chapters extends singleton
           mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S1ZRUkZwSUFteGs"
       }
     ]
+  setCurrentChapterPlaying: (value)->
+    this.currentChapterPlaying = value
+  getCurrentChapterPlaying: ()->
+    return this.currentChapterPlaying
   getCurrentChapterSource: ()->
     this.chapters[this.currentChapterPlaying].source
   getCurrentChapterTitle: ()->
