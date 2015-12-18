@@ -96,6 +96,7 @@ module.exports = {
       setVideoSource(src, $('.page.video-player .video'))
       setVideoControls($('.page.video-player'))
       currentVideo.currentTime = time
+      currentVideo.load()
     , 500)
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
