@@ -183,6 +183,7 @@ formatTime = (totalSec)->
   else
     result = (if minutes < 10 then  "0" + minutes else minutes) + ":" + (if seconds  < 10 then "0" + seconds else seconds)
   return result
+
 getCurrentSubtitle = (currentTime)->
   subs = chapterManager.getCurrentChapterSubtitle()
   currentTime = Math.ceil(currentTime*1000)
@@ -312,7 +313,6 @@ updateInfo = (e)->
   infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
-#    infoPopup.find('.info').html(formatTime(infoTime))
     infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime(infoTime))
   else
     infoPopup.addClass('compact')

@@ -50,6 +50,10 @@ footer, .chapters, .player-footer-container, .related-items-container {
 .info-popup {
   transition: all .2s ease-out;
 }
+.mini .info-popup {
+  transition: transform .4s, opacity .4s;
+  transition-timing-function: cubic-bezier(0.77,0,0.175,1);
+}
 .info-popup.compact {
   transition: transform .4s, opacity .4s;
   transition-timing-function: cubic-bezier(0.77,0,0.175,1);
