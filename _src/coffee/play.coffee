@@ -1,6 +1,7 @@
+require "./SoundWrapper"
 requestAnimFrame = require("animationframe")
 displayPage = require "./displayPage.coffee"
-require "./SoundWrapper"
+chapterManager = require "./chapters.coffee"
 
 LEFT_KEY = 37
 RIGHT_KEY = 39
@@ -17,7 +18,6 @@ durationInfo = null
 infoPopup = null
 relatedItems = null
 isInfoVisible = false
-chapterManager = require "./chapters.coffee"
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
