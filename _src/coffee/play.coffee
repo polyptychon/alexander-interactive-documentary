@@ -133,9 +133,11 @@ updateProgressBar = ()->
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
   progress = currentTime/duration * 100
+  progress = if isNaN(progress) then 0 else progress
 
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
+  
   durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
   if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentTime, 10)
