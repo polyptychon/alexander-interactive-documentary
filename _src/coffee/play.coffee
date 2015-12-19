@@ -287,7 +287,10 @@ mouseMoveHandler = (e)->
 stopUpdateTime = ()->
   progressBarContainer.unbind('mouseup')
   $(window).unbind('mousemove').unbind('mouseup')
-  currentVideo.play() if $('body').hasClass('is-playing')
+  if $('body').hasClass('is-playing')
+    currentVideo.play()
+    updateProgress()
+
 controlProgress = (e)->
   offset = parseInt(progressBarContainer.css('padding-left'))
   currentVideo.pause()
@@ -363,6 +366,7 @@ stopPropagation = (e)->
 togglePlay = ()->
   if currentVideo.paused
     currentVideo.play()
+    updateProgress()
     $(currentVideo).parent().find('.pause').addClass('hidden')
     $(currentVideo).parent().find('.play').removeClass('hidden')
     $('body').addClass('is-playing')
@@ -379,8 +383,9 @@ handleKeyEvents = (e)->
     currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
     if e.keyCode==SPACE_KEY
       togglePlay()
-    else
-      currentVideo.play() if !currentVideo.paused
+    else if !currentVideo.paused
+      currentVideo.play()
+      updateProgress()
 
 handleInfoPopupClick = (e)->
   stopPropagation(e)
