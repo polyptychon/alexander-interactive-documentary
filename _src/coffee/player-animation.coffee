@@ -11,7 +11,7 @@ timer = away(10000)
 timer.on 'idle', ()-> hideMiniBar()
 timer.on 'active', ()-> showMiniBar()
 
-miniInterval = -1;
+miniTimeout = -1;
 hideMiniBar = ()->
   return if (!$('body').hasClass('is-playing'))
   $('body').removeClass('show-chapters')
@@ -21,8 +21,8 @@ hideMiniBar = ()->
   $('html').addClass('leanback')
   $('footer').addClass('hidden')
   $('.info-popup').addClass('hidden')
-  clearInterval(miniInterval);
-  miniInterval = setInterval(()->
+  clearTimeout(miniTimeout);
+  miniTimeout = setTimeout(()->
     $('.player-footer-container').addClass('completed')
   , 300) if $('.player-footer-container').hasClass('mini')
 
@@ -33,4 +33,4 @@ showMiniBar = ()->
   $('.player-footer-container').removeClass('mini')
   $('html').removeClass('leanback')
   $('footer').removeClass('hidden')
-  clearInterval(miniInterval);
+  clearTimeout(miniTimeout);
