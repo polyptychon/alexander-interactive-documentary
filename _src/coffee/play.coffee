@@ -132,7 +132,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     updateProgressBar()
-    currentVideo.muted = playerContainer.hasClass('mute')
+    currentVideo.muted = $('body').hasClass('mute')
     currentVideo.play()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
@@ -404,5 +404,5 @@ handleSubtitles = ()->
   loadSubtitles()
 
 handleMute = ()->
-  playerContainer.toggleClass('mute')
+  $('body').toggleClass('mute')
   currentVideo.muted = !currentVideo.muted
