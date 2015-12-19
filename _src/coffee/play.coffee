@@ -131,9 +131,9 @@ playVideo = (src=null, time=0)->
   infoPopup.addClass('hidden')
   if currentVideo
     currentVideo.currentTime = time
-    updateProgressBar()
     currentVideo.muted = $('body').hasClass('mute')
     currentVideo.play()
+    updateProgress()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
 module.exports = {
