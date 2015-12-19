@@ -21,14 +21,11 @@ global.SM = (function(){
    * @returns {void}
    */
   SM.playMusic = function(id,repeat,fadeIn){
-    if(musics[id] && musics[id].playing){
-      return;
-    }
     clearInterval(intervalID);
     var _this = this;
     intervalID = setInterval(function() {
       _this.update();
-    }, 100/60);
+    }, 1000/60);
     repeat = repeat||0;
     fadeIn = (!fadeIn)?0:fadeIn;
     var instance = null;
@@ -132,7 +129,7 @@ global.SM = (function(){
       var _this = this;
       intervalID = setInterval(function() {
         _this.update();
-      }, 100/60);
+      }, 1000/60);
       o.fadeType = "FADE_OUT";
       if (id=="music") {
         o.fadeStep = (o.instance.volume()*1000)/(60*fadeOut);

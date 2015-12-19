@@ -47,7 +47,7 @@ handleLoadComplete = ()->
   $('.video-player').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   $('.video-player-compact').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   displayPage('.landing', '')
-  SM.playMusic('music', -1, 3000)
+  SM.playMusic('music', -1, 1000)
 
 $('.play-documentary-btn').bind('click', ()->
   player.stop()
@@ -95,7 +95,7 @@ $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
 $('.archive .related-videos a').bind('click', ()->
   $('.page.visible').addClass('slide-up')
   $('.video-player-compact').addClass('slide-down')
-  SM.stopMusic('music', 6000)
+  SM.stopMusic('music', 1000)
   displayPage('.video-player-compact', '')
   createjs.Sound.play("page-slide-up")
   player.playVideo(chapterManager.getCurrentChapterSource())

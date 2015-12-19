@@ -127,7 +127,7 @@ currentVideoPlay = ()->
 
 playVideo = (src=null, time=0)->
   setVideoSource(src)
-  SM.stopMusic('music', 6000)
+  SM.stopMusic('music', 4000)
   $('body').addClass('is-playing')
   $('.page.visible').find('.player-footer-container').removeClass('mini')
   setVideoControls($('.page.visible'))
@@ -176,7 +176,7 @@ module.exports = {
     $('.buffering').addClass('hidden')
     currentVideo.pause() if currentVideo
     $('body').removeClass('is-playing')
-    SM.playMusic('music', -1, 3000)
+    SM.playMusic('music', -1, 1000)
 }
 formatTime = (totalSec)->
   hours = parseInt( totalSec / 3600 ) % 24
