@@ -126,19 +126,21 @@ currentVideoPlay = ()->
     updateProgress()
 
 playVideo = (src=null, time=0)->
-  setVideoSource(src)
-  SM.stopMusic('music', 4000)
-  $('body').addClass('is-playing')
-  $('.page.visible').find('.player-footer-container').removeClass('mini')
-  setVideoControls($('.page.visible'))
-  $('footer').removeClass('hidden')
-  $('html').removeClass('leanback')
-  infoPopup.addClass('hidden')
-  if currentVideo
-    currentVideo.currentTime = time
-    currentVideo.muted = $('body').hasClass('mute')
-    currentVideoPlay()
-    chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
+  requestAnimFrame(()->
+    setVideoSource(src)
+    SM.stopMusic('music', 4000)
+    $('body').addClass('is-playing')
+    $('.page.visible').find('.player-footer-container').removeClass('mini')
+    setVideoControls($('.page.visible'))
+    $('footer').removeClass('hidden')
+    $('html').removeClass('leanback')
+    infoPopup.addClass('hidden')
+    if currentVideo
+      currentVideo.currentTime = time
+      currentVideo.muted = $('body').hasClass('mute')
+      currentVideoPlay()
+      chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
+  )
 
 module.exports = {
   playVideo: playVideo,
@@ -152,6 +154,7 @@ module.exports = {
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
+    $('.page.video-player').css('display', 'block')
     videoTimeoutId = setTimeout(()->
       setVideoSource(src, $('.page.video-player .video'))
       setVideoControls($('.page.video-player'))
