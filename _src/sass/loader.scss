@@ -2,6 +2,7 @@ $width : 1em;
 $height : 2em;
 $buffering-color: rgba(#ededed, .6);
 .buffering {
+  pointer-events: none;
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;
