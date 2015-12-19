@@ -241,7 +241,6 @@ updateProgressBar = ()->
       infoPopup.removeClass('hidden')
       infoPopup.find('.info').html(item.find('.info').html())
     else
-
       infoPopup.addClass('compact')
       infoPopup.addClass('hidden')
 

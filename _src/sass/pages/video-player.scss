@@ -431,6 +431,17 @@
     }
   }
 }
+.leanback {
+  .related-item-popup {
+    .img {
+      height: 0 !important;
+      width: 160px !important;;
+    }
+    .info {
+      width: 150px !important;;
+    }
+  }
+}
 .subtitles {
   position: absolute;
   bottom: 150px;
