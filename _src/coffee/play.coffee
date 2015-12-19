@@ -120,6 +120,11 @@ setVideoSource = (src, parent=null)->
       videoHTML += "<div class=\"subtitles\"></div>"
       parent.html(videoHTML)
 
+currentVideoPlay = ()->
+  if currentVideo
+    currentVideo.play()
+    updateProgress()
+
 playVideo = (src=null, time=0)->
   setVideoSource(src)
   SM.stopMusic('music', 6000)
@@ -132,8 +137,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     currentVideo.muted = $('body').hasClass('mute')
-    currentVideo.play()
-    updateProgress()
+    currentVideoPlay()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
 module.exports = {
@@ -287,9 +291,7 @@ mouseMoveHandler = (e)->
 stopUpdateTime = ()->
   progressBarContainer.unbind('mouseup')
   $(window).unbind('mousemove').unbind('mouseup')
-  if $('body').hasClass('is-playing')
-    currentVideo.play()
-    updateProgress()
+  currentVideoPlay() if $('body').hasClass('is-playing')
 
 controlProgress = (e)->
   offset = parseInt(progressBarContainer.css('padding-left'))
@@ -365,8 +367,7 @@ stopPropagation = (e)->
 
 togglePlay = ()->
   if currentVideo.paused
-    currentVideo.play()
-    updateProgress()
+    currentVideoPlay()
     $(currentVideo).parent().find('.pause').addClass('hidden')
     $(currentVideo).parent().find('.play').removeClass('hidden')
     $('body').addClass('is-playing')
@@ -384,8 +385,7 @@ handleKeyEvents = (e)->
     if e.keyCode==SPACE_KEY
       togglePlay()
     else if !currentVideo.paused
-      currentVideo.play()
-      updateProgress()
+      currentVideoPlay()
 
 handleInfoPopupClick = (e)->
   stopPropagation(e)
