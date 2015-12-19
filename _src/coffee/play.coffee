@@ -156,20 +156,24 @@ module.exports = {
     displayPage('.chapter', 'cross-dissolve', chapterBg)
     $('footer').removeClass('hidden')
     $('.player-footer-container').addClass('mini')
-    $('.page.video-player').css('display', 'block')
-    videoTimeoutId = setTimeout(()->
-      setVideoSource(src, $('.page.video-player .video'))
-      setVideoControls($('.page.video-player'))
-      currentVideo.currentTime = time
-      ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
-      ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-      currentVideo.play()
-      currentVideo.muted = true
-      loadSubtitles()
-      $(currentVideo)
-        .bind('canplaythrough', currentVideo.pause)
-        .bind('loadedmetadata', updateProgressBar)
-    , 500)
+    requestAnimFrame(()->
+      requestAnimFrame(()->
+        $('.page.video-player').css('display', 'block')
+        videoTimeoutId = setTimeout(()->
+          setVideoSource(src, $('.page.video-player .video'))
+          setVideoControls($('.page.video-player'))
+          currentVideo.currentTime = time
+          ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
+          ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
+          currentVideo.play()
+          currentVideo.muted = true
+          loadSubtitles()
+          $(currentVideo)
+            .bind('canplaythrough', currentVideo.pause)
+            .bind('loadedmetadata', updateProgressBar)
+        , 500)
+      )
+    )
     pageTimeoutId = setTimeout(()->
       displayPage('.video-player')
       playVideo(null, time)
