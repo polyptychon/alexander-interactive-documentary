@@ -1,8 +1,8 @@
 require("./soundjs-0.6.2.min");
-
 global.SM = (function(){
   var play = require("play-audio")('assets/sounds/soundtrack.mp3');
   var musics = {};
+  var intervalID = -1;
   /**
    * CreateJS Sound Manager
    * @returns {null}
@@ -24,6 +24,11 @@ global.SM = (function(){
     if(musics[id] && musics[id].playing){
       return;
     }
+    clearInterval(intervalID);
+    var _this = this;
+    intervalID = setInterval(function() {
+      _this.update();
+    }, 100/60);
     repeat = repeat||0;
     fadeIn = (!fadeIn)?0:fadeIn;
     var instance = null;
@@ -67,6 +72,7 @@ global.SM = (function(){
           if (id=="music") {
             if(o.fadeStep + o.instance.volume() >= 1){
               o.instance.volume(1);
+              clearInterval(intervalID);
             } else {
               o.instance.volume(o.fadeStep + o.instance.volume());
             }
@@ -74,6 +80,7 @@ global.SM = (function(){
             o.instance.volume += o.fadeStep;
             if(o.instance.volume >= 1){
               o.instance.volume = 1;
+              clearInterval(intervalID);
             }
           }
         }else{
@@ -82,6 +89,7 @@ global.SM = (function(){
               o.playing = false;
               o.instance.volume(0);
               o.instance.pause().currentTime(0);
+              clearInterval(intervalID);
             } else {
               o.instance.volume(o.instance.volume()-o.fadeStep);
             }
@@ -91,6 +99,7 @@ global.SM = (function(){
               o.instance.volume = 0;
               o.playing = false;
               SM.stopMusic(id);
+              clearInterval(intervalID);
             }
           }
         }
@@ -116,14 +125,25 @@ global.SM = (function(){
    * @returns {void}
    */
   SM.stopMusic = function(id,fadeOut){
+    clearInterval(intervalID);
     var o = musics[id];
     fadeOut = (!fadeOut)?0:fadeOut;
     if(o && o.playing){
+      var _this = this;
+      intervalID = setInterval(function() {
+        _this.update();
+      }, 100/60);
       o.fadeType = "FADE_OUT";
       if (id=="music") {
         o.fadeStep = (o.instance.volume()*1000)/(60*fadeOut);
+        if (o.instance.volume()<=0) {
+          clearInterval(intervalID);
+        }
       } else {
         o.fadeStep = (o.instance.volume*1000)/(60*fadeOut);
+        if (o.instance.volume<=0) {
+          clearInterval(intervalID);
+        }
       }
     }
   };
@@ -156,7 +176,3 @@ global.SM = (function(){
 
   return SM;
 })();
-
-var intervalID = setInterval(function() {
-  SM.update();
-}, 100/60);
