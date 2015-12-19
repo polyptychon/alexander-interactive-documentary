@@ -132,7 +132,7 @@ playVideo = (src=null, time=0)->
   if currentVideo
     currentVideo.currentTime = time
     updateProgressBar()
-    currentVideo.muted = false
+    currentVideo.muted = playerContainer.hasClass('mute')
     currentVideo.play()
     chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
 
