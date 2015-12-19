@@ -147,8 +147,12 @@ playVideo = (src=null, time=0)->
 module.exports = {
   playVideo: playVideo,
   resumeVideo: ()->
-    setVideoControls($('.page.visible'))
-    playVideo(null, currentVideo.currentTime)
+    requestAnimFrame(()->
+      requestAnimFrame(()->
+        setVideoControls($('.page.visible'))
+        playVideo(null, currentVideo.currentTime)
+      )
+    )
   play: (src=null, time=0, chapterBg=null)->
     clearTimeOuts()
     $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
