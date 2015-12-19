@@ -6,11 +6,24 @@
 <g id="sprite_x5F_speaker">
 	<g id="graphics_5_">
 		<g>
+			<polygon style="fill:#A7A79C;" points="729.676,132.489 729.676,137.689 732.926,137.689 736.826,141.589 736.826,128.589 
+				732.926,132.489 			"/>
+		</g>
+		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M739.401,131.023l0.342,0.916c0.854,2.285,0.854,4.801,0,7.085
+			l-0.342,0.916"/>
+		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M742.914,129.898l0.419,1.121c1.046,2.797,1.046,5.877,0,8.674
+			l-0.419,1.121"/>
+	</g>
+	<rect id="area_8_" x="727.448" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+</g>
+<g id="sprite_x5F_speaker-muted">
+	<g id="graphics_14_">
+		<g>
 			<polygon style="fill:#A7A79C;" points="689.898,132.489 689.898,137.689 693.148,137.689 697.048,141.589 697.048,128.589 
 				693.148,132.489 			"/>
 		</g>
 	</g>
-	<rect id="area_8_" x="683.67" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_18_" x="683.67" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
 </g>
 <g id="sprite_x5F_arrow-down">
 	<g id="graphics_9_">

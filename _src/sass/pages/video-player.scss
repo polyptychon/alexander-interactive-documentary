@@ -400,7 +400,6 @@
         display: block;
       }
       .subs-btn {
-        color: #a7a79c;
         display: block;
       }
     }
@@ -445,9 +444,23 @@
   display: none;
   pointer-events: none;
 }
-.show-subtitles .subtitles {
-  display: block;
+.subs-btn {
+  color: #a7a79c;
+}
+.show-subtitles {
+  .subtitles {
+    display: block;
+  }
+  .subs-btn {
+    color: #a72428;
+  }
 }
 .leanback .subtitles {
   bottom: 60px;
+}
+.mute-btn span {
+  @extend .speaker-icon;
+}
+.mute .mute-btn span {
+  @extend .speaker-muted-icon;
 }

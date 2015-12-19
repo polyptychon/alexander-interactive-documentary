@@ -21,7 +21,8 @@ durationInfo = null
 infoPopup = null
 relatedItems = null
 isInfoVisible = false
-subtitlesButton = false
+subtitlesButton = null
+muteButton = null
 subtitles = null
 currentSub = ''
 
@@ -56,6 +57,8 @@ removeEvents = ()->
     .unbind('keyup')
   subtitlesButton
     .unbind('click')
+  muteButton
+    .unbind('click')
 
 addEvents = ()->
   $(currentVideo)
@@ -82,6 +85,8 @@ addEvents = ()->
     .bind('keyup', handleKeyEvents)
   subtitlesButton
     .bind('click', handleSubtitles)
+  muteButton
+    .bind('click', handleMute)
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -93,6 +98,7 @@ setVideoControls = (parent)->
   infoPopup = parent.find('.info-popup')
   relatedItems = parent.find('.related-container .related-item')
   subtitlesButton = parent.find('.subs-btn')
+  muteButton = parent.find('.mute-btn')
   subtitles = parent.find('.subtitles')
   removeEvents()
   addEvents()
@@ -396,3 +402,7 @@ handleSubtitles = ()->
   $('body').toggleClass('show-subtitles')
   ls.set(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES, $('body').hasClass('show-subtitles'))
   loadSubtitles()
+
+handleMute = ()->
+  playerContainer.toggleClass('mute')
+  currentVideo.muted = !currentVideo.muted
