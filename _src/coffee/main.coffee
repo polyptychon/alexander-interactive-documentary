@@ -23,9 +23,7 @@ init = ()->
   chapterContainers.html(chapterList)
 
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
-  player.setVideoSource(chapterManager.getCurrentChapterSource(), $('.video'), true)
-  if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
-    $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
+
   chapterContainers.find('a').bind('click', ()->
     $('body').removeClass('show-chapters')
     player.stop()
@@ -34,6 +32,12 @@ init = ()->
   )
   queue = queue(handleLoadComplete)
 
+startVideoLoad = ()->
+  src = chapterManager.getCurrentChapterSourceByIndex(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
+  player.setVideoSource(src,$('.video-player .video video'), true)
+  if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
+    $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
+
 handleLoadComplete = ()->
   $('.landing').find('.bg').css('background-image', "url(#{queue.getItem("landing-bg").src})")
   $('.archive').find('.bg').css('background-image', "url(#{queue.getItem("stoneDark").src})")
@@ -41,6 +45,7 @@ handleLoadComplete = ()->
   $('.video-player').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   $('.video-player-compact').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   displayPage('.landing', '')
+  startVideoLoad()
   SM.playMusic('music', -1, 1000)
 
 resetPageAnimation = (callback)->

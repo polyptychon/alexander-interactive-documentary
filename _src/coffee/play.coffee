@@ -395,7 +395,7 @@ handleInfoPopupClick = (e)->
 
 loadSubtitles = ()->
   video = chapterManager.getVideoFromSource(currentVideo.currentSrc)
-  if !video.parsedSubtitle
+  if video? && !video.parsedSubtitle
     $.get video.subtitle, (data)->
       video.parsedSubtitle = srtParser.fromSrt(data, true)
 
