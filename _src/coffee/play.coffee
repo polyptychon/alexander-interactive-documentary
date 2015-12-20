@@ -135,7 +135,7 @@ playVideo = (src=null, time=0)->
   requestAnimFrame(()->
     requestAnimFrame(()->
       setVideoSource(src)
-      SM.stopMusic('music', 4000)
+      SM.stopMusic('music', 1000)
       $('body').addClass('is-playing')
       $('.page.visible').find('.player-footer-container').removeClass('mini')
       setVideoControls($('.page.visible'))
