@@ -113,7 +113,7 @@ setVideoSource = (src, parent=null)->
       if $(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
          $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4
         videoHTML =  "<video preload=\"true\">"
-        if ('html').hasClass('touch')
+        if $('html').hasClass('touch')
           videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
           videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
         else
@@ -164,24 +164,22 @@ play = (src=null, time=0, chapterBg=null)->
   displayPage('.chapter', 'cross-dissolve', chapterBg)
   $('footer').removeClass('hidden')
   $('.player-footer-container').addClass('mini')
-  requestAnimFrame(()->
-    requestAnimFrame(()->
-      $('.page.video-player').css('display', 'block')
-      videoTimeoutId = setTimeout(()->
-        setVideoSource(src, $('.page.video-player .video'))
-        setVideoControls($('.page.video-player'))
-        currentVideo.currentTime = time
-        ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
-        ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-        currentVideo.play()
-        currentVideo.muted = true
-        loadSubtitles()
-        $(currentVideo)
-        .bind('canplaythrough', currentVideo.pause)
-        .bind('loadedmetadata', updateProgressBar)
-      , 500)
-    )
-  )
+  $('.page.video-player').css('display', 'block')
+
+  videoTimeoutId = setTimeout(()->
+    setVideoSource(src, $('.page.video-player .video'))
+    setVideoControls($('.page.video-player'))
+    currentVideo.currentTime = time
+    ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
+    ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
+    currentVideo.play()
+    currentVideo.muted = true
+    loadSubtitles()
+    $(currentVideo)
+      .bind('canplaythrough', currentVideo.pause)
+      .bind('loadedmetadata', updateProgressBar)
+  , 1000)
+
   pageTimeoutId = setTimeout(()->
     displayPage('.video-player')
     playVideo(null, time)
