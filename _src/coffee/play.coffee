@@ -79,9 +79,9 @@ addEvents = ()->
     .bind('mouseover', handleInfoMouseOver)
     .bind('mouseout', handleInfoMouseOut)
     .bind('click', handleInfoPopupClick)
-    .bind('mousemove', stopPropagation)
-    .bind('mousedown', stopPropagation)
-    .bind('mouseup', stopPropagation)
+    .bind('mousemove', stopInfoPopupPropagation)
+    .bind('mousedown', stopInfoPopupPropagation)
+    .bind('mouseup', stopInfoPopupPropagation)
   $(window)
     .bind('keyup', handleKeyEvents)
   subtitlesButton
@@ -355,7 +355,7 @@ handleInfoMouseOver = (e)->
   infoPopup.removeClass('hidden')
 
 
-stopPropagation = (e)->
+stopInfoPopupPropagation = (e)->
   infoPopup.removeClass('hidden')
   e.stopImmediatePropagation()
   return false
@@ -383,7 +383,7 @@ handleKeyEvents = (e)->
       currentVideoPlay()
 
 handleInfoPopupClick = (e)->
-  stopPropagation(e)
+  stopInfoPopupPropagation(e)
   clearTimeout(videoTimeoutId)
   currentVideo.pause() if currentVideo
   infoPopup.addClass('hidden')
