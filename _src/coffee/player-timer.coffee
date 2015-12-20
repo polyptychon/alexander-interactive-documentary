@@ -6,6 +6,7 @@ timer.on 'idle', ()-> hideMiniBar()
 timer.on 'active', ()-> showMiniBar()
 
 miniTimeout = -1;
+
 hideMiniBar = ()->
   return if (!$('body').hasClass('is-playing'))
   $('body').removeClass('show-chapters')
