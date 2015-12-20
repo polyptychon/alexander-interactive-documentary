@@ -24,7 +24,8 @@ init = ()->
 
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
   player.setVideoSource(chapterManager.getCurrentChapterSource(), $('.video'), true)
-
+  if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
+    $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
   chapterContainers.find('a').bind('click', ()->
     $('body').removeClass('show-chapters')
     player.stop()
