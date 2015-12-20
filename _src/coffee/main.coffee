@@ -1,7 +1,7 @@
 global.$ = global.jQuery = $ = require "jquery"
 
 isTouchDevice =  require "./detectTouchDevice"
-#$('html').addClass('hasTouch') if isTouchDevice()
+$('html').addClass('hasTouch') if isTouchDevice()
 requestAnimFrame = require "animationframe"
 queue = require "./preload-assets.coffee"
 require "./player-timer.coffee"
