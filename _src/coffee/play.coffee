@@ -150,55 +150,51 @@ playVideo = (src=null, time=0)->
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
     )
   )
+resumeVideo = ()->
+  requestAnimFrame(()->
+    requestAnimFrame(()->
+      setVideoControls($('.page.visible'))
+      playVideo(null, currentVideo.currentTime)
+    )
+  )
+play = (src=null, time=0, chapterBg=null)->
+  clearTimeOuts()
+  $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
+  $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
+  displayPage('.chapter', 'cross-dissolve', chapterBg)
+  $('footer').removeClass('hidden')
+  $('.player-footer-container').addClass('mini')
+  requestAnimFrame(()->
+    requestAnimFrame(()->
+      $('.page.video-player').css('display', 'block')
+      videoTimeoutId = setTimeout(()->
+        setVideoSource(src, $('.page.video-player .video'))
+        setVideoControls($('.page.video-player'))
+        currentVideo.currentTime = time
+        ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
+        ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
+        currentVideo.play()
+        currentVideo.muted = true
+        loadSubtitles()
+        $(currentVideo)
+        .bind('canplaythrough', currentVideo.pause)
+        .bind('loadedmetadata', updateProgressBar)
+      , 500)
+    )
+  )
+  pageTimeoutId = setTimeout(()->
+    displayPage('.video-player')
+    playVideo(null, time)
+  , 4000)
 
-module.exports = {
-  setVideoSource: setVideoSource,
-  playVideo: playVideo,
-  resumeVideo: ()->
-    requestAnimFrame(()->
-      requestAnimFrame(()->
-        setVideoControls($('.page.visible'))
-        playVideo(null, currentVideo.currentTime)
-      )
-    )
-  play: (src=null, time=0, chapterBg=null)->
-    clearTimeOuts()
-    $('.chapter h1').html(chapterManager.getCurrentChapterTitle())
-    $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
-    displayPage('.chapter', 'cross-dissolve', chapterBg)
-    $('footer').removeClass('hidden')
-    $('.player-footer-container').addClass('mini')
-    requestAnimFrame(()->
-      requestAnimFrame(()->
-        $('.page.video-player').css('display', 'block')
-        videoTimeoutId = setTimeout(()->
-          setVideoSource(src, $('.page.video-player .video'))
-          setVideoControls($('.page.video-player'))
-          currentVideo.currentTime = time
-          ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
-          ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-          currentVideo.play()
-          currentVideo.muted = true
-          loadSubtitles()
-          $(currentVideo)
-            .bind('canplaythrough', currentVideo.pause)
-            .bind('loadedmetadata', updateProgressBar)
-        , 500)
-      )
-    )
-    pageTimeoutId = setTimeout(()->
-      displayPage('.video-player')
-      playVideo(null, time)
-    , 4000)
-  stop: ()->
-    stopShowCurrentInfo()
-    removeEvents()
-    clearTimeOuts()
-    $('.buffering').addClass('hidden')
-    currentVideo.pause() if currentVideo
-    $('body').removeClass('is-playing')
-    SM.playMusic('music', -1, 1000)
-}
+stop = ()->
+  stopShowCurrentInfo()
+  removeEvents()
+  clearTimeOuts()
+  $('.buffering').addClass('hidden')
+  currentVideo.pause() if currentVideo
+  $('body').removeClass('is-playing')
+  SM.playMusic('music', -1, 1000)
 
 getCurrentSubtitle = (currentTime)->
   subs = chapterManager.getCurrentChapterSubtitle()
@@ -236,10 +232,6 @@ updateProgressBar = ()->
     else
       infoPopup.addClass('compact')
       infoPopup.addClass('hidden')
-
-$(currentVideo).bind('ended', ()->
-  console.log 'ended...'
-)
 
 updateProgress = ()->
   requestAnimFrame(()->
@@ -416,3 +408,11 @@ handleSubtitles = ()->
 handleMute = ()->
   $('body').toggleClass('mute')
   currentVideo.muted = !currentVideo.muted
+
+module.exports = {
+  setVideoSource: setVideoSource,
+  playVideo: playVideo,
+  resumeVideo: resumeVideo,
+  play: play,
+  stop: stop
+}
