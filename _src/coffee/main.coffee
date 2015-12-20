@@ -23,7 +23,7 @@ init = ()->
   chapterContainers.html(chapterList)
 
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
-  player.setVideoSource(chapterManager.getCurrentChapterSource(), $('.video'))
+  player.setVideoSource(chapterManager.getCurrentChapterSource(), $('.video'), true)
 
   chapterContainers.find('a').bind('click', ()->
     $('body').removeClass('show-chapters')

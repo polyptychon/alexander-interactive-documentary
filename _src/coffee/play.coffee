@@ -106,12 +106,12 @@ setVideoControls = (parent)->
 
 setVideoControls($('.page.video-player'))
 
-setVideoSource = (src, parent=null)->
+setVideoSource = (src, parent=null, force=false)->
   parent = $('.page.visible .video') if parent==null
   if src && parent.length>0
     parent.each(()->
-      if $(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
-         $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4
+      if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
+           $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
         videoHTML =  "<video preload=\"true\">"
         if $('html').hasClass('touch')
           videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
