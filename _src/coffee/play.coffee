@@ -113,7 +113,7 @@ setVideoSource = (src, parent=null, force=false)->
       if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
            $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
         videoHTML =  "<video preload=\"true\">"
-        if $('html').hasClass('touch')
+        if $('html').hasClass('hasTouch')
           videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
           videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
         else
