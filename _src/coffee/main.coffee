@@ -34,7 +34,7 @@ init = ()->
 
 startVideoLoad = ()->
   src = chapterManager.getCurrentChapterSourceByIndex(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
-  player.setVideoSource(src,$('.video-player .video video'), true)
+  player.setVideoSource(src,$('.page.video-player .video'), true)
   if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
     $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
 
@@ -46,7 +46,7 @@ handleLoadComplete = ()->
   $('.video-player-compact').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   displayPage('.landing', '')
   startVideoLoad()
-  SM.playMusic('music', -1, 1000)
+#  SM.playMusic('music', -1, 1000)
 
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');

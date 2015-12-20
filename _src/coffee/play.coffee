@@ -184,7 +184,7 @@ play = (src=null, time=0, chapterBg=null)->
   pageTimeoutId = setTimeout(()->
     displayPage('.video-player')
     playVideo(null, time)
-  , 4000)
+  , 5000)
 
 stop = ()->
   stopShowCurrentInfo()
