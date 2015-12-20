@@ -20,7 +20,7 @@ class Chapters extends singleton
         source:
           webm: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEpSaEstQjgzcVk"
           mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_bkF5eVNqckNYeWM"
-        subtitle: "https://googledrive.com/host/0Bw8k9x-W_uS_OTZna1ZGVzJhLVU"
+        subtitle: "https://googledrive.com/host/0Bw8k9x-W_uS_bnlGN1B1dy1VZlk"
         parsedSubtitle: null
       }
       {
