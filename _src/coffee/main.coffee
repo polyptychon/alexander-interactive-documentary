@@ -46,7 +46,7 @@ handleLoadComplete = ()->
   $('.video-player-compact').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   displayPage('.landing', '')
   startVideoLoad()
-#  SM.playMusic('music', -1, 1000)
+  SM.playMusic('music', -1, 1000)
 
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');
