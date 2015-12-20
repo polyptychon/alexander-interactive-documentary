@@ -4,7 +4,7 @@ isTouchDevice =  require "./detectTouchDevice"
 $('html').addClass('hasTouch') if isTouchDevice()
 requestAnimFrame = require "animationframe"
 queue = require "./preload-assets.coffee"
-require "./player-animation.coffee"
+require "./player-timer.coffee"
 require "./SoundWrapper"
 
 resetArchive = require "./archive-animation.coffee"
@@ -25,7 +25,7 @@ init = ()->
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
   player.setVideoSource(chapterManager.getCurrentChapterSource(), $('.video'))
 
-  chapterContainers.find('a').bind('click', (e)->
+  chapterContainers.find('a').bind('click', ()->
     $('body').removeClass('show-chapters')
     player.stop()
     chapterManager.setCurrentChapterPlaying($(this).parent().index())
@@ -72,11 +72,11 @@ $('.btn-footer.btn-home').bind('click', ()->
       displayPage('.landing', '')
   )
 )
-$('.chapters-btn').bind('click', (e)->
+$('.chapters-btn').bind('click', ()->
   $('body').toggleClass('show-chapters')
   $('.info-popup').addClass('hidden')
 )
-$('.chapters .back').bind('click', (e)->
+$('.chapters .back').bind('click', ()->
   $('body').toggleClass('show-chapters')
 )
 $('.archive-btn').bind('click', ()->
@@ -115,4 +115,10 @@ $('.video-player-compact-documentary .back').bind('click', ()->
   createjs.Sound.play("page-slide-back")
   player.resumeVideo()
 )
+$('.related-items-btn').bind('click', ()->
+  $('.info-popup').addClass('hidden')
+  $('body').removeClass('show-chapters')
+  $('.player-footer-container').toggleClass('open-related-items')
+)
+
 init()
