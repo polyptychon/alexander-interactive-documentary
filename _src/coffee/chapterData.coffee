@@ -2,6 +2,7 @@ relatedItems =
   [
     {
       title: "THE AGE OF HEROES"
+      thumbnail: ""
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_aHZDWDVyal9tSm8"
@@ -12,6 +13,7 @@ relatedItems =
     }
     {
       title: "THE CLASSICAL REVOLUTION"
+      thumbnail: ""
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEpSaEstQjgzcVk"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_bkF5eVNqckNYeWM"
@@ -22,6 +24,7 @@ relatedItems =
     }
     {
       title: "THE LONG SHADOW"
+      thumbnail: ""
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_WDBjM0huRnlaMUU"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S1ZRUkZwSUFteGs"
