@@ -146,12 +146,16 @@ setRelatedItems = (relatedItems)->
   htmlList = ""
   for relatedItem in relatedItems
     time = formatTime.timeToMiliSeconds(relatedItem.startTime)
-    p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
     if !isNaN(time)
+      p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
+      thumbnail =
+        if (relatedItem.thumbnail? && relatedItem.thumbnail!="")
+        then relatedItem.thumbnail
+        else "assets/images/thumbnail.jpg"
       html += """
       <div style="left:#{p}%;" class="related-item">
         <div class="related-item-popup">
-          <div style="background-image: url(assets/images/thumbnail.jpg)" class="img"></div>
+          <div style="background-image: url(#{thumbnail})" class="img"></div>
           <div class="info">#{relatedItem.title}</div>
         </div>
       </div>
@@ -159,7 +163,7 @@ setRelatedItems = (relatedItems)->
     htmlList += """
       <li>
         <a>
-          <div class="img"><img src="assets/images/thumbnail.jpg"></div>
+          <div class="img"><img src="#{thumbnail}"></div>
           <div class="info">#{relatedItem.title}</div>
         </a>
       </li>
