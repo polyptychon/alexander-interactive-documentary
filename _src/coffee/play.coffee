@@ -9,13 +9,13 @@ ls = require 'local-storage'
 LEFT_KEY = 37
 RIGHT_KEY = 39
 SPACE_KEY = 32
-START_VIDEO_DURATION = 5000
+START_VIDEO_DURATION = 4000
 
 pageTimeoutId = -1
 videoTimeoutId = -1
 infoTimeout = -1
+
 currentVideo = null
-parsedSubtitle = null
 playerContainer = null
 progressBarContainer = null
 progressBar = null
@@ -25,12 +25,15 @@ infoPopup = null
 relatedVideosContainer = null
 relatedItemsContainer = null
 relatedItems = null
-isInfoVisible = false
+
 subtitlesButton = null
 chapterButton = null
 relatedVideosButton = null
 muteButton = null
+
 subtitles = null
+parsedSubtitle = null
+isInfoVisible = false
 currentSub = ''
 
 clearTimeOuts = ()->
