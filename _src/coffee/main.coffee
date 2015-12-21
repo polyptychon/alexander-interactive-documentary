@@ -24,12 +24,17 @@ init = ()->
 
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
 
-  chapterContainers.find('a').bind('click', ()->
-    $('body').removeClass('show-chapters')
-    player.stop()
-    chapterManager.setCurrentChapterPlaying($(this).parent().index())
-    player.play(chapterManager.getCurrentChapterSource())
-  )
+  chapterContainers.find('a')
+    .bind('click', ()->
+      $('body').removeClass('show-chapters')
+      createjs.Sound.play("click")
+      player.stop()
+      chapterManager.setCurrentChapterPlaying($(this).parent().index())
+      player.play(chapterManager.getCurrentChapterSource())
+    )
+    .bind('mouseover', ()->
+      createjs.Sound.play("over")
+    )
   queue = queue(handleLoadComplete)
 
 startVideoLoad = ()->

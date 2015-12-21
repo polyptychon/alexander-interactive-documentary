@@ -1,5 +1,6 @@
 singleton = require 'singleton'
 chapterData = require "./chapterData.coffee"
+
 class Chapters extends singleton
   LOCAL_STORAGE_CHAPTER: 'chapter'
   LOCAL_STORAGE_TIME: 'time'
