@@ -15,6 +15,7 @@ pageTimeoutId = -1
 videoTimeoutId = -1
 infoTimeout = -1
 currentVideo = null
+parsedSubtitle = null
 playerContainer = null
 progressBarContainer = null
 progressBar = null
@@ -170,8 +171,9 @@ playVideo = (src=null, time=0)->
       if currentVideo
         currentVideo.currentTime = time
         currentVideo.muted = $('body').hasClass('mute')
-        loadSubtitles()
         currentVideoPlay()
+        parsedSubtitle = null
+        loadSubtitles()
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
     )
   )
@@ -220,7 +222,7 @@ stop = ()->
   SM.playMusic('music', -1, 1000)
 
 getCurrentSubtitle = (currentTime)->
-  subs = chapterManager.getCurrentChapterSubtitle()
+  subs = parsedSubtitle
   currentTime = Math.ceil(currentTime*1000)
   return sub.text.replace('\n', '<br>') for sub in subs when sub.startTime<=currentTime && sub.endTime>=currentTime
   return ''
@@ -239,7 +241,7 @@ updateProgressBar = ()->
 
   durationInfo.html("#{formatTime.miliSecondsToTime(currentTime)} | #{formatTime.miliSecondsToTime(duration)}")
 
-  if (chapterManager.getCurrentChapterSubtitle() &&
+  if (parsedSubtitle &&
       $('body').hasClass('show-subtitles'))
     
     sub = getCurrentSubtitle(currentTime)
@@ -426,10 +428,12 @@ handleInfoPopupClick = (e)->
   playVideo(chapterManager.getCurrentChapterRelatedItemByIndex($(this).data('index')).source)
 
 loadSubtitles = ()->
-  video = chapterManager.getVideoFromSource(currentVideo.currentSrc)
+  video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
+  parsedSubtitle = video.parsedSubtitle
   if video? && !video.parsedSubtitle
     $.get video.subtitle, (data)->
-      video.parsedSubtitle = srtParser.fromSrt(data, true)
+      parsedSubtitle = video.parsedSubtitle = srtParser.fromSrt(data, true)
+
 
 handleSubtitles = ()->
   $('body').toggleClass('show-subtitles')
