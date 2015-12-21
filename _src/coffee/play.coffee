@@ -470,7 +470,7 @@ handleMute = ()->
   currentVideo.muted = !currentVideo.muted
 
 handleRelatedVideoClick = ()->
-  createjs.Sound.play("click")
+#  createjs.Sound.play("click")
   playRelatedVideo($(this).data('index'))
 
 handleRelatedVideoOver = ()->
