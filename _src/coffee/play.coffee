@@ -251,6 +251,7 @@ updateProgressBar = ()->
       infoPopup.css('left', "#{item.position().left+offset}px");
       infoPopup.removeClass('compact')
       infoPopup.removeClass('hidden')
+      infoPopup.data('index', item.index())
       infoPopup.find('.info').html(item.find('.info').html())
     else
       infoPopup.addClass('compact')
@@ -349,6 +350,7 @@ updateInfo = (e)->
   infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
+    infoPopup.data("index", item.index())
     infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime.miliSecondsToTime(infoTime))
   else
     infoPopup.addClass('compact')
@@ -421,7 +423,7 @@ handleInfoPopupClick = (e)->
   displayPage('.video-player-compact-documentary')
   $('.video-player-compact-documentary .player-footer-container').removeClass('mini')
   createjs.Sound.play("page-slide-up")
-  playVideo(chapterManager.getCurrentChapterSource())
+  playVideo(chapterManager.getCurrentChapterRelatedItemByIndex($(this).data('index')).source)
 
 loadSubtitles = ()->
   video = chapterManager.getVideoFromSource(currentVideo.currentSrc)

@@ -36,6 +36,8 @@ class Chapters extends singleton
       this.chapters[value].source
   getCurrentChapterRelatedItems: ()->
     this.chapters[this.currentChapterPlaying].relatedItems
+  getCurrentChapterRelatedItemByIndex: (index)->
+    this.chapters[this.currentChapterPlaying].relatedItems[index]
   getCurrentChapterSource: ()->
     this.chapters[this.currentChapterPlaying].source
   getCurrentChapterTitle: ()->
