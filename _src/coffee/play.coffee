@@ -144,7 +144,7 @@ setRelatedItems = (relatedItems)->
   )
   html = ""
   htmlList = ""
-  for relatedItem in relatedItems
+  for relatedItem, index in relatedItems
     time = formatTime.timeToMiliSeconds(relatedItem.startTime)
     if !isNaN(time)
       p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
@@ -162,7 +162,7 @@ setRelatedItems = (relatedItems)->
       """
     htmlList += """
       <li>
-        <a>
+        <a data-index="#{index}">
           <div class="img"><img src="#{thumbnail}"></div>
           <div class="info">#{relatedItem.title}</div>
         </a>
@@ -170,6 +170,9 @@ setRelatedItems = (relatedItems)->
     """
   relatedItemsContainer.html(html)
   relatedVideosContainer.html(htmlList)
+  relatedVideosContainer.find('a')
+    .bind('click',handleRelatedVideoClick)
+    .bind('mouseover', handleRelatedVideoOver)
 
 currentVideoPlay = ()->
   if currentVideo
@@ -435,16 +438,19 @@ handleKeyEvents = (e)->
     else if !currentVideo.paused
       currentVideoPlay()
 
-handleInfoPopupClick = (e)->
-  stopInfoPopupPropagation(e)
-  clearTimeout(videoTimeoutId)
+playRelatedVideo = (index)->
   currentVideo.pause() if currentVideo
   infoPopup.addClass('hidden')
   $('.video-player-compact-documentary').addClass('slide-down')
   displayPage('.video-player-compact-documentary')
   $('.video-player-compact-documentary .player-footer-container').removeClass('mini')
   createjs.Sound.play("page-slide-up")
-  playVideo(chapterManager.getCurrentChapterRelatedItemByIndex($(this).data('index')).source)
+  playVideo(chapterManager.getCurrentChapterRelatedItemByIndex(index).source)
+
+handleInfoPopupClick = (e)->
+  stopInfoPopupPropagation(e)
+  clearTimeout(videoTimeoutId)
+  playRelatedVideo($(this).data('index'))
 
 loadSubtitles = ()->
   video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
@@ -462,6 +468,13 @@ handleSubtitles = ()->
 handleMute = ()->
   $('body').toggleClass('mute')
   currentVideo.muted = !currentVideo.muted
+
+handleRelatedVideoClick = ()->
+  createjs.Sound.play("click")
+  playRelatedVideo($(this).data('index'))
+
+handleRelatedVideoOver = ()->
+  createjs.Sound.play("over")
 
 module.exports = {
   setVideoSource: setVideoSource,
