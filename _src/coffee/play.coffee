@@ -433,6 +433,7 @@ handleKeyEvents = (e)->
   if currentVideo
     currentVideo.currentTime -= 10 if e.keyCode==LEFT_KEY
     currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
+    updateProgressBar()
     if e.keyCode==SPACE_KEY
       togglePlay()
     else if !currentVideo.paused
