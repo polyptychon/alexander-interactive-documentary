@@ -21,6 +21,7 @@ progressBar = null
 chapterInfo = null
 durationInfo = null
 infoPopup = null
+relatedItemsContainer = null
 relatedItems = null
 isInfoVisible = false
 subtitlesButton = null
@@ -69,7 +70,7 @@ addEvents = ()->
     .bind('ended', handleVideoEnded)
     .bind('waiting', handleVideoWaiting)
     .bind('playing', handleVideoPlaying)
-    .bind('loadedmetadata', updateProgressBar)
+    .bind('loadedmetadata', handleVideoMetadata)
     .bind('canplaythrough', handleVideCanPlayThrough)
     .bind('stalled', handleVideoStalled)
     .bind('error', handleVideoError)
@@ -98,6 +99,7 @@ setVideoControls = (parent)->
   durationInfo = parent.find('.duration-info')
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
+  relatedItemsContainer = parent.find('.related-container .related-items')
   relatedItems = parent.find('.related-container .related-item')
   subtitlesButton = parent.find('.subs-btn')
   muteButton = parent.find('.mute-btn')
@@ -127,6 +129,27 @@ setVideoSource = (src, parent=null, force=false)->
         videoHTML += "<div class=\"subtitles\"></div>"
         $(this).html(videoHTML)
     )
+setRelatedItems = (relatedItems, parent=null)->
+  return null if (
+    !relatedItems? ||
+    relatedItems.length==0 ||
+    parent==null ||
+    !currentVideo? ||
+    isNaN(currentVideo.duration) ||
+    parent.find('.related-item').length>0
+  )
+  html = ""
+  for relatedItem in relatedItems
+    p = formatTime.timeToMiliSeconds(relatedItem.startTime)/Math.ceil(currentVideo.duration*1000) * 100
+    html += """
+    <div style="left:#{p}%;" class="related-item">
+      <div class="related-item-popup">
+        <div style="background-image: url(assets/images/thumbnail.jpg)" class="img"></div>
+        <div class="info">#{relatedItem.title}</div>
+      </div>
+    </div>
+    """
+  parent.html(html)
 
 currentVideoPlay = ()->
   if currentVideo
@@ -179,7 +202,7 @@ play = (src=null, time=0, chapterBg=null)->
     loadSubtitles()
     $(currentVideo)
       .bind('canplaythrough', currentVideo.pause)
-      .bind('loadedmetadata', updateProgressBar)
+      .bind('loadedmetadata', handleVideoMetadata)
   , 1000)
 
   pageTimeoutId = setTimeout(()->
@@ -203,6 +226,7 @@ getCurrentSubtitle = (currentTime)->
   return ''
 
 updateProgressBar = ()->
+  setRelatedItems(chapterManager.getCurrentChapterRelatedItems(), relatedItemsContainer)
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
@@ -213,7 +237,7 @@ updateProgressBar = ()->
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
 
-  durationInfo.html("#{formatTime(currentTime)} | #{formatTime(duration)}")
+  durationInfo.html("#{formatTime.miliSecondsToTime(currentTime)} | #{formatTime.miliSecondsToTime(duration)}")
 
   if (chapterManager.getCurrentChapterSubtitle() &&
       $('body').hasClass('show-subtitles'))
@@ -238,6 +262,9 @@ updateProgress = ()->
     updateProgress() if currentVideo && !currentVideo.paused
 
   )
+handleVideoMetadata = ()->
+  updateProgressBar()
+
 handleVideoEnded = ()->
 #  console.log 'ended...	Sent when playback completes.'
   $('footer').removeClass('hidden')
@@ -322,10 +349,10 @@ updateInfo = (e)->
   infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
-    infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime(infoTime))
+    infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime.miliSecondsToTime(infoTime))
   else
     infoPopup.addClass('compact')
-    infoPopup.find('.info').html(formatTime(infoTime))
+    infoPopup.find('.info').html(formatTime.miliSecondsToTime(infoTime))
 
   if (left-offset>=0 && left-offset<=progressBarContainer.find('.bar-container').width())
     if item

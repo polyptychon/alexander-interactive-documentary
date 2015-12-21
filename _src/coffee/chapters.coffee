@@ -31,9 +31,11 @@ class Chapters extends singleton
     return this.chapters.length
   getCurrentChapterSourceByIndex: (value)->
     if isNaN(value) || value>this.chapters.length || value<0
-      this.chapters[0]
+      this.chapters[0].source
     else
       this.chapters[value].source
+  getCurrentChapterRelatedItems: ()->
+    this.chapters[this.currentChapterPlaying].relatedItems
   getCurrentChapterSource: ()->
     this.chapters[this.currentChapterPlaying].source
   getCurrentChapterTitle: ()->
