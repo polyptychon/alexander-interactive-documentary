@@ -22,6 +22,7 @@ progressBar = null
 chapterInfo = null
 durationInfo = null
 infoPopup = null
+relatedVideosContainer = null
 relatedItemsContainer = null
 relatedItems = null
 isInfoVisible = false
@@ -100,6 +101,7 @@ setVideoControls = (parent)->
   durationInfo = parent.find('.duration-info')
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
+  relatedVideosContainer = parent.find('.related-videos-container .related-videos')
   relatedItemsContainer = parent.find('.related-container .related-items')
   relatedItems = parent.find('.related-container .related-item')
   subtitlesButton = parent.find('.subs-btn')
@@ -130,27 +132,40 @@ setVideoSource = (src, parent=null, force=false)->
         videoHTML += "<div class=\"subtitles\"></div>"
         $(this).html(videoHTML)
     )
-setRelatedItems = (relatedItems, parent=null)->
+setRelatedItems = (relatedItems)->
   return null if (
     !relatedItems? ||
     relatedItems.length==0 ||
-    parent==null ||
+    relatedItemsContainer==null ||
+    relatedItemsContainer.length==0 ||
     !currentVideo? ||
     isNaN(currentVideo.duration) ||
-    parent.find('.related-item').length>0
+    relatedItemsContainer.find('.related-item').length>0
   )
   html = ""
+  htmlList = ""
   for relatedItem in relatedItems
-    p = Math.ceil(formatTime.timeToMiliSeconds(relatedItem.startTime)/Math.ceil(currentVideo.duration*1000) * 100)
-    html += """
-    <div style="left:#{p}%;" class="related-item">
-      <div class="related-item-popup">
-        <div style="background-image: url(assets/images/thumbnail.jpg)" class="img"></div>
-        <div class="info">#{relatedItem.title}</div>
+    time = formatTime.timeToMiliSeconds(relatedItem.startTime)
+    p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
+    if !isNaN(time) && time>0
+      html += """
+      <div style="left:#{p}%;" class="related-item">
+        <div class="related-item-popup">
+          <div style="background-image: url(assets/images/thumbnail.jpg)" class="img"></div>
+          <div class="info">#{relatedItem.title}</div>
+        </div>
       </div>
-    </div>
+      """
+    htmlList += """
+      <li>
+        <a>
+          <div class="img"><img src="assets/images/thumbnail.jpg"></div>
+          <div class="info">#{relatedItem.title}</div>
+        </a>
+      </li>
     """
-  parent.html(html)
+  relatedItemsContainer.html(html)
+  relatedVideosContainer.html(htmlList)
 
 currentVideoPlay = ()->
   if currentVideo
@@ -228,7 +243,7 @@ getCurrentSubtitle = (currentTime)->
   return ''
 
 updateProgressBar = ()->
-  setRelatedItems(chapterManager.getCurrentChapterRelatedItems(), relatedItemsContainer)
+  setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
