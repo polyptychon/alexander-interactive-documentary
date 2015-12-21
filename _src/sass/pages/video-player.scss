@@ -457,6 +457,9 @@
   text-shadow: #000 1px 1px .1em;
   display: none;
   pointer-events: none;
+  @media (max-width: $screen-xs) {
+    font-size: 24px !important;
+  }
 }
 .subs-btn {
   color: #a7a79c;
