@@ -9,6 +9,7 @@ ls = require 'local-storage'
 LEFT_KEY = 37
 RIGHT_KEY = 39
 SPACE_KEY = 32
+START_VIDEO_DURATION = 5000
 
 pageTimeoutId = -1
 videoTimeoutId = -1
@@ -184,7 +185,7 @@ play = (src=null, time=0, chapterBg=null)->
   pageTimeoutId = setTimeout(()->
     displayPage('.video-player')
     playVideo(null, time)
-  , 5000)
+  , START_VIDEO_DURATION)
 
 stop = ()->
   stopShowCurrentInfo()
