@@ -147,7 +147,7 @@ setRelatedItems = (relatedItems)->
   for relatedItem in relatedItems
     time = formatTime.timeToMiliSeconds(relatedItem.startTime)
     p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
-    if !isNaN(time) && time>0
+    if !isNaN(time)
       html += """
       <div style="left:#{p}%;" class="related-item">
         <div class="related-item-popup">
