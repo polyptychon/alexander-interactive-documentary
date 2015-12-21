@@ -117,5 +117,8 @@ $('.video-player-compact-documentary .back').bind('click', ()->
   createjs.Sound.play("page-slide-back")
   player.resumeVideo()
 )
+$('.landing .chapters-btn').bind('click', ()->
+  $('body').toggleClass('show-chapters')
+)
 
 init()
