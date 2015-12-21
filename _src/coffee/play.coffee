@@ -341,7 +341,6 @@ isTimeOverRelatedItem = (currentTime, displayTime=null)->
       d = p / 100 * duration
       item = $(this) if (d>currentTime-displayTime/2 && d<currentTime+displayTime/2)
     else
-      console.log p, position
       item = $(this) if p==position || p+1==position
   )
   return item
