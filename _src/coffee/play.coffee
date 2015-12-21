@@ -294,9 +294,11 @@ controlProgress = (e)->
   currentVideo.pause()
   updateTime(e.clientX-progressBarContainer.offset().left-offset)
   updateProgressBar()
-  $(window).unbind('mousemove').unbind('mouseup')
-    .bind('mousemove', mouseMoveHandler).bind('mouseup', stopUpdateTime)
-  progressBarContainer.unbind('mouseup').bind('mouseup', stopUpdateTime)
+  $(window)
+    .unbind('mousemove').bind('mousemove', mouseMoveHandler)
+    .unbind('mouseup').bind('mouseup', stopUpdateTime)
+  progressBarContainer
+    .unbind('mouseup').bind('mouseup', stopUpdateTime)
 
 isTimeOverRelatedItem = (currentTime, displayTime=null)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
