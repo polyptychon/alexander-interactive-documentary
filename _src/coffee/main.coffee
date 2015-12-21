@@ -8,7 +8,7 @@ require "./player-timer.coffee"
 require "./SoundWrapper"
 
 resetArchive = require "./archive-animation.coffee"
-chapterManager = require "./chapters.coffee"
+chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 ls = require 'local-storage'

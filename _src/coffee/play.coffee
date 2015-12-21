@@ -1,7 +1,7 @@
 require "./SoundWrapper"
 requestAnimFrame = require "animationframe"
 displayPage = require "./displayPage.coffee"
-chapterManager = require "./chapters.coffee"
+chapterManager = require "./Chapters.coffee"
 srtParser = require "subtitles-parser"
 formatTime = require "./formatTime.coffee"
 ls = require 'local-storage'

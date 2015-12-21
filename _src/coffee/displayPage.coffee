@@ -1,8 +1,8 @@
 chapterManager = require "./chapters.coffee"
-requestAnimFrame = require("animationframe")
-ls = require 'local-storage'
+requestAnimFrame = require "animationframe"
+ls = require "local-storage"
+pageTimeoutId = -1
 
-pageTimeoutId = -1;
 module.exports = (nextPage, effe='cross-dissolve', background=null)->
   clearTimeout(pageTimeoutId);
   $(nextPage).css('display', 'block')
