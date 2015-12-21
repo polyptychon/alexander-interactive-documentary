@@ -141,7 +141,7 @@ setRelatedItems = (relatedItems, parent=null)->
   )
   html = ""
   for relatedItem in relatedItems
-    p = formatTime.timeToMiliSeconds(relatedItem.startTime)/Math.ceil(currentVideo.duration*1000) * 100
+    p = Math.ceil(formatTime.timeToMiliSeconds(relatedItem.startTime)/Math.ceil(currentVideo.duration*1000) * 100)
     html += """
     <div style="left:#{p}%;" class="related-item">
       <div class="related-item-popup">
@@ -341,7 +341,8 @@ isTimeOverRelatedItem = (currentTime, displayTime=null)->
       d = p / 100 * duration
       item = $(this) if (d>currentTime-displayTime/2 && d<currentTime+displayTime/2)
     else
-      item = $(this) if p==position || p-1==position || p+1==position
+      console.log p, position
+      item = $(this) if p==position || p+1==position
   )
   return item
 
