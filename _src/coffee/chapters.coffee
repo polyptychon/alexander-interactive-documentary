@@ -1,43 +1,12 @@
 singleton = require 'singleton'
+chapterData = require "./chapterData.coffee"
 class Chapters extends singleton
   LOCAL_STORAGE_CHAPTER: 'chapter'
   LOCAL_STORAGE_TIME: 'time'
   LOCAL_STORAGE_SHOW_SUBTITLES: 'subtitles'
   currentChapterPlaying: 0
   showSubtitles: false
-  chapters:
-    [
-      {
-        title: "THE AGE OF HEROES"
-        source:
-          webm: "https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg"
-          mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_aHZDWDVyal9tSm8"
-        subtitle: "https://googledrive.com/host/0Bw8k9x-W_uS_TVRxZWtRSUxpa1U"
-        parsedSubtitle: null
-        isPlayedOnce: false
-        relatedItems: []
-      }
-      {
-        title: "THE CLASSICAL REVOLUTION"
-        source:
-          webm: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEpSaEstQjgzcVk"
-          mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_bkF5eVNqckNYeWM"
-        subtitle: "https://googledrive.com/host/0Bw8k9x-W_uS_bnlGN1B1dy1VZlk"
-        parsedSubtitle: null
-        isPlayedOnce: false
-        relatedItems: []
-      }
-      {
-        title: "THE LONG SHADOW"
-        source:
-          webm: "https://googledrive.com/host/0Bw8k9x-W_uS_WDBjM0huRnlaMUU"
-          mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S1ZRUkZwSUFteGs"
-        subtitle: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEUwbHZPVWwzTWM"
-        parsedSubtitle: null
-        isPlayedOnce: false
-        relatedItems: []
-      }
-    ]
+  chapters: chapterData
   flattenArray: (videos)->
     array = videos.concat()
     for video in videos
