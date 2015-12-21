@@ -78,10 +78,6 @@ $('.btn-footer.btn-home').bind('click', ()->
       displayPage('.landing', '')
   )
 )
-$('.chapters-btn').bind('click', ()->
-  $('body').toggleClass('show-chapters')
-  $('.info-popup').addClass('hidden')
-)
 $('.chapters .back').bind('click', ()->
   $('body').toggleClass('show-chapters')
 )
@@ -120,11 +116,6 @@ $('.video-player-compact-documentary .back').bind('click', ()->
   displayPage('.video-player', '')
   createjs.Sound.play("page-slide-back")
   player.resumeVideo()
-)
-$('.related-items-btn').bind('click', ()->
-  $('.info-popup').addClass('hidden')
-  $('body').removeClass('show-chapters')
-  $('.player-footer-container').toggleClass('open-related-items')
 )
 
 init()

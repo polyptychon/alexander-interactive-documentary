@@ -27,6 +27,8 @@ relatedItemsContainer = null
 relatedItems = null
 isInfoVisible = false
 subtitlesButton = null
+chapterButton = null
+relatedVideosButton = null
 muteButton = null
 subtitles = null
 currentSub = ''
@@ -64,6 +66,10 @@ removeEvents = ()->
     .unbind('click')
   muteButton
     .unbind('click')
+  chapterButton
+    .unbind('click')
+  relatedVideosButton
+    .unbind('click')
 
 addEvents = ()->
   $(currentVideo)
@@ -92,6 +98,10 @@ addEvents = ()->
     .bind('click', handleSubtitles)
   muteButton
     .bind('click', handleMute)
+  chapterButton
+    .bind('click', handleChaptersButtonClick)
+  relatedVideosButton
+    .bind('click', handleRelatedVideosButtonClick)
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
@@ -107,6 +117,8 @@ setVideoControls = (parent)->
   subtitlesButton = parent.find('.subs-btn')
   muteButton = parent.find('.mute-btn')
   subtitles = parent.find('.subtitles')
+  chapterButton = parent.find('.chapters-btn')
+  relatedVideosButton = parent.find('.related-items-btn')
   removeEvents()
   addEvents()
 
@@ -212,7 +224,7 @@ play = (src=null, time=0, chapterBg=null)->
   $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
   displayPage('.chapter', 'cross-dissolve', chapterBg)
   $('footer').removeClass('hidden')
-  $('.player-footer-container').addClass('mini')
+  playerContainer.addClass('mini')
   $('.page.video-player').css('display', 'block')
 
   videoTimeoutId = setTimeout(()->
@@ -469,6 +481,15 @@ handleSubtitles = ()->
 handleMute = ()->
   $('body').toggleClass('mute')
   currentVideo.muted = !currentVideo.muted
+
+handleChaptersButtonClick = ()->
+  $('body').toggleClass('show-chapters')
+  infoPopup.addClass('hidden')
+
+handleRelatedVideosButtonClick = ()->
+  infoPopup.addClass('hidden')
+  $('body').removeClass('show-chapters')
+  playerContainer.toggleClass('open-related-items')
 
 handleRelatedVideoClick = ()->
 #  createjs.Sound.play("click")

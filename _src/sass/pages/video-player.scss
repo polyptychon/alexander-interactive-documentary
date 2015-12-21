@@ -44,6 +44,11 @@
     .video-player-controls {
       opacity: 0;
     }
+    &.compact {
+      .video-player-controls {
+        opacity: 1;
+      }
+    }
   }
   &.mini {
     bottom: -122px;
