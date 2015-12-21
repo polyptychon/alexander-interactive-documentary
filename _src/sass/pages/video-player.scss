@@ -59,6 +59,9 @@
           top: 0;
           .related-item-popup {
             bottom: 10px;
+            .info {
+              padding-bottom: 2px;
+            }
           }
         }
         .progress-bar-container {
