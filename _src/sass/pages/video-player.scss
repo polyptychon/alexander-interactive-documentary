@@ -465,7 +465,7 @@
   text-shadow: #000 1px 1px .1em;
   display: none;
   pointer-events: none;
-  @media (max-width: $screen-xs) {
+  @media (max-width: $screen-xs), (max-height: $screen-xs) {
     font-size: 24px !important;
   }
 }
