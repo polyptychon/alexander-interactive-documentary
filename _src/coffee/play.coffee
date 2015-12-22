@@ -154,8 +154,7 @@ setRelatedItems = (relatedItems)->
     relatedItemsContainer==null ||
     relatedItemsContainer.length==0 ||
     !currentVideo? ||
-    isNaN(currentVideo.duration) ||
-    relatedItemsContainer.find('.related-item').length>0
+    isNaN(currentVideo.duration)
   )
   html = ""
   htmlList = ""
@@ -168,7 +167,7 @@ setRelatedItems = (relatedItems)->
         then relatedItem.thumbnail
         else "assets/images/thumbnail.jpg"
       html += """
-      <div style="left:#{p}%;" class="related-item">
+      <div style="left:#{p}%;" class="related-item" data-index="#{index}">
         <div class="related-item-popup">
           <div style="background-image: url(#{thumbnail})" class="img"></div>
           <div class="info">#{relatedItem.title}</div>
@@ -186,8 +185,8 @@ setRelatedItems = (relatedItems)->
   relatedItemsContainer.html(html)
   relatedVideosContainer.html(htmlList)
   relatedVideosContainer.find('a')
-    .bind('click',handleRelatedVideoClick)
-    .bind('mouseover', handleRelatedVideoOver)
+    .unbind('click').bind('click',handleRelatedVideoClick)
+    .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
 
 currentVideoPlay = ()->
   if currentVideo
@@ -202,6 +201,8 @@ playVideo = (src=null, time=0)->
       $('body').addClass('is-playing')
       $('.page.visible').find('.player-footer-container').removeClass('mini')
       setVideoControls($('.page.visible'))
+      relatedItemsContainer.html('')
+      relatedVideosContainer.html('')
       $('footer').removeClass('hidden')
       $('html').removeClass('leanback')
       infoPopup.addClass('hidden')
@@ -265,7 +266,6 @@ getCurrentSubtitle = (currentTime)->
   return ''
 
 updateProgressBar = ()->
-  setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   offset = parseInt(progressBarContainer.css('padding-left'))
   duration = if !currentVideo || isNaN(currentVideo.duration) then 0 else currentVideo.duration
   currentTime = if !currentVideo || isNaN(currentVideo.currentTime) then 0 else currentVideo.currentTime
@@ -287,10 +287,11 @@ updateProgressBar = ()->
 
   if !isInfoVisible && !$('body').hasClass('show-chapters')
     if item = isTimeOverRelatedItem(currentTime, 10)
-      infoPopup.css('left', "#{item.position().left+offset}px");
+      p = parseInt(item.attr('style').replace('left:',''), 10)/100*progressBarContainer.find('.bar-container').width()
+      infoPopup.css('left', "#{p+offset}px");
       infoPopup.removeClass('compact')
       infoPopup.removeClass('hidden')
-      infoPopup.data('index', item.index())
+      infoPopup.data('index', item.data('index'))
       infoPopup.find('.info').html(item.find('.info').html())
     else
       infoPopup.addClass('compact')
@@ -324,6 +325,7 @@ handleVideoWaiting = ()->
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
+  setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   infoPopup.addClass('hidden')
   $('.buffering').addClass('hidden')
 
@@ -389,7 +391,7 @@ updateInfo = (e)->
   infoTime = Math.ceil(duration * ((left-offset) / progressBarContainer.find('.bar-container').width()))
   if item = isTimeOverRelatedItem(infoTime)
     infoPopup.removeClass('compact')
-    infoPopup.data("index", item.index())
+    infoPopup.data("index", item.data('index'))
     infoPopup.find('.info').html(item.find('.info').html() + '<br>' +formatTime.miliSecondsToTime(infoTime))
   else
     infoPopup.addClass('compact')
@@ -397,7 +399,8 @@ updateInfo = (e)->
 
   if (left-offset>=0 && left-offset<=progressBarContainer.find('.bar-container').width())
     if item
-      infoPopup.css('left', "#{item.position().left+offset}px");
+      p = parseInt(item.attr('style').replace('left:',''), 10)/100*progressBarContainer.find('.bar-container').width()
+      infoPopup.css('left', "#{p+offset}px");
     else
       infoPopup.css('left', "#{left}px");
 
