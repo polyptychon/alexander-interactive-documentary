@@ -73,6 +73,7 @@ removeEvents = ()->
   chapterButton
     .unbind('click')
   relatedVideosButton
+    .bind('mouseover')
     .unbind('click')
 
 addEvents = ()->
@@ -105,6 +106,7 @@ addEvents = ()->
   chapterButton
     .bind('click', handleChaptersButtonClick)
   relatedVideosButton
+    .bind('mouseover', handleRelatedVideosButtonOver)
     .bind('click', handleRelatedVideosButtonClick)
 
 setVideoControls = (parent)->
@@ -495,6 +497,9 @@ handleMute = ()->
 handleChaptersButtonClick = ()->
   $('body').toggleClass('show-chapters')
   infoPopup.addClass('hidden')
+
+handleRelatedVideosButtonOver = ()->
+#  createjs.Sound.play("over")
 
 handleRelatedVideosButtonClick = ()->
   infoPopup.addClass('hidden')

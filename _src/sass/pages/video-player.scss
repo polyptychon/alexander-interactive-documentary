@@ -31,7 +31,10 @@
     bottom: 34px;
     color: $text-color;
     background: #d1d1c5;
-    a {
+    &:hover {
+      //background: darken(#d1d1c5, 5%);
+    }
+    .related-items-btn {
       display: block;
       color: $text-color;
       width: 100%;
