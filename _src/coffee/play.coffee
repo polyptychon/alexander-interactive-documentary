@@ -25,6 +25,7 @@ infoPopup = null
 relatedVideosContainer = null
 relatedItemsContainer = null
 relatedItems = null
+chaptersContainer = null
 
 subtitlesButton = null
 chapterButton = null
@@ -122,6 +123,7 @@ setVideoControls = (parent)->
   subtitles = parent.find('.subtitles')
   chapterButton = parent.find('.chapters-btn')
   relatedVideosButton = parent.find('.related-items-btn')
+  chaptersContainer = parent.find('.chapters-intro-container')
   removeEvents()
   addEvents()
 
@@ -234,6 +236,8 @@ play = (src=null, time=0, chapterBg=null)->
   videoTimeoutId = setTimeout(()->
     setVideoSource(src, $('.page.video-player .video'))
     setVideoControls($('.page.video-player'))
+    chaptersContainer.find('li.active').removeClass('active')
+    chaptersContainer.find('li').eq(chapterManager.getCurrentChapterPlaying()).addClass('active')
     currentVideo.currentTime = time
     ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
     ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
