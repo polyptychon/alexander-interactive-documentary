@@ -43,38 +43,45 @@ clearTimeOuts = ()->
   clearTimeout(infoTimeout)
 
 removeEvents = ()->
-  $(currentVideo)
-    .unbind('play')
-    .unbind('click')
-    .unbind('ended')
-    .unbind('waiting')
-    .unbind('playing')
-    .unbind('loadedmetadata')
-    .unbind('canplay')
-    .unbind('canplaythrough')
-    .unbind('stalled')
-    .unbind('error')
-  progressBarContainer
-    .unbind('mousedown')
-    .unbind('mouseover')
-  infoPopup
-    .unbind('mouseover')
-    .unbind('mouseout')
-    .unbind('click')
-    .unbind('mousemove')
-    .unbind('mousedown')
-    .unbind('mouseup')
+  if currentVideo
+    $(currentVideo)
+      .unbind('play')
+      .unbind('click')
+      .unbind('ended')
+      .unbind('waiting')
+      .unbind('playing')
+      .unbind('loadedmetadata')
+      .unbind('canplay')
+      .unbind('canplaythrough')
+      .unbind('stalled')
+      .unbind('error')
+  if progressBarContainer
+    progressBarContainer
+      .unbind('mousedown')
+      .unbind('mouseover')
+  if infoPopup
+    infoPopup
+      .unbind('mouseover')
+      .unbind('mouseout')
+      .unbind('click')
+      .unbind('mousemove')
+      .unbind('mousedown')
+      .unbind('mouseup')
   $(window)
     .unbind('keyup')
-  subtitlesButton
-    .unbind('click')
-  muteButton
-    .unbind('click')
-  chapterButton
-    .unbind('click')
-  relatedVideosButton
-    .bind('mouseover')
-    .unbind('click')
+  if subtitlesButton
+    subtitlesButton
+      .unbind('click')
+  if muteButton
+    muteButton
+      .unbind('click')
+  if chapterButton
+    chapterButton
+      .unbind('click')
+  if relatedVideosButton
+    relatedVideosButton
+      .bind('mouseover')
+      .unbind('click')
 
 addEvents = ()->
   $(currentVideo)
@@ -128,8 +135,6 @@ setVideoControls = (parent)->
   chaptersContainer = parent.find('.chapters-intro-container')
   removeEvents()
   addEvents()
-
-setVideoControls($('.page.video-player'))
 
 setVideoSource = (src, parent=null, force=false)->
   parent = $('.page.visible .video') if parent==null
@@ -232,7 +237,7 @@ play = (src=null, time=0, chapterBg=null)->
   $('.chapter h2 .number').html(chapterManager.getCurrentChapterPlaying()+1)
   displayPage('.chapter', 'cross-dissolve', chapterBg)
   $('footer').removeClass('hidden')
-  playerContainer.addClass('mini')
+  playerContainer.addClass('mini') if playerContainer
   $('.page.video-player').css('display', 'block')
 
   videoTimeoutId = setTimeout(()->
@@ -421,8 +426,8 @@ handleInfoMouseOut = (e)->
 
 stopShowCurrentInfo = (e)->
   isInfoVisible = false
-  infoPopup.addClass('hidden')
-  progressBarContainer.unbind('mousemove').unbind('mouseout')
+  infoPopup.addClass('hidden') if infoPopup
+  progressBarContainer.unbind('mousemove').unbind('mouseout')  if progressBarContainer
 
 showCurrentInfo = (e)->
   clearTimeout(infoTimeout)

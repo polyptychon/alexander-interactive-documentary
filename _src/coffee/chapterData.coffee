@@ -2,6 +2,7 @@ module.exports =
   [
     {
       title: "THE AGE OF HEROES"
+      chapterBackground: null
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_QXRUeEE5bnBLRTg"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_aHZDWDVyal9tSm8"
@@ -91,6 +92,7 @@ module.exports =
     }
     {
       title: "THE CLASSICAL REVOLUTION"
+      chapterBackground: null
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_ZEpSaEstQjgzcVk"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_bkF5eVNqckNYeWM"
@@ -147,6 +149,7 @@ module.exports =
     }
     {
       title: "THE LONG SHADOW"
+      chapterBackground: null
       source:
         webm: "https://googledrive.com/host/0Bw8k9x-W_uS_WDBjM0huRnlaMUU"
         mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S1ZRUkZwSUFteGs"
