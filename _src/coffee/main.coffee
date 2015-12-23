@@ -5,6 +5,7 @@ $('html').addClass('hasTouch') if isTouchDevice()
 requestAnimFrame = require "animationframe"
 queue = require "./preload-assets.coffee"
 require "./player-timer.coffee"
+require "./modernizr-custom"
 require "./SoundWrapper"
 
 resetArchive = require "./archive-animation.coffee"

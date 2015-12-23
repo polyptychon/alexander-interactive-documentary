@@ -156,6 +156,14 @@ setVideoSource = (src, parent=null, force=false)->
         videoHTML += "<div class=\"subtitles\"></div>"
         $(this).html(videoHTML)
     )
+    return src
+  else
+    webm = $(currentVideo).find('source[type="video/webm"]')
+    mp4 = $(currentVideo).find('source[type="video/mp4"]')
+    src = {}
+    src.webm = webm.attr('src') if webm.length>0
+    src.mp4 = mp4.attr('src') if mp4.length>0
+    return src
 setRelatedItems = (relatedItems)->
   return null if (
     !relatedItems? ||
@@ -200,12 +208,14 @@ setRelatedItems = (relatedItems)->
 currentVideoPlay = ()->
   if currentVideo
     currentVideo.play()
+    video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
+    video.isPlayedOnce = true
     updateProgress()
 
 playVideo = (src=null, time=0)->
   requestAnimFrame(()->
     requestAnimFrame(()->
-      setVideoSource(src)
+      src = setVideoSource(src)
       SM.stopMusic('music', 1000)
       $('body').addClass('is-playing')
       $('.page.visible').find('.player-footer-container').removeClass('mini')
@@ -218,7 +228,9 @@ playVideo = (src=null, time=0)->
       if currentVideo
         currentVideo.currentTime = time
         currentVideo.muted = $('body').hasClass('mute')
-        currentVideoPlay()
+        video = chapterManager.getVideoFromSource(src.webm)
+        if $('html').hasClass('videoautoplay') || video.isPlayedOnce
+          currentVideoPlay()
         parsedSubtitle = null
         loadSubtitles()
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")

@@ -1,5 +1,4 @@
 singleton = require 'singleton'
-chapterData = require "./chapterData.coffee"
 
 class Chapters extends singleton
   LOCAL_STORAGE_CHAPTER: 'chapter'
@@ -7,7 +6,7 @@ class Chapters extends singleton
   LOCAL_STORAGE_SHOW_SUBTITLES: 'subtitles'
   currentChapterPlaying: 0
   showSubtitles: false
-  chapters: chapterData
+  chapters: require "./chapterData.coffee"
   flattenArray: (videos)->
     array = videos.concat()
     for video in videos
