@@ -211,6 +211,7 @@ setRelatedItems = (relatedItems)->
 currentVideoPlay = ()->
   clearInterval(isPlayingIntervalId)
   if currentVideo
+    $('.buffering').addClass('hidden')
     currentVideo.play()
     previousTime = currentVideo.currentTime if currentVideo.currentTime
     video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
@@ -240,7 +241,10 @@ playVideo = (src=null, time=0)->
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
         if $('html').hasClass('videoautoplay') || video.isPlayedOnce
+          $(currentVideo).find('.play').removeClass('visible')
           currentVideoPlay()
+        else
+          $(currentVideo).find('.play').addClass('visible')
         parsedSubtitle = null
         loadSubtitles()
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
