@@ -341,7 +341,7 @@ detectIsPlaying = ()->
   isPlayingIntervalId = setInterval(()->
     if currentVideo && !currentVideo.paused && currentVideo.currentTime && currentVideo.currentTime!=previousTime
       previousTime = currentVideo.currentTime
-      handleVideoPlaying()
+      $('.buffering').addClass('hidden')
   ,1000)
 updateProgress = ()->
   requestAnimFrame(()->
@@ -371,7 +371,7 @@ handleVideoWaiting = ()->
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
-  clearInterval(isPlayingIntervalId)
+#  clearInterval(isPlayingIntervalId)
   setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   infoPopup.addClass('hidden')
   $('.buffering').addClass('hidden')
