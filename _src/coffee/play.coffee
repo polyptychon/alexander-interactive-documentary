@@ -334,7 +334,6 @@ detectIsPlaying = ()->
   isPlayingIntervalId = setInterval(()->
     if currentVideo && !currentVideo.paused && currentVideo.currentTime && currentVideo.currentTime!=previousTime
       previousTime = currentVideo.currentTime
-      console.log "isPlaying"
       handleVideoPlaying()
   ,1000)
 updateProgress = ()->
@@ -362,8 +361,6 @@ handleVideoWaiting = ()->
 #  console.log 'waiting...'
   infoPopup.addClass('hidden')
   $('.buffering').removeClass('hidden')
-  previousTime = currentVideo.currentTime if currentVideo
-  detectIsPlaying()
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
