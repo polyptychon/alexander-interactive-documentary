@@ -364,7 +364,7 @@ handleVideoWaiting = ()->
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
-  clearInterval(isPlayingIntervalId)
+#  clearInterval(isPlayingIntervalId)
   setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   infoPopup.addClass('hidden')
   $('.buffering').addClass('hidden')
