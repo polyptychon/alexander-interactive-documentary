@@ -42,6 +42,9 @@ header.bottom.intro {
       margin-left: -1px;
     }
     .resume-documentary-btn, .play-documentary-btn {
+      @media (min-width: 430px) {
+        @include text-ellipsis();
+      }
       display: block;
       font-size: 22px;
       width: 50%;
