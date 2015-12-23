@@ -172,15 +172,13 @@ setRelatedItems = (relatedItems)->
     !relatedItems? ||
     relatedItems.length==0 ||
     relatedItemsContainer==null ||
-    relatedItemsContainer.length==0 ||
-    !currentVideo? ||
-    isNaN(currentVideo.duration)
+    relatedItemsContainer.length==0
   )
   html = ""
   htmlList = ""
   for relatedItem, index in relatedItems
-    time = formatTime.timeToMiliSeconds(relatedItem.startTime)
-    if !isNaN(time)
+    if currentVideo? && !isNaN(currentVideo.duration)
+      time = formatTime.timeToMiliSeconds(relatedItem.startTime)
       p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
       thumbnail =
         if (relatedItem.thumbnail? && relatedItem.thumbnail!="")
@@ -202,11 +200,12 @@ setRelatedItems = (relatedItems)->
         </a>
       </li>
     """
-  relatedItemsContainer.html(html)
+  relatedItemsContainer.html(html) if currentVideo? && !isNaN(currentVideo.duration)
   relatedVideosContainer.html(htmlList)
   relatedVideosContainer.find('a')
     .unbind('click').bind('click',handleRelatedVideoClick)
     .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
+  console.log relatedVideosContainer.length, relatedVideosContainer.find('a').length
 
 currentVideoPlay = ()->
   clearInterval(isPlayingIntervalId)
@@ -249,6 +248,7 @@ playVideo = (src=null, time=0)->
           $(currentVideo).parent().find('.play').removeClass('hidden')
           $(currentVideo).parent().find('.play').addClass('visible')
         parsedSubtitle = null
+        setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
         loadSubtitles()
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
     )
@@ -284,7 +284,7 @@ play = (src=null, time=0, chapterBg=null)->
       .bind('canplaythrough', currentVideo.pause)
       .bind('loadedmetadata', handleVideoMetadata)
   , 1000)
-
+  
   pageTimeoutId = setTimeout(()->
     displayPage('.video-player')
     playVideo(null, time)
