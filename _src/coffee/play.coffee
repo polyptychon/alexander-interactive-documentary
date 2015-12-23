@@ -13,7 +13,9 @@ START_VIDEO_DURATION = 4000
 
 pageTimeoutId = -1
 videoTimeoutId = -1
+isPlayingIntervalId = -1
 infoTimeout = -1
+previousTime = 0
 
 currentVideo = null
 playerContainer = null
@@ -41,6 +43,7 @@ clearTimeOuts = ()->
   clearTimeout(pageTimeoutId)
   clearTimeout(videoTimeoutId)
   clearTimeout(infoTimeout)
+  clearInterval(isPlayingIntervalId)
 
 removeEvents = ()->
   if currentVideo
@@ -206,11 +209,18 @@ setRelatedItems = (relatedItems)->
     .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
 
 currentVideoPlay = ()->
+  clearInterval(isPlayingIntervalId)
   if currentVideo
     currentVideo.play()
+    previousTime = currentVideo.currentTime if currentVideo.currentTime
     video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
     video.isPlayedOnce = true
+    detectIsPlaying()
     updateProgress()
+
+currentVideoPause = ()->
+  clearInterval(isPlayingIntervalId)
+  currentVideo.pause() if currentVideo
 
 playVideo = (src=null, time=0)->
   requestAnimFrame(()->
@@ -278,7 +288,7 @@ stop = ()->
   removeEvents()
   clearTimeOuts()
   $('.buffering').addClass('hidden')
-  currentVideo.pause() if currentVideo
+  currentVideoPause()
   $('body').removeClass('is-playing')
   SM.playMusic('music', -1, 1000)
 
@@ -320,6 +330,13 @@ updateProgressBar = ()->
       infoPopup.addClass('compact')
       infoPopup.addClass('hidden')
 
+detectIsPlaying = ()->
+  isPlayingIntervalId = setInterval(()->
+    if currentVideo && !currentVideo.paused && currentVideo.currentTime && currentVideo.currentTime!=previousTime
+      previousTime = currentVideo.currentTime
+      console.log "isPlaying"
+      handleVideoPlaying()
+  ,1000)
 updateProgress = ()->
   requestAnimFrame(()->
     updateProgressBar()
@@ -345,9 +362,12 @@ handleVideoWaiting = ()->
 #  console.log 'waiting...'
   infoPopup.addClass('hidden')
   $('.buffering').removeClass('hidden')
+  previousTime = currentVideo.currentTime if currentVideo
+  detectIsPlaying()
 
 handleVideoPlaying = ()->
 #  console.log 'playing...'
+  clearInterval(isPlayingIntervalId)
   setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   infoPopup.addClass('hidden')
   $('.buffering').addClass('hidden')
@@ -383,7 +403,7 @@ stopUpdateTime = ()->
 
 controlProgress = (e)->
   offset = parseInt(progressBarContainer.css('padding-left'))
-  currentVideo.pause()
+  currentVideoPause()
   updateTime(e.clientX-progressBarContainer.offset().left-offset)
   updateProgressBar()
   $(window)
@@ -464,7 +484,7 @@ togglePlay = ()->
     $(currentVideo).parent().find('.play').removeClass('hidden')
     $('body').addClass('is-playing')
   else
-    currentVideo.pause()
+    currentVideoPause()
     $('.buffering').addClass('hidden')
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
@@ -481,7 +501,7 @@ handleKeyEvents = (e)->
       currentVideoPlay()
 
 playRelatedVideo = (index)->
-  currentVideo.pause() if currentVideo
+  currentVideoPause()
   infoPopup.addClass('hidden')
   $('.video-player-compact-documentary').addClass('slide-down')
   displayPage('.video-player-compact-documentary')
