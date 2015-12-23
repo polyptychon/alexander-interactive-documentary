@@ -284,7 +284,7 @@ play = (src=null, time=0, chapterBg=null)->
       .bind('canplaythrough', currentVideo.pause)
       .bind('loadedmetadata', handleVideoMetadata)
   , 1000)
-  
+
   pageTimeoutId = setTimeout(()->
     displayPage('.video-player')
     playVideo(null, time)

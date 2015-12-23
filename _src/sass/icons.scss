@@ -100,6 +100,11 @@ $play-color: #ededed;
     border-left: 6px solid $play-color;
   }
 }
+.video-player-compact, .video-player-compact-documentary {
+  .play, .pause {
+    top: 45%;
+  }
+}
 .leanback {
   .play, .pause {
     top: 50%;
