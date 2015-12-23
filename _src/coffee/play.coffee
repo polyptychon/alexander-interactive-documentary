@@ -246,7 +246,6 @@ playVideo = (src=null, time=0)->
           $(currentVideo).parent().find('.play').removeClass('visible')
           currentVideoPlay()
         else
-          console.log $(currentVideo).find('.play').length
           $(currentVideo).parent().find('.play').removeClass('hidden')
           $(currentVideo).parent().find('.play').addClass('visible')
         parsedSubtitle = null
