@@ -34,4 +34,10 @@ header.bottom {
     color: #b2b19f;
     font-size: 18px;
   }
+  @media (max-height: $screen-xs) {
+    bottom: 40px;
+    h1 {
+      font-size: 40px;
+    }
+  }
 }
