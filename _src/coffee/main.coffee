@@ -42,7 +42,9 @@ startVideoLoad = ()->
   src = chapterManager.getCurrentChapterSourceByIndex(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
   player.setVideoSource(src,$('.page.video-player .video'), true)
   if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
-    $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
+    try
+      $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
+    catch e
 
 handleLoadComplete = ()->
   $('.landing').find('.bg').css('background-image', "url(#{queue.getItem("landing-bg").src})")

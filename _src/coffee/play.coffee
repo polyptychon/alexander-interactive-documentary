@@ -205,7 +205,6 @@ setRelatedItems = (relatedItems)->
   relatedVideosContainer.find('a')
     .unbind('click').bind('click',handleRelatedVideoClick)
     .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
-  console.log relatedVideosContainer.length, relatedVideosContainer.find('a').length
 
 currentVideoPlay = ()->
   clearInterval(isPlayingIntervalId)
@@ -219,6 +218,11 @@ currentVideoPlay = ()->
     video.isPlayedOnce = true
     detectIsPlaying()
     updateProgress()
+
+setCurrentTime = (time)->
+  try
+    currentVideo.currentTime = time if currentVideo
+  catch e
 
 currentVideoPause = ()->
   clearInterval(isPlayingIntervalId)
@@ -238,7 +242,7 @@ playVideo = (src=null, time=0)->
       $('html').removeClass('leanback')
       infoPopup.addClass('hidden')
       if currentVideo
-        currentVideo.currentTime = time
+        setCurrentTime(time)
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
         if $('html').hasClass('videoautoplay') || video.isPlayedOnce
@@ -274,7 +278,7 @@ play = (src=null, time=0, chapterBg=null)->
     setVideoControls($('.page.video-player'))
     chaptersContainer.find('li.active').removeClass('active')
     chaptersContainer.find('li').eq(chapterManager.getCurrentChapterPlaying()).addClass('active')
-    currentVideo.currentTime = time
+    setCurrentTime(time)
     ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
     ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
     currentVideo.play()
@@ -391,7 +395,7 @@ handleVideoError = ()->
 updateTime = (x)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
   position = (x) / progressBarContainer.width()
-  currentVideo.currentTime = duration * position
+  setCurrentTime(duration * position)
 
 mouseMoveHandler = (e)->
   offset = parseInt(progressBarContainer.css('padding-left'))
