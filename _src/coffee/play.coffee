@@ -500,8 +500,10 @@ togglePlay = ()->
 
 handleKeyEvents = (e)->
   if currentVideo
-    currentVideo.currentTime -= 10 if e.keyCode==LEFT_KEY
-    currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
+    try
+      currentVideo.currentTime -= 10 if e.keyCode==LEFT_KEY
+      currentVideo.currentTime += 10 if e.keyCode==RIGHT_KEY
+    catch e
     updateProgressBar()
     if e.keyCode==SPACE_KEY
       togglePlay()
