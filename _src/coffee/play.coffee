@@ -245,7 +245,7 @@ playVideo = (src=null, time=0)->
         setCurrentTime(time)
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
-        if $('html').hasClass('videoautoplay') || video.isPlayedOnce
+        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !$('html').hasClass('hasTouch')
           $(currentVideo).parent().find('.play').removeClass('visible')
           currentVideoPlay()
         else
