@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer'),
+    replace = require('gulp-replace'),
 
     minifyCSS = require('gulp-minify-css'),
     glob = require('glob'),
@@ -67,7 +68,7 @@ gulp.task('jade', function() {
   var config = {
     "production": env === PRODUCTION,
     "pretty": env === DEVELOPMENT,
-    "locals": {}
+    "locals": {'production': env === PRODUCTION}
   };
 
   var jsManifest      = env === PRODUCTION && USE_FINGERPRINTING ? (JSON.parse(fs.readFileSync("./"+BUILD+'/rev/js/rev-manifest.json', "utf8"))) : {},
@@ -162,6 +163,8 @@ gulp.task('sass', function() {
     .pipe(gulpif(env === PRODUCTION, size()))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(imagesManifest, { base:'../images/', prefix: '../images/' })))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, rev()))
+    .pipe(gulpif(env === PRODUCTION, replace(/..\/images\/sprites/g, 'assets\/images\/sprites')))
+    .pipe(gulpif(env === PRODUCTION, replace(/..\/fonts\//g, 'assets\/fonts\/')))
     .pipe(gulp.dest(getOutputDir()+ASSETS+'/css'))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, rev.manifest()))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, gulp.dest(BUILD+'/rev/css')))
