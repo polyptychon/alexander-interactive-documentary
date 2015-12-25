@@ -167,16 +167,16 @@ setVideoSource = (src, parent=null, force=false)->
     src.webm = webm.attr('src') if webm.length>0
     src.mp4 = mp4.attr('src') if mp4.length>0
     return src
-setRelatedItems = (relatedItems)->
+setRelatedItems = (relatedData)->
   return null if (
-    !relatedItems? ||
-    relatedItems.length==0 ||
+    !relatedData? ||
+    relatedData.length==0 ||
     relatedItemsContainer==null ||
     relatedItemsContainer.length==0
   )
   html = ""
   htmlList = ""
-  for relatedItem, index in relatedItems
+  for relatedItem, index in relatedData
     if currentVideo? && !isNaN(currentVideo.duration)
       time = formatTime.timeToMiliSeconds(relatedItem.startTime)
       p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
@@ -200,7 +200,9 @@ setRelatedItems = (relatedItems)->
         </a>
       </li>
     """
-  relatedItemsContainer.html(html) if currentVideo? && !isNaN(currentVideo.duration)
+  if currentVideo? && !isNaN(currentVideo.duration)
+    relatedItemsContainer.html(html)
+    relatedItems = relatedItemsContainer.find('.related-item')
   relatedVideosContainer.html(htmlList)
   relatedVideosContainer.find('a')
     .unbind('click').bind('click',handleRelatedVideoClick)
@@ -354,6 +356,8 @@ updateProgress = ()->
 
   )
 handleVideoMetadata = ()->
+#  console.log 'metadata...'
+  setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   updateProgressBar()
 
 handleVideoEnded = ()->
