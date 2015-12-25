@@ -525,6 +525,7 @@ handleInfoPopupClick = (e)->
   playRelatedVideo($(this).data('index'))
 
 loadSubtitles = ()->
+  subtitles.html('') if subtitles?
   video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
   parsedSubtitle = video.parsedSubtitle
   if video? && !video.parsedSubtitle
