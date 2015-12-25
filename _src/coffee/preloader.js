@@ -48,7 +48,7 @@ function drawArc(s, e) {
   ctx.fill();
 
   ctx.fillStyle = 'rgba(255,255,255,.2)';
-  ctx.font = "24px ProximaNova center";
+  ctx.font = "24px ProximaNova";
   ctx.textAlign = "center";
   ctx.fillText(percent.toString(), 50, 57);
 }
