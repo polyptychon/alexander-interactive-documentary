@@ -360,10 +360,12 @@ handleVideoEnded = ()->
 #  console.log 'ended...	Sent when playback completes.'
   $('footer').removeClass('hidden')
   stop()
-  if playerContainer.hasClass('compact')
+  if !$('.page.video-player-compact-documentary').hasClass('hidden')
     displayPage('.video-player', '')
     createjs.Sound.play("page-slide-back")
     resumeVideo()
+  else if !$('.page.video-player-compact').hasClass('hidden')
+
   else
     if chapterManager.getCurrentChapterPlaying()+1<chapterManager.getTotalChapter()
       chapterManager.setCurrentChapterPlaying(chapterManager.getCurrentChapterPlaying()+1)
