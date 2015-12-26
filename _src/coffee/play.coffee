@@ -205,13 +205,13 @@ setRelatedItems = (relatedData)->
   html = ""
   htmlList = ""
   for relatedItem, index in relatedData
+    thumbnail =
+      if (relatedItem.thumbnail? && relatedItem.thumbnail!="")
+      then relatedItem.thumbnail
+      else "assets/images/thumbnail.jpg"
     if currentVideo? && !isNaN(currentVideo.duration)
       time = formatTime.timeToMiliSeconds(relatedItem.startTime)
       p = Math.ceil(time/Math.ceil(currentVideo.duration*1000) * 100)
-      thumbnail =
-        if (relatedItem.thumbnail? && relatedItem.thumbnail!="")
-        then relatedItem.thumbnail
-        else "assets/images/thumbnail.jpg"
       html += """
       <div style="left:#{p}%;" class="related-item" data-index="#{index}">
         <div class="related-item-popup">
@@ -579,7 +579,7 @@ loadSubtitles = ()->
   subtitles.html('') if subtitles?
   video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
   parsedSubtitle = video.parsedSubtitle
-  if video? && !video.parsedSubtitle
+  if video? && !video.parsedSubtitle && video.subtitle?
     $.get video.subtitle, (data)->
       parsedSubtitle = video.parsedSubtitle = srtParser.fromSrt(data, true)
 
