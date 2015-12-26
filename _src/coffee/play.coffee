@@ -160,6 +160,7 @@ setVideoSource = (src, parent=null, force=false)->
         videoHTML += "<div class=\"pause hidden\"></div>"
         videoHTML += "<div class=\"subtitles\"></div>"
         $(this).html(videoHTML)
+        currentVideo = parent.find('.video video')[0]
     )
     return src
   else
