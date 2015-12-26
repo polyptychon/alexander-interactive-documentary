@@ -83,16 +83,20 @@ removeEvents = ()->
   if subtitlesButton
     subtitlesButton
       .unbind('click')
+      .unbind('tap')
   if muteButton
     muteButton
       .unbind('click')
+      .unbind('tap')
   if chapterButton
     chapterButton
       .unbind('click')
+      .unbind('tap')
   if relatedVideosButton
     relatedVideosButton
       .bind('mouseover')
       .unbind('click')
+      .unbind('tap')
 
 addEvents = ()->
   $(currentVideo).parent()
@@ -119,15 +123,26 @@ addEvents = ()->
     .bind('mouseup', stopInfoPopupPropagation)
   $(window)
     .bind('keyup', handleKeyEvents)
-  subtitlesButton
-    .bind('click', handleSubtitles)
-  muteButton
-    .bind('click', handleMute)
-  chapterButton
-    .bind('click', handleChaptersButtonClick)
-  relatedVideosButton
-    .bind('mouseover', handleRelatedVideosButtonOver)
-    .bind('click', handleRelatedVideosButtonClick)
+
+  if $('html').hasClass('hasTouch')
+    subtitlesButton
+      .bind('tap', handleSubtitles)
+    muteButton
+      .bind('tap', handleMute)
+    chapterButton
+      .bind('tap', handleChaptersButtonClick)
+    relatedVideosButton
+      .bind('tap', handleRelatedVideosButtonClick)
+  else
+    subtitlesButton
+      .bind('click', handleSubtitles)
+    muteButton
+      .bind('click', handleMute)
+    chapterButton
+      .bind('click', handleChaptersButtonClick)
+    relatedVideosButton
+      .bind('mouseover', handleRelatedVideosButtonOver)
+      .bind('click', handleRelatedVideosButtonClick)
 
 setVideoControls = (parent)->
   currentVideo = parent.find('.video video')[0]
