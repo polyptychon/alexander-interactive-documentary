@@ -99,8 +99,6 @@ removeEvents = ()->
       .unbind('tap')
 
 addEvents = ()->
-  $(currentVideo).parent()
-    .bind('click', togglePlay)
   $(currentVideo)
     .bind('play', updateProgress)
     .bind('ended', handleVideoEnded)
@@ -125,6 +123,8 @@ addEvents = ()->
     .bind('keyup', handleKeyEvents)
 
   if $('html').hasClass('hasTouch')
+    $(currentVideo).parent()
+      .bind('tap', togglePlay)
     subtitlesButton
       .bind('tap', handleSubtitles)
     muteButton
@@ -134,6 +134,8 @@ addEvents = ()->
     relatedVideosButton
       .bind('tap', handleRelatedVideosButtonClick)
   else
+    $(currentVideo).parent()
+      .bind('click', togglePlay)
     subtitlesButton
       .bind('click', handleSubtitles)
     muteButton
