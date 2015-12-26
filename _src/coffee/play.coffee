@@ -83,20 +83,20 @@ removeEvents = ()->
   if subtitlesButton
     subtitlesButton
       .unbind('click')
-      .unbind('tap')
+      .unbind('singletap')
   if muteButton
     muteButton
       .unbind('click')
-      .unbind('tap')
+      .unbind('singletap')
   if chapterButton
     chapterButton
       .unbind('click')
-      .unbind('tap')
+      .unbind('singletap')
   if relatedVideosButton
     relatedVideosButton
       .bind('mouseover')
       .unbind('click')
-      .unbind('tap')
+      .unbind('singletap')
 
 addEvents = ()->
   $(currentVideo)
@@ -534,7 +534,7 @@ stopInfoPopupPropagation = (e)->
   e.stopImmediatePropagation()
   return false
 
-togglePlay = ()->
+togglePlay = (e)->
   if currentVideo.paused
     currentVideoPlay()
     $(currentVideo).parent().find('.pause').addClass('hidden')
@@ -546,6 +546,7 @@ togglePlay = ()->
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
+  e.stopImmediatePropagation()
 
 handleKeyEvents = (e)->
   if currentVideo
@@ -582,26 +583,30 @@ loadSubtitles = ()->
       parsedSubtitle = video.parsedSubtitle = srtParser.fromSrt(data, true)
 
 
-handleSubtitles = ()->
+handleSubtitles = (e)->
   $('body').toggleClass('show-subtitles')
   ls.set(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES, $('body').hasClass('show-subtitles'))
   loadSubtitles()
+  e.stopImmediatePropagation()
 
-handleMute = ()->
+handleMute = (e)->
   $('body').toggleClass('mute')
   currentVideo.muted = !currentVideo.muted
+  e.stopImmediatePropagation()
 
-handleChaptersButtonClick = ()->
+handleChaptersButtonClick = (e)->
   $('body').toggleClass('show-chapters')
   infoPopup.addClass('hidden')
+  e.stopImmediatePropagation()
 
 handleRelatedVideosButtonOver = ()->
 #  createjs.Sound.play("over")
 
-handleRelatedVideosButtonClick = ()->
+handleRelatedVideosButtonClick = (e)->
   infoPopup.addClass('hidden')
   $('body').removeClass('show-chapters')
   playerContainer.toggleClass('open-related-items')
+  e.stopImmediatePropagation()
 
 handleRelatedVideoClick = ()->
 #  createjs.Sound.play("click")
