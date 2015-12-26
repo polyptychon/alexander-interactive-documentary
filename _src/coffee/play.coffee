@@ -18,6 +18,7 @@ isPlayingIntervalId = -1
 infoTimeout = -1
 previousTime = 0
 
+
 currentVideo = null
 playerContainer = null
 progressBarContainer = null
