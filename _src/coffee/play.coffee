@@ -290,6 +290,7 @@ playVideo = (src=null, time=0)->
 resumeVideo = ()->
   requestAnimFrame(()->
     requestAnimFrame(()->
+      stop()
       setVideoControls($('.page.visible'))
       playVideo(null, currentVideo.currentTime)
     )
