@@ -47,9 +47,10 @@ clearTimeOuts = ()->
 
 removeEvents = ()->
   if currentVideo
+    $(currentVideo).parent()
+      .unbind('click')
     $(currentVideo)
       .unbind('play')
-      .unbind('click')
       .unbind('ended')
       .unbind('waiting')
       .unbind('playing')
@@ -87,9 +88,10 @@ removeEvents = ()->
       .unbind('click')
 
 addEvents = ()->
+  $(currentVideo).parent()
+    .bind('click', togglePlay)
   $(currentVideo)
     .bind('play', updateProgress)
-    .bind('click', togglePlay)
     .bind('ended', handleVideoEnded)
     .bind('waiting', handleVideoWaiting)
     .bind('playing', handleVideoPlaying)
