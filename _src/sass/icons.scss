@@ -51,10 +51,7 @@ $play-color: #ededed;
   animation-fill-mode: forwards;
   position: absolute;
   pointer-events: none;
-  @media (max-height: $screen-xs) {
-    top: 35%;
-  }
-  top: 45%;
+
   left: 50%;
   width: 54px;
   height: 54px;
@@ -100,13 +97,19 @@ $play-color: #ededed;
     border-left: 6px solid $play-color;
   }
 }
+.play, .pause, .buffering {
+  top: 45%;
+  @media (max-height: $screen-xs) {
+    top: 35%;
+  }
+}
 .video-player-compact, .video-player-compact-documentary {
-  .play, .pause {
+  .play, .pause, .buffering {
     top: 45%;
   }
 }
 .leanback {
-  .play, .pause {
+  .play, .pause, .buffering {
     top: 50%;
   }
 }
