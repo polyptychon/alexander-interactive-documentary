@@ -64,6 +64,7 @@
     "animationframe": "git://github.com/HarrisSidiropoulos/animationframe",
     "away": "^1.0.0",
     "jquery": "^2.1.1",
+    "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
     "jquery.transit": "^0.9.12",
     "local-storage": "^1.4.2",
     "media": "0.0.1",

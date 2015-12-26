@@ -1,4 +1,5 @@
 require "./SoundWrapper"
+require "jquery-touch-events"
 requestAnimFrame = require "animationframe"
 displayPage = require "./displayPage.coffee"
 chapterManager = require "./Chapters.coffee"
@@ -63,6 +64,10 @@ removeEvents = ()->
     progressBarContainer
       .unbind('mousedown')
       .unbind('mouseover')
+      .unbind('mouseup')
+      .unbind('tapstart')
+      .unbind('tapmove')
+      .unbind('tapend')
   if infoPopup
     infoPopup
       .unbind('mouseover')
@@ -73,6 +78,8 @@ removeEvents = ()->
       .unbind('mouseup')
   $(window)
     .unbind('keyup')
+    .unbind('mousemove')
+    .unbind('mouseup')
   if subtitlesButton
     subtitlesButton
       .unbind('click')
@@ -102,6 +109,7 @@ addEvents = ()->
   progressBarContainer
     .bind('mousedown', controlProgress)
     .bind('mouseover', showCurrentInfo)
+    .bind('tapstart', controlProgress)
   infoPopup
     .bind('mouseover', handleInfoMouseOver)
     .bind('mouseout', handleInfoMouseOut)
@@ -412,27 +420,36 @@ updateTime = (x)->
   position = (x) / progressBarContainer.width()
   setCurrentTime(duration * position)
 
-mouseMoveHandler = (e)->
+mouseMoveHandler = (e, touch)->
   offset = parseInt(progressBarContainer.css('padding-left'))
-  updateTime(e.clientX-progressBarContainer.offset().left-offset)
+  x = if touch then touch.offset.x-offset else e.clientX-progressBarContainer.offset().left-offset
+  updateTime(x)
   updateProgressBar()
   e.stopImmediatePropagation()
   return false
 
 stopUpdateTime = ()->
-  progressBarContainer.unbind('mouseup')
-  $(window).unbind('mousemove').unbind('mouseup')
+  progressBarContainer
+    .unbind('mouseup')
+    .unbind('tapmove')
+    .unbind('tapend')
+  $(window)
+    .unbind('mousemove')
+    .unbind('mouseup')
   currentVideoPlay() if $('body').hasClass('is-playing')
 
-controlProgress = (e)->
+controlProgress = (e, touch)->
   offset = parseInt(progressBarContainer.css('padding-left'))
+  x = if touch then touch.offset.x-offset else e.clientX-progressBarContainer.offset().left-offset
   currentVideoPause()
-  updateTime(e.clientX-progressBarContainer.offset().left-offset)
+  updateTime(x)
   updateProgressBar()
   $(window)
     .unbind('mousemove').bind('mousemove', mouseMoveHandler)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
   progressBarContainer
+    .unbind('tapmove').bind('tapmove', mouseMoveHandler)
+    .unbind('tapend').bind('tapend', stopUpdateTime)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
 
 isTimeOverRelatedItem = (currentTime, displayTime=null)->
