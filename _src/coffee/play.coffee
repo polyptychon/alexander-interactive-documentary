@@ -350,6 +350,7 @@ detectIsPlaying = ()->
   isPlayingIntervalId = setInterval(()->
     if currentVideo && !currentVideo.paused && currentVideo.currentTime && currentVideo.currentTime!=previousTime
       previousTime = currentVideo.currentTime
+      $(currentVideo).parent().find('.play').removeClass('visible')
       $(currentVideo).parent().find('.buffering').addClass('hidden')
   ,1000)
 updateProgress = ()->
