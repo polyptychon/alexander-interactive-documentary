@@ -39,7 +39,7 @@
   li {
     position: absolute;
     padding: 0;
-    margin: 25px 0;
+    margin: 23px 0 25px;
     @for $i from 1 through 30 {
       &:nth-child(#{$i}) {
         left: 170px * ($i - 1);
