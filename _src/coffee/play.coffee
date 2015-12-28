@@ -74,6 +74,7 @@ removeEvents = ()->
       .unbind('mouseover')
       .unbind('mouseout')
       .unbind('click')
+      .unbind('tap')
       .unbind('mousemove')
       .unbind('mousedown')
       .unbind('mouseup')
@@ -115,7 +116,6 @@ addEvents = ()->
   infoPopup
     .bind('mouseover', handleInfoMouseOver)
     .bind('mouseout', handleInfoMouseOut)
-    .bind('click', handleInfoPopupClick)
     .bind('mousemove', stopInfoPopupPropagation)
     .bind('mousedown', stopInfoPopupPropagation)
     .bind('mouseup', stopInfoPopupPropagation)
@@ -129,6 +129,8 @@ addEvents = ()->
       .bind('tap', togglePlay)
     subtitlesButton
       .bind('tap', handleSubtitles)
+    infoPopup
+      .bind('tap', handleInfoPopupClick)
     muteButton
       .bind('tap', handleMute)
     chapterButton
@@ -136,6 +138,8 @@ addEvents = ()->
     relatedVideosButton
       .bind('tap', handleRelatedVideosButtonClick)
   else
+    infoPopup
+      .bind('click', handleInfoPopupClick)
     $(currentVideo).parent()
       .bind('click', togglePlay)
     subtitlesButton
@@ -452,6 +456,10 @@ stopUpdateTime = (e)->
   e.preventDefault() if e
 
 controlProgress = (e, touch)->
+  if touch && ($(touch.target).hasClass('img') || $(touch.target).hasClass('info'))
+    e.preventDefault()
+    e.stopImmediatePropagation()
+    return false
   offset = parseInt(progressBarContainer.css('padding-left'))
   x = if touch then touch.offset.x-offset else e.clientX-progressBarContainer.offset().left-offset
   currentVideoPause()
@@ -530,7 +538,8 @@ handleInfoMouseOver = (e)->
 
 stopInfoPopupPropagation = (e)->
   infoPopup.removeClass('hidden')
-  e.stopImmediatePropagation()
+  e.stopImmediatePropagation() if e && e.stopImmediatePropagation
+  e.preventDefault() if e && e.preventDefault
   return false
 
 togglePlay = (e)->
