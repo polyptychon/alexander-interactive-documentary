@@ -53,6 +53,7 @@ handleLoadComplete = ()->
   displayPage('.landing', '')
   startVideoLoad()
   SM.playMusic('music', -1, 1000)
+  console.log Modernizr.touchevents
 
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');

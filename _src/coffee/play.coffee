@@ -123,7 +123,7 @@ addEvents = ()->
   $(window)
     .bind('keyup', handleKeyEvents)
 
-  if Modernizr.touch
+  if Modernizr.touchevents
     $(currentVideo).parent()
       .bind('tap', togglePlay)
     subtitlesButton
@@ -172,17 +172,19 @@ setVideoSource = (src, parent=null, force=false)->
   if src && parent.length>0
     parent.each(()->
       currentVideo = $(this).find('video')[0]
-      if(Modernizr.video && Modernizr.video.webm && src.webm)
+      if Modernizr.touchevents && Modernizr.video && Modernizr.video.h264 && src.mp4
+        currentVideo.setAttribute("src", src.mp4)
+      else if(Modernizr.video && Modernizr.video.webm && src.webm)
         currentVideo.setAttribute("src", src.webm)
       else if(Modernizr.video && Modernizr.video.ogg && src.ogg)
         currentVideo.setAttribute("src", src.ogg)
-      else if(Modernizr.video && Modernizr.video.h264 && src.mp4)
+      else if Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
       currentVideo.load()
 #      if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
 #           $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
 #        videoHTML =  "<video preload=\"true\">"
-#        if Modernizr.touch
+#        if Modernizr.touchevents
 #          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
 #          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
 #        else
@@ -284,7 +286,7 @@ playVideo = (src=null, time=0)->
         setCurrentTime(time)
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
-        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !Modernizr.touch
+        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !Modernizr.touchevents
           $(currentVideo).parent().find('.play').removeClass('visible')
           currentVideoPlay()
         else
