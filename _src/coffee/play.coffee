@@ -182,14 +182,14 @@ setVideoSource = (src, parent=null, force=false)->
         currentVideo.setAttribute("src", src.mp4)
       currentVideo.load()
     )
-    $(currentVideo).find('.play').addClass('hidden')
-    $(currentVideo).find('.pause').addClass('hidden')
-    $(currentVideo).find('.buffering').addClass('hidden')
-    return src
   else
     src = {}
     src.webm = $(currentVideo).attr('src') if currentVideo
-    return src
+    
+  $(currentVideo).find('.play').addClass('hidden')
+  $(currentVideo).find('.pause').addClass('hidden')
+  $(currentVideo).find('.buffering').addClass('hidden')
+  return src
 setRelatedItems = (relatedData)->
   return null if (
     !relatedData? ||
