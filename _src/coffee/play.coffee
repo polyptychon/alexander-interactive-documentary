@@ -182,6 +182,9 @@ setVideoSource = (src, parent=null, force=false)->
         currentVideo.setAttribute("src", src.mp4)
       currentVideo.load()
     )
+    $(currentVideo).find('.play').addClass('hidden')
+    $(currentVideo).find('.pause').addClass('hidden')
+    $(currentVideo).find('.buffering').addClass('hidden')
     return src
   else
     src = {}
