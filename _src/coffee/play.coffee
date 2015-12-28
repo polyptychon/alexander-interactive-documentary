@@ -1,5 +1,6 @@
 require "./SoundWrapper"
 require "jquery-touch-events"
+require "./modernizr-custom"
 requestAnimFrame = require "animationframe"
 displayPage = require "./displayPage.coffee"
 chapterManager = require "./Chapters.coffee"
@@ -122,7 +123,7 @@ addEvents = ()->
   $(window)
     .bind('keyup', handleKeyEvents)
 
-  if $('html').hasClass('hasTouch')
+  if Modernizr.touch
     $(currentVideo).parent()
       .bind('tap', togglePlay)
     subtitlesButton
@@ -170,22 +171,30 @@ setVideoSource = (src, parent=null, force=false)->
   parent = $('.page.visible .video') if parent==null
   if src && parent.length>0
     parent.each(()->
-      if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
-           $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
-        videoHTML =  "<video preload=\"true\">"
-        if $('html').hasClass('hasTouch')
-          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
-          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
-        else
-          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
-          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
-        videoHTML += "</video>"
-        videoHTML += "<div class=\"buffering hidden\"></div>"
-        videoHTML += "<div class=\"play hidden\"></div>"
-        videoHTML += "<div class=\"pause hidden\"></div>"
-        videoHTML += "<div class=\"subtitles\"></div>"
-        $(this).html(videoHTML)
-        currentVideo = parent.find('.video video')[0]
+      currentVideo = $(this).find('video')[0]
+      if(Modernizr.video && Modernizr.video.webm && src.webm)
+        currentVideo.setAttribute("src", src.webm)
+      else if(Modernizr.video && Modernizr.video.ogg && src.ogg)
+        currentVideo.setAttribute("src", src.ogg)
+      else if(Modernizr.video && Modernizr.video.h264 && src.mp4)
+        currentVideo.setAttribute("src", src.mp4)
+      currentVideo.load()
+#      if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
+#           $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
+#        videoHTML =  "<video preload=\"true\">"
+#        if Modernizr.touch
+#          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
+#          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
+#        else
+#          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
+#          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
+#        videoHTML += "</video>"
+#        videoHTML += "<div class=\"buffering hidden\"></div>"
+#        videoHTML += "<div class=\"play hidden\"></div>"
+#        videoHTML += "<div class=\"pause hidden\"></div>"
+#        videoHTML += "<div class=\"subtitles\"></div>"
+#        $(this).html(videoHTML)
+#        currentVideo = parent.find('.video video')[0]
     )
     return src
   else
@@ -275,7 +284,7 @@ playVideo = (src=null, time=0)->
         setCurrentTime(time)
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
-        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !$('html').hasClass('hasTouch')
+        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !Modernizr.touch
           $(currentVideo).parent().find('.play').removeClass('visible')
           currentVideoPlay()
         else
@@ -444,10 +453,11 @@ mouseMoveHandler = (e, touch)->
   x = if touch then touch.offset.x-offset else e.clientX-progressBarContainer.offset().left-offset
   updateTime(x)
   updateProgressBar()
+  e.preventDefault()
   e.stopImmediatePropagation()
   return false
 
-stopUpdateTime = ()->
+stopUpdateTime = (e)->
   progressBarContainer
     .unbind('mouseup')
     .unbind('tapmove')
@@ -456,6 +466,7 @@ stopUpdateTime = ()->
     .unbind('mousemove')
     .unbind('mouseup')
   currentVideoPlay() if $('body').hasClass('is-playing')
+  e.preventDefault() if e
 
 controlProgress = (e, touch)->
   offset = parseInt(progressBarContainer.css('padding-left'))
@@ -470,6 +481,7 @@ controlProgress = (e, touch)->
     .unbind('tapmove').bind('tapmove', mouseMoveHandler)
     .unbind('tapend').bind('tapend', stopUpdateTime)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
+  e.preventDefault()
 
 isTimeOverRelatedItem = (currentTime, displayTime=null)->
   duration = if isNaN(currentVideo.duration) then 0 else currentVideo.duration
@@ -548,6 +560,7 @@ togglePlay = (e)->
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
+  e.preventDefault()
   e.stopImmediatePropagation()
 
 handleKeyEvents = (e)->
@@ -589,6 +602,7 @@ handleSubtitles = (e)->
   $('body').toggleClass('show-subtitles')
   ls.set(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES, $('body').hasClass('show-subtitles'))
   loadSubtitles()
+  e.preventDefault()
   e.stopImmediatePropagation()
 
 handleMute = (e)->
@@ -599,6 +613,7 @@ handleMute = (e)->
 handleChaptersButtonClick = (e)->
   $('body').toggleClass('show-chapters')
   infoPopup.addClass('hidden')
+  e.preventDefault()
   e.stopImmediatePropagation()
 
 handleRelatedVideosButtonOver = ()->
@@ -608,6 +623,7 @@ handleRelatedVideosButtonClick = (e)->
   infoPopup.addClass('hidden')
   $('body').removeClass('show-chapters')
   playerContainer.toggleClass('open-related-items')
+  e.preventDefault()
   e.stopImmediatePropagation()
 
 handleRelatedVideoClick = ()->
