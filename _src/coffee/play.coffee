@@ -112,7 +112,6 @@ addEvents = ()->
   progressBarContainer
     .bind('mousedown', controlProgress)
     .bind('mouseover', showCurrentInfo)
-    .bind('tapstart', controlProgress)
   infoPopup
     .bind('mouseover', handleInfoMouseOver)
     .bind('mouseout', handleInfoMouseOut)
@@ -124,6 +123,8 @@ addEvents = ()->
     .bind('keyup', handleKeyEvents)
 
   if Modernizr.touchevents
+    progressBarContainer
+      .bind('tapstart', controlProgress)
     $(currentVideo).parent()
       .bind('tap', togglePlay)
     subtitlesButton
@@ -460,9 +461,11 @@ controlProgress = (e, touch)->
     .unbind('mousemove').bind('mousemove', mouseMoveHandler)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
   progressBarContainer
-    .unbind('tapmove').bind('tapmove', mouseMoveHandler)
-    .unbind('tapend').bind('tapend', stopUpdateTime)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
+  if Modernizr.touchevents
+    progressBarContainer
+      .unbind('tapmove').bind('tapmove', mouseMoveHandler)
+      .unbind('tapend').bind('tapend', stopUpdateTime)
   e.preventDefault()
 
 isTimeOverRelatedItem = (currentTime, displayTime=null)->
@@ -542,8 +545,8 @@ togglePlay = (e)->
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.pause').removeClass('hidden')
     $('body').removeClass('is-playing')
-  e.preventDefault()
-  e.stopImmediatePropagation()
+  e.preventDefault() if e && e.preventDefault
+  e.stopImmediatePropagation()  if e && e.stopImmediatePropagation
 
 handleKeyEvents = (e)->
   if currentVideo
