@@ -439,6 +439,7 @@ updateTime = (x)->
   setCurrentTime(duration * position)
 
 mouseMoveHandler = (e, touch)->
+  previousTime = currentVideo.currentTime if currentVideo.currentTime
   offset = parseInt(progressBarContainer.css('padding-left'))
   x = if touch then touch.offset.x-offset else e.clientX-progressBarContainer.offset().left-offset
   updateTime(x)
