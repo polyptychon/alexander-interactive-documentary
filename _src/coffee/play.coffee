@@ -184,11 +184,8 @@ setVideoSource = (src, parent=null, force=false)->
     )
   else
     src = {}
-    src.webm = $(currentVideo).attr('src') if currentVideo
-    
-  $(currentVideo).find('.play').addClass('hidden')
-  $(currentVideo).find('.pause').addClass('hidden')
-  $(currentVideo).find('.buffering').addClass('hidden')
+    if currentVideo
+      src.webm = $(currentVideo).attr('src')
   return src
 setRelatedItems = (relatedData)->
   return null if (
@@ -235,6 +232,7 @@ currentVideoPlay = ()->
   clearInterval(isPlayingIntervalId)
   if currentVideo
     $('.buffering').addClass('hidden')
+    $(currentVideo).parent().find('.pause').addClass('hidden')
     $(currentVideo).parent().find('.play').addClass('hidden')
     $(currentVideo).parent().find('.play').removeClass('visible')
     currentVideo.play()
