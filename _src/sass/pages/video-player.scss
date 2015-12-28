@@ -1,15 +1,20 @@
-.touchevents {
-  .player-footer-container {
-    .previous, .next {
-      display: none;
-    }
-    .related-videos-mask {
-      left: 10px;
-      right: 10px;
-      width: calc(100% - 20px);
-      overflow-y: hidden;
-      overflow-x: auto;
-    }
+.touchevents .related-videos-container, .related-videos-container.no-scroll {
+  .previous, .next {
+    display: none;
+  }
+  .related-videos-mask {
+    left: 10px;
+    right: 10px;
+    width: calc(100% - 20px);
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+}
+.related-videos-container.no-scroll {
+  .related-videos-mask {
+    left: 25px;
+    right: 25px;
+    width: calc(100% - 50px);
   }
 }
 .player-footer-container {
