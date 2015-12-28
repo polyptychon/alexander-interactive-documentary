@@ -181,30 +181,11 @@ setVideoSource = (src, parent=null, force=false)->
       else if Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
       currentVideo.load()
-#      if (($(this).find('source[type="video/webm"]').attr('src')!=src.webm &&
-#           $(this).find('source[type="video/mp4"]').attr('src')!=src.mp4) || force)
-#        videoHTML =  "<video preload=\"true\">"
-#        if Modernizr.touchevents
-#          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
-#          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
-#        else
-#          videoHTML += "<source src=\"#{src.webm}\" type=\"video/webm\">" if src.webm
-#          videoHTML += "<source src=\"#{src.mp4}\" type=\"video/mp4\">" if src.mp4
-#        videoHTML += "</video>"
-#        videoHTML += "<div class=\"buffering hidden\"></div>"
-#        videoHTML += "<div class=\"play hidden\"></div>"
-#        videoHTML += "<div class=\"pause hidden\"></div>"
-#        videoHTML += "<div class=\"subtitles\"></div>"
-#        $(this).html(videoHTML)
-#        currentVideo = parent.find('.video video')[0]
     )
     return src
   else
-    webm = $(currentVideo).find('source[type="video/webm"]')
-    mp4 = $(currentVideo).find('source[type="video/mp4"]')
     src = {}
-    src.webm = webm.attr('src') if webm.length>0
-    src.mp4 = mp4.attr('src') if mp4.length>0
+    src.webm = $(currentVideo).attr('src') if currentVideo
     return src
 setRelatedItems = (relatedData)->
   return null if (
@@ -255,7 +236,7 @@ currentVideoPlay = ()->
     $(currentVideo).parent().find('.play').removeClass('visible')
     currentVideo.play()
     previousTime = currentVideo.currentTime if currentVideo.currentTime
-    video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
+    video = chapterManager.getVideoFromSource($(currentVideo).attr('src'))
     video.isPlayedOnce = true
     detectIsPlaying()
     updateProgress()
@@ -286,7 +267,7 @@ playVideo = (src=null, time=0)->
         setCurrentTime(time)
         currentVideo.muted = $('body').hasClass('mute')
         video = chapterManager.getVideoFromSource(src.webm)
-        if $('html').hasClass('videoautoplay') || video.isPlayedOnce || !Modernizr.touchevents
+        if video && ($('html').hasClass('videoautoplay') || video.isPlayedOnce || !Modernizr.touchevents)
           $(currentVideo).parent().find('.play').removeClass('visible')
           currentVideoPlay()
         else
@@ -323,8 +304,6 @@ play = (src=null, time=0, chapterBg=null)->
     setCurrentTime(time)
     ls.set(chapterManager.LOCAL_STORAGE_CHAPTER, chapterManager.getCurrentChapterPlaying())
     ls.set(chapterManager.LOCAL_STORAGE_TIME, time)
-    currentVideo.play()
-    currentVideo.muted = true
     loadSubtitles()
     $(currentVideo)
       .bind('canplaythrough', currentVideo.pause)
@@ -593,7 +572,7 @@ handleInfoPopupClick = (e)->
 
 loadSubtitles = ()->
   subtitles.html('') if subtitles?
-  video = chapterManager.getVideoFromSource($(currentVideo).find('source').attr('src'))
+  video = chapterManager.getVideoFromSource($(currentVideo).attr('src'))
   parsedSubtitle = video.parsedSubtitle
   if video? && !video.parsedSubtitle && video.subtitle?
     $.get video.subtitle, (data)->
