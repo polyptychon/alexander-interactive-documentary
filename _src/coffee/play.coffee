@@ -234,6 +234,7 @@ setRelatedItems = (relatedData)->
     .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
 
 currentVideoPlay = ()->
+  $('body').addClass('is-playing')
   clearInterval(isPlayingIntervalId)
   if currentVideo
     $('.buffering').addClass('hidden')
@@ -261,7 +262,6 @@ playVideo = (src=null, time=0)->
     requestAnimFrame(()->
       src = setVideoSource(src)
       SM.stopMusic('music', 1000)
-      $('body').addClass('is-playing')
       $('.page.visible').find('.player-footer-container').removeClass('mini')
       setVideoControls($('.page.visible'))
       relatedItemsContainer.html('')
