@@ -9,6 +9,9 @@ module.exports = (nextPage, effe='cross-dissolve', background=null)->
 
   requestAnimFrame(()->
     requestAnimFrame(()->
+      $('.buffering').addClass('hidden')
+      $('.pause').addClass('hidden')
+      $('.play').addClass('hidden')
       $('.page').addClass('hidden') if (effe!='cross-dissolve')
       $('.page.visible').each(()-> $(this).removeClass('visible'))
       $(nextPage).removeClass('hidden').addClass('visible')
