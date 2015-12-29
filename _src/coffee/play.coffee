@@ -137,6 +137,9 @@ addEvents = ()->
       .bind('tap', handleChaptersButtonClick)
     relatedVideosButton
       .bind('tap', handleRelatedVideosButtonClick)
+    relatedVideosButton.parent()
+      .bind('swipeup', handleRelatedVideosButtonSwipeUp)
+      .bind('swipedown', handleRelatedVideosButtonSwipeDown)
   else
     infoPopup
       .bind('click', handleInfoPopupClick)
@@ -617,6 +620,14 @@ handleRelatedVideosButtonClick = (e)->
   playerContainer.toggleClass('open-related-items')
   e.preventDefault()
   e.stopImmediatePropagation()
+
+handleRelatedVideosButtonSwipeUp = (e)->
+  handleRelatedVideosButtonClick(e)
+  playerContainer.addClass('open-related-items')
+
+handleRelatedVideosButtonSwipeDown = (e)->
+  handleRelatedVideosButtonClick(e)
+  playerContainer.removeClass('open-related-items')
 
 handleRelatedVideoClick = ()->
 #  createjs.Sound.play("click")
