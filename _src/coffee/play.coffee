@@ -98,7 +98,10 @@ removeEvents = ()->
     relatedVideosButton
       .bind('mouseover')
       .unbind('click')
-      .unbind('singletap')
+      .unbind('tap')
+    relatedVideosButton.parent()
+      .unbind('swipeup')
+      .unbind('swipedown')
 
 addEvents = ()->
   $(currentVideo)
