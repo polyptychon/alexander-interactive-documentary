@@ -276,8 +276,7 @@ playVideo = (src=null, time=0)->
         if Modernizr.videoautoplay || (video && video.isPlayedOnce) || !Modernizr.touchevents || currentVideo.duration>0
           currentVideoPlay()
         else
-          $(currentVideo).parent().find('.play').removeClass('hidden')
-          $(currentVideo).parent().find('.play').addClass('visible')
+          $(currentVideo).parent().find('.play').removeClass('hidden').addClass('visible')
         parsedSubtitle = null
         setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
         loadSubtitles()
