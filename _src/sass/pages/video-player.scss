@@ -15,6 +15,9 @@
     .related-videos-container {
       @extend .related-videos-container-no-scroll;
     }
+    .related-videos-container {
+      @extend .related-videos-container-no-scroll;
+    }
   }
 }
 .related-videos-container.no-scroll {
