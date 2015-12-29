@@ -1,21 +1,24 @@
-.touchevents .related-videos-container, .related-videos-container.no-scroll {
+.related-videos-container-no-scroll {
   .previous, .next {
     display: none;
   }
   .related-videos-mask {
-    left: 10px;
-    right: 10px;
-    width: calc(100% - 20px);
+    left: 25px;
+    right: 25px;
+    width: calc(100% - 50px);
     overflow-y: hidden;
     overflow-x: auto;
   }
 }
-.related-videos-container.no-scroll {
-  .related-videos-mask {
-    left: 25px;
-    right: 25px;
-    width: calc(100% - 50px);
+.touchevents {
+  .video-player {
+    .related-videos-container {
+      @extend .related-videos-container-no-scroll;
+    }
   }
+}
+.related-videos-container.no-scroll {
+  @extend .related-videos-container-no-scroll;
 }
 .player-footer-container {
   $button-width: 113px;
