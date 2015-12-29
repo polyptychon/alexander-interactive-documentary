@@ -27,6 +27,9 @@ chapterInfo = null
 durationInfo = null
 infoPopup = null
 relatedVideosContainer = null
+relatedVideos = null
+relatedVideosPrevious = null
+relatedVideosNext = null
 relatedItemsContainer = null
 relatedItems = null
 chaptersContainer = null
@@ -82,6 +85,7 @@ removeEvents = ()->
     .unbind('keyup')
     .unbind('mousemove')
     .unbind('mouseup')
+    .unbind('resize')
   if subtitlesButton
     subtitlesButton
       .unbind('click')
@@ -102,6 +106,12 @@ removeEvents = ()->
     relatedVideosButton.parent()
       .unbind('swipeup')
       .unbind('swipedown')
+  if relatedVideosPrevious
+    relatedVideosPrevious
+      .unbind('click')
+  if relatedVideosNext
+    relatedVideosNext
+      .unbind('click')
 
 addEvents = ()->
   $(currentVideo)
@@ -124,6 +134,11 @@ addEvents = ()->
     .bind('mouseup', stopInfoPopupPropagation)
   $(window)
     .bind('keyup', handleKeyEvents)
+    .bind('resize', handleWindowResize)
+  relatedVideosPrevious
+    .bind('click', handleRelatedVideosPreviousClick)
+  relatedVideosNext
+    .bind('click', handleRelatedVideosNextClick)
 
   if Modernizr.touchevents
     progressBarContainer
@@ -166,7 +181,10 @@ setVideoControls = (parent)->
   durationInfo = parent.find('.duration-info')
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
-  relatedVideosContainer = parent.find('.related-videos-container .related-videos')
+  relatedVideosContainer = parent.find('.related-videos-container')
+  relatedVideos = parent.find('.related-videos-container .related-videos')
+  relatedVideosPrevious = relatedVideosContainer.find('.previous')
+  relatedVideosNext = relatedVideosContainer.find('.next')
   relatedItemsContainer = parent.find('.related-container .related-items')
   relatedItems = parent.find('.related-container .related-item')
   subtitlesButton = parent.find('.subs-btn')
@@ -234,8 +252,8 @@ setRelatedItems = (relatedData)->
   if currentVideo? && !isNaN(currentVideo.duration)
     relatedItemsContainer.html(html)
     relatedItems = relatedItemsContainer.find('.related-item')
-  relatedVideosContainer.html(htmlList)
-  relatedVideosContainer.find('a')
+  relatedVideos.html(htmlList)
+  relatedVideos.find('a')
     .unbind('click').bind('click',handleRelatedVideoClick)
     .unbind('mouseover').bind('mouseover', handleRelatedVideoOver)
 
@@ -271,7 +289,7 @@ playVideo = (src=null, time=0)->
       $('.page.visible').find('.player-footer-container').removeClass('mini')
       setVideoControls($('.page.visible'))
       relatedItemsContainer.html('')
-      relatedVideosContainer.html('')
+      relatedVideos.html('')
       $('footer').removeClass('hidden')
       $('html').removeClass('leanback')
       infoPopup.addClass('hidden')
@@ -285,6 +303,7 @@ playVideo = (src=null, time=0)->
           $(currentVideo).parent().find('.play').removeClass('hidden').addClass('visible')
         parsedSubtitle = null
         setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
+        handleWindowResize()
         loadSubtitles()
         chapterInfo.html("#{chapterManager.getCurrentChapterPlaying()+1}. #{chapterManager.getCurrentChapterTitle()}")
     )
@@ -638,6 +657,40 @@ handleRelatedVideoClick = ()->
 
 handleRelatedVideoOver = ()->
   createjs.Sound.play("over")
+
+handleRelatedVideosPreviousClick = ()->
+  relatedVideosMask = relatedVideosContainer.find('.related-videos-mask')
+  element = relatedVideosMask[0]
+  nexts = relatedVideosMask.scrollLeft() - element.clientWidth
+  s = if nexts>0 then nexts else 0
+  relatedVideosMask.animate({
+    scrollLeft: "#{s}"
+  })
+  
+handleRelatedVideosNextClick = ()->
+  relatedVideosMask = relatedVideosContainer.find('.related-videos-mask')
+  element = relatedVideosMask[0]
+  maxScrollLeft = element.scrollWidth - element.clientWidth
+  nexts = relatedVideosMask.scrollLeft() + element.clientWidth
+  s = if nexts<maxScrollLeft then nexts else maxScrollLeft
+  relatedVideosMask.animate({
+    scrollLeft: "#{s}"
+  })
+
+getRelatedItemsWidth = ()->
+  w = 0
+  relatedVideosLi = relatedVideos.find('li')
+  relatedVideosLi.each(()->
+    w += $(this).width()
+  )
+  return w+relatedVideosLi.length*10-10
+
+handleWindowResize = ()->
+  if relatedVideos.width() > getRelatedItemsWidth()
+    relatedVideosContainer.addClass('no-scroll')
+  else
+    relatedVideosContainer.removeClass('no-scroll')
+
 
 module.exports = {
   setVideoSource: setVideoSource,
