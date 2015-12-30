@@ -24,6 +24,7 @@ currentVideo = null
 playerContainer = null
 progressBarContainer = null
 progressBar = null
+bufferBar = null
 chapterInfo = null
 durationInfo = null
 infoPopup = null
@@ -63,6 +64,7 @@ removeEvents = ()->
       .unbind('loadedmetadata')
       .unbind('canplay')
       .unbind('canplaythrough')
+      .unbind('progress')
       .unbind('stalled')
       .unbind('error')
   if progressBarContainer
@@ -120,6 +122,7 @@ addEvents = ()->
     .bind('ended', handleVideoEnded)
     .bind('waiting', handleVideoWaiting)
     .bind('playing', handleVideoPlaying)
+    .bind('progress', handleVideoProgress)
     .bind('loadedmetadata', handleVideoMetadata)
     .bind('canplaythrough', handleVideCanPlayThrough)
     .bind('stalled', handleVideoStalled)
@@ -179,6 +182,7 @@ setVideoControls = (parent)->
   progressBarContainer = parent.find('.progress-bar-container')
   playerContainer = parent.find('.player-footer-container')
   progressBar = parent.find('.bar-progress')
+  bufferBar = parent.find('.bar-buffered')
   durationInfo = parent.find('.duration-info')
   chapterInfo = parent.find('.chapter-info')
   infoPopup = parent.find('.info-popup')
@@ -371,6 +375,11 @@ updateProgressBar = ()->
   progressBar.css('transition-duration', "16ms")
   progressBar.css('width', "#{progress}%")
 
+  if currentVideo && currentVideo.buffered && currentVideo.buffered.length>0
+    buffered = currentVideo.buffered.end(currentVideo.buffered.length-1)/duration * 100
+    bufferBar.css('width', "#{buffered}%")
+
+
   durationInfo.html("#{formatTime.miliSecondsToTime(currentTime)} | #{formatTime.miliSecondsToTime(duration)}")
 
   if (parsedSubtitle &&
@@ -409,6 +418,9 @@ handleVideoMetadata = ()->
 #  console.log 'metadata...'
   setRelatedItems(chapterManager.getCurrentChapterRelatedItems())
   updateProgressBar()
+
+handleVideoProgress = ()->
+  updateProgress()
 
 handleVideoEnded = ()->
 #  console.log 'ended...	Sent when playback completes.'
