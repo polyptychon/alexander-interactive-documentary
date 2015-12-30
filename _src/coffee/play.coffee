@@ -6,7 +6,10 @@ displayPage = require "./displayPage.coffee"
 chapterManager = require "./Chapters.coffee"
 srtParser = require "subtitles-parser"
 formatTime = require "./formatTime.coffee"
+browser = require "detect-browser"
 ls = require 'local-storage'
+
+console.log browser.name
 
 LEFT_KEY = 37
 RIGHT_KEY = 39
@@ -140,7 +143,7 @@ addEvents = ()->
   relatedVideosNext
     .bind('click', handleRelatedVideosNextClick)
 
-  if Modernizr.touchevents
+  if Modernizr.touchevents && browser.name != "ie"
     progressBarContainer
       .bind('tapstart', controlProgress)
     $(currentVideo).parent()
