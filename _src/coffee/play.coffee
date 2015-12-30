@@ -500,7 +500,7 @@ controlProgress = (e, touch)->
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
   progressBarContainer
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
-  if Modernizr.touchevents
+  if Modernizr.touchevents && browser.name != 'ie'
     progressBarContainer
       .unbind('tapmove').bind('tapmove', mouseMoveHandler)
       .unbind('tapend').bind('tapend', stopUpdateTime)
