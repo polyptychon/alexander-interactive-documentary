@@ -203,12 +203,16 @@ setVideoSource = (src, parent=null, force=false)->
       currentVideo = $(this).find('video')[0]
       if Modernizr.touchevents && Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
+        currentVideo.setAttribute("type", "video/mp4")
       else if(Modernizr.video && Modernizr.video.webm && src.webm)
         currentVideo.setAttribute("src", src.webm)
+        currentVideo.setAttribute("type", "video/webm")
       else if(Modernizr.video && Modernizr.video.ogg && src.ogg)
         currentVideo.setAttribute("src", src.ogg)
+        currentVideo.setAttribute("type", "video/ogg")
       else if Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
+        currentVideo.setAttribute("type", "video/mp4")
       currentVideo.load()
     )
   else
