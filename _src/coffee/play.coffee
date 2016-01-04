@@ -202,7 +202,7 @@ setVideoControls = (parent)->
   addEvents()
 
 getVideoSource = ()->
-  return if currentVideo then $(currentVideo).attr('src') else ""
+  if currentVideo then $(currentVideo).attr('src') else ""
 
 setVideoSource = (src, parent=null, force=false)->
   parent = $('.page.visible .video') if parent==null
