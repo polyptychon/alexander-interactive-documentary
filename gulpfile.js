@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer'),
     replace = require('gulp-replace'),
+    rename = require("gulp-rename"),
 
     minifyCSS = require('gulp-minify-css'),
     glob = require('glob'),
@@ -79,7 +80,7 @@ gulp.task('jade', function() {
       cssManifest     = env === PRODUCTION && USE_FINGERPRINTING? (JSON.parse(fs.readFileSync("./"+BUILD+'/rev/css/rev-manifest.json', "utf8"))) : {},
       imagesManifest  = env === PRODUCTION && USE_FINGERPRINTING ? (JSON.parse(fs.readFileSync("./"+BUILD+'/rev/images/rev-manifest.json', "utf8"))) : {};
 
-  gulp.src(SRC+"/templates/"+jadeFiles+".jade")
+  gulp.src([SRC+"/templates/index.jade"])
     .pipe(duration('jade'))
     .pipe(jade(config).on('error', gutil.log))
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(jsManifest, { base:'assets/js/', prefix: 'assets/js/' })))
@@ -88,6 +89,46 @@ gulp.task('jade', function() {
     .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(imagesManifest, { base:'assets/images/', prefix: 'assets/images/' })))
     .pipe(gulpif(env === PRODUCTION, size()))
     .pipe(gulp.dest(getOutputDir())).on('end', function() {
+      if (watching) livereload.changed('');
+    });
+  var config = {
+    "production": env === PRODUCTION,
+    "pretty": env === DEVELOPMENT,
+    "locals": {
+      'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/en.json", "utf8")),
+      'production': env === PRODUCTION
+    }
+  };
+  gulp.src([SRC+"/templates/doc.jade"])
+    .pipe(duration('jade'))
+    .pipe(jade(config).on('error', gutil.log))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(jsManifest, { base:'assets/js/', prefix: 'assets/js/' })))
+    //.pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(vendorManifest, { base:'assets/js/', prefix: 'assets/js/' })))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(cssManifest, { base:'assets/css/', prefix: 'assets/css/' })))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(imagesManifest, { base:'assets/images/', prefix: 'assets/images/' })))
+    .pipe(gulpif(env === PRODUCTION, size()))
+    .pipe(rename("index.html"))
+    .pipe(gulp.dest(getOutputDir()+"/en")).on('end', function() {
+      if (watching) livereload.changed('');
+    });
+  var config = {
+    "production": env === PRODUCTION,
+    "pretty": env === DEVELOPMENT,
+    "locals": {
+      'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/el.json", "utf8")),
+      'production': env === PRODUCTION
+    }
+  };
+  gulp.src([SRC+"/templates/doc.jade"])
+    .pipe(duration('jade'))
+    .pipe(jade(config).on('error', gutil.log))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(jsManifest, { base:'assets/js/', prefix: 'assets/js/' })))
+    //.pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(vendorManifest, { base:'assets/js/', prefix: 'assets/js/' })))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(cssManifest, { base:'assets/css/', prefix: 'assets/css/' })))
+    .pipe(gulpif(env === PRODUCTION && USE_FINGERPRINTING, fingerprint(imagesManifest, { base:'assets/images/', prefix: 'assets/images/' })))
+    .pipe(gulpif(env === PRODUCTION, size()))
+    .pipe(rename("index.html"))
+    .pipe(gulp.dest(getOutputDir()+"/el")).on('end', function() {
       if (watching) livereload.changed('');
     });
 });
