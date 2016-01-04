@@ -1,4 +1,4 @@
 mixin topButton(label)
-  - label = label || 'HOME'
+  - label = label || locals.data.homeButtonLabel
   .top-button
     a.back.text-uppercase=label

@@ -53,7 +53,7 @@ handleLoadComplete = ()->
   $('html').removeClass('loading')
   displayPage('.landing', '')
   startVideoLoad()
-#  SM.playMusic('music', -1, 1000)
+  SM.playMusic('music', -1, 1000)
 
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');

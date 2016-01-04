@@ -1,7 +1,7 @@
 include ../mixins/top-button
 mixin player(type, backLabel)
   - type = type || ''
-  - backLabel = backLabel || 'BACK'
+  - backLabel = backLabel || locals.data.backButtonLabel
   if type=="compact"
     +topButton(backLabel)
   .bg
@@ -20,7 +20,7 @@ mixin player(type, backLabel)
         .dots
           each item in [1,2,3,4,5]
             span.glyphicon.dot
-        span CHAPTERS
+        span=locals.data.chaptersButtonLabel
       .progress-bar
         .progress-bar-container
           .container.related-container
@@ -52,7 +52,7 @@ mixin player(type, backLabel)
         hr
         a.subs-btn CC
     .related-items-container
-      a.btn.related-items-btn RELATED VIDEOS
+      a.btn.related-items-btn=locals.data.relatedVideosButtonLabel
       .related-videos-container
         a.btn.previous
           span.glyphicon.previous-icon

@@ -17,6 +17,6 @@ html.loading(lang="en")
     .page.video-player-compact.hidden
       +player('compact')
     .page.video-player-compact-documentary.hidden
-      +player('compact', 'BACK TO DOCUMENTARY')
+      +player('compact', locals.data.backToDocumentaryButtonLabel)
 
     include partials/footer

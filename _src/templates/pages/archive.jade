@@ -3,13 +3,13 @@ include ../mixins/top-button
 .archive
   .filters-container
     +topButton
-    h1.text-uppercase MEDIA ARCHIVE
+    h1.text-uppercase=locals.data.mediaArchiveTitle
     .filters-position
       .filters
         .dropdown.pull-left
           a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
-            span FILTER BY &nbsp;
+            span #{locals.data.filterButtonLabel} &nbsp;
           .dropdown-menu.multiple
             .filter-categories
               each menu in [1,2,3]
@@ -21,11 +21,11 @@ include ../mixins/top-button
                         a
                           span.glyphicon.check-icon
                           span FILTER NAME
-            a.btn.apply-filter-btn APPLY FILTERS
+            a.btn.apply-filter-btn=locals.data.applyFiltersButtonLabel
         .dropdown.pull-right
           a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
-            span SHORT BY &nbsp;
+            span #{locals.data.shortButtonLabel} &nbsp;
           a.text-uppercase.btn-border VIDEO TITLE
           ul.dropdown-menu
             each item in [1,2,3,4]
@@ -49,5 +49,5 @@ include ../mixins/top-button
   .pagination-container
     .pagination-text
       //span.glyphicon.previous-small-icon
-      span.text PAGE&nbsp; 1&nbsp; OF&nbsp; 3
+      span.text #{locals.data.pageLabel}&nbsp; 1&nbsp; OF&nbsp; 3
       //span.glyphicon.next-small-icon

@@ -68,7 +68,10 @@ gulp.task('jade', function() {
   var config = {
     "production": env === PRODUCTION,
     "pretty": env === DEVELOPMENT,
-    "locals": {'production': env === PRODUCTION}
+    "locals": {
+      'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/en.json", "utf8")),
+      'production': env === PRODUCTION
+    }
   };
 
   var jsManifest      = env === PRODUCTION && USE_FINGERPRINTING ? (JSON.parse(fs.readFileSync("./"+BUILD+'/rev/js/rev-manifest.json', "utf8"))) : {},
@@ -225,7 +228,7 @@ gulp.task('fonts', function() {
 gulp.task('watch', function() {
   watching = true;
   livereload.listen();
-  gulp.watch(SRC+'/**/*.jade', ['jade']).on('error', gutil.log);
+  gulp.watch(SRC+'/**/*.{jade,json}', ['jade']).on('error', gutil.log);
   gulp.watch(SRC+'/**/*.{js,coffee}', ['coffee']).on('error', gutil.log);
   gulp.watch(SRC+'/**/*.scss', ['sass']).on('error', gutil.log);
   gulp.watch(BUILD+env+'/assets/**').on('change', function(file) {
