@@ -1,6 +1,7 @@
 singleton = require 'singleton'
 
 class Chapters extends singleton
+  LANG: 'en'
   LOCAL_STORAGE_CHAPTER: 'chapter'
   LOCAL_STORAGE_TIME: 'time'
   LOCAL_STORAGE_SHOW_SUBTITLES: 'subtitles'
@@ -18,7 +19,7 @@ class Chapters extends singleton
       array = array.concat this.flattenArray(video.relatedItems) if video.relatedItems? && video.relatedItems.length>0
     return array
   getAllVideos: ()->
-    return this.flattenArray(this.chapters)
+    return this.flattenArray(this.chapters[this.LANG])
 
   setCurrentChapterPlaying: (value)->
     if (value>this.getTotalChapter() || value<0)
@@ -29,26 +30,28 @@ class Chapters extends singleton
     return this.currentChapterPlaying
   getTotalChapter: ()->
     return this.chapters.length
+  getChapters: ()->
+    return this.chapters[this.LANG]
   getCurrentChapterSourceByIndex: (value)->
-    if isNaN(value) || value>this.chapters.length || value<0
-      this.chapters[0].source
+    if isNaN(value) || value>this.chapters[this.LANG].length || value<0
+      this.getChapters()[0].source
     else
-      this.chapters[value].source
+      this.getChapters()[value].source
   getCurrentChapterRelatedItems: ()->
-    this.chapters[this.currentChapterPlaying].relatedItems
+    this.getChapters()[this.currentChapterPlaying].relatedItems
   getCurrentChapterRelatedItemByIndex: (index)->
-    this.chapters[this.currentChapterPlaying].relatedItems[index]
+    this.getChapters()[this.currentChapterPlaying].relatedItems[index]
   getCurrentChapterSource: ()->
-    this.chapters[this.currentChapterPlaying].source
+    this.getChapters()[this.currentChapterPlaying].source
   getCurrentChapterTitle: ()->
-    this.chapters[this.currentChapterPlaying].title
+    this.getChapters()[this.currentChapterPlaying].title
   getCurrentChapterSubtitleURL: ()->
-    this.chapters[this.currentChapterPlaying].subtitle
+    this.getChapters()[this.currentChapterPlaying].subtitle
 
   setCurrentChapterSubtitle: (value)->
-    this.chapters[this.currentChapterPlaying].parsedSubtitle = value
+    this.getChapters()[this.currentChapterPlaying].parsedSubtitle = value
   getCurrentChapterSubtitle: ()->
-    this.chapters[this.currentChapterPlaying].parsedSubtitle
+    this.getChapters()[this.currentChapterPlaying].parsedSubtitle
 
   getVideoFromSource: (src)->
     return video for video in this.getAllVideos() when video.source.webm==src || video.source.mp4==src

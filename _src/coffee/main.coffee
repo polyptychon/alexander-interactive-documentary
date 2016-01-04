@@ -16,7 +16,7 @@ play = require "play-audio"
 init = ()->
   chapterContainers = $('.chapters-container ul, .player-footer-container .chapters ul')
   chapterList = ""
-  chapterManager.chapters.forEach((item, index)->
+  chapterManager.getChapters().forEach((item, index)->
     chapterList += "<li><a href=\"javascript:\">#{index+1} - #{item.title}</a></li>"
   )
   chapterContainers.html(chapterList)
