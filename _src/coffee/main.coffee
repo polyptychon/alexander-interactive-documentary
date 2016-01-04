@@ -50,9 +50,10 @@ handleLoadComplete = ()->
   $('.chapter').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   $('.video-player').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
   $('.video-player-compact').find('.bg').css('background-image', "url(#{queue.getItem("chapter-1-bg").src})")
+  $('html').removeClass('loading')
   displayPage('.landing', '')
   startVideoLoad()
-  SM.playMusic('music', -1, 1000)
+#  SM.playMusic('music', -1, 1000)
 
 resetPageAnimation = (callback)->
   $('.page').css('transitionDuration', '0ms');
