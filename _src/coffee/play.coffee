@@ -201,11 +201,15 @@ setVideoControls = (parent)->
   removeEvents()
   addEvents()
 
+getVideoSource = ()->
+  return if currentVideo then $(currentVideo).attr('src') else ""
+
 setVideoSource = (src, parent=null, force=false)->
   parent = $('.page.visible .video') if parent==null
   if src && parent.length>0
     parent.each(()->
       currentVideo = $(this).find('video')[0]
+      currentVideo.setAttribute("poster", src.poster) if src.poster
       if Modernizr.touchevents && Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
       else if(Modernizr.video && Modernizr.video.webm && src.webm)
@@ -219,7 +223,7 @@ setVideoSource = (src, parent=null, force=false)->
   else
     src = {}
     if currentVideo
-      src.webm = $(currentVideo).attr('src')
+      src.webm = getVideoSource()
   return src
 setRelatedItems = (relatedData)->
   return null if (
@@ -272,7 +276,7 @@ currentVideoPlay = ()->
     $(currentVideo).parent().find('.play').removeClass('visible')
     currentVideo.play()
     previousTime = currentVideo.currentTime if currentVideo.currentTime
-    video = chapterManager.getVideoFromSource($(currentVideo).attr('src'))
+    video = chapterManager.getVideoFromSource(getVideoSource())
     video.isPlayedOnce = true
     detectIsPlaying()
     updateProgress()
@@ -621,7 +625,7 @@ handleInfoPopupClick = (e)->
 
 loadSubtitles = ()->
   subtitles.html('') if subtitles?
-  video = chapterManager.getVideoFromSource($(currentVideo).attr('src'))
+  video = chapterManager.getVideoFromSource(getVideoSource())
   parsedSubtitle = video.parsedSubtitle
   if video? && !video.parsedSubtitle && video.subtitle?
     $.get video.subtitle, (data)->
