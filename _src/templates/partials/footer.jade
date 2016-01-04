@@ -1,15 +1,15 @@
 footer
-  a.btn.btn-footer.btn-home HOME
+  a.btn.btn-footer.btn-home=locals.data.homeButtonLabel
   .footer-description
     .social
       a.glyphicon.facebook-icon
       a.glyphicon.twitter-icon
     span.copyright
       span.glyphicon.logo-small-icon
-      span ALEXANDER THE GREAT ONLINE VIRTUAL MUSEUM & INTERACTIVE DOCUMENTARY &nbsp;
+      span #{locals.data.title} &nbsp;
       span.footer-menu
-        a TERMS &nbsp;
-        a PRIVACY &nbsp;
-        a CREDITS &nbsp;
-  a.btn.btn-footer.btn-library LIBRARY
+        a #{locals.data.termsButtonLabel} &nbsp;
+        a #{locals.data.privacyButtonLabel} &nbsp;
+        a #{locals.data.creditsButtonLabel} &nbsp;
+  a.btn.btn-footer.btn-library=locals.data.libraryButtonLabel
 script(type="text/javascript", src="assets/js/main.js" async)
