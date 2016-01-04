@@ -69,7 +69,7 @@ gulp.task('jade', function() {
     "production": env === PRODUCTION,
     "pretty": env === DEVELOPMENT,
     "locals": {
-      'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/el.json", "utf8")),
+      'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/en.json", "utf8")),
       'production': env === PRODUCTION
     }
   };
