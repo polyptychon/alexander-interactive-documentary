@@ -33,17 +33,17 @@ module.exports =
             isPlayedOnce: false
             startTime: "14:15"
           }
-#          {
-#            title: "ARCHAEOLOGICAL MUSEUM DIOU"
-#            thumbnail: ""
-#            source:
-#              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_MkRfaThjeVd3V2c"
-#              mp4: null
-#            subtitle: null
-#            parsedSubtitle: null
-#            isPlayedOnce: false
-#            startTime: "17:15"
-#          }
+          {
+            title: "ARCHAEOLOGICAL MUSEUM DIOU"
+            thumbnail: ""
+            source:
+              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_MkRfaThjeVd3V2c"
+              mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_ei1IUlh5aGxKd2c"
+            subtitle: null
+            parsedSubtitle: null
+            isPlayedOnce: false
+            startTime: "17:15"
+          }
           {
             title: "ARCHAEOLOGICAL MUSEUM IOANNINON"
             thumbnail: ""
@@ -55,17 +55,17 @@ module.exports =
             isPlayedOnce: false
             startTime: "30:15"
           }
-#          {
-#            title: "ARCHAEOLOGICAL MUSEUM PELLAS"
-#            thumbnail: ""
-#            source:
-#              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_RFFiLWZRQWJ1Wnc"
-#              mp4: null
-#            subtitle: null
-#            parsedSubtitle: null
-#            isPlayedOnce: false
-#            startTime: "37:15"
-#          }
+          {
+            title: "ARCHAEOLOGICAL MUSEUM PELLAS"
+            thumbnail: ""
+            source:
+              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_RFFiLWZRQWJ1Wnc"
+              mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_YXJXRlBnbUtwQlk"
+            subtitle: null
+            parsedSubtitle: null
+            isPlayedOnce: false
+            startTime: "37:15"
+          }
           {
             title: "ARCHAEOLOGICAL MUSEUM THESSALONIKIS"
             thumbnail: ""
@@ -134,17 +134,17 @@ module.exports =
             isPlayedOnce: false
             startTime: "16:56"
           }
-#          {
-#            title: "NATURE OF MACEDONIA"
-#            thumbnail: ""
-#            source:
-#              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_YmZJR3lRUk8tNnM"
-#              mp4: null
-#            subtitle: null
-#            parsedSubtitle: null
-#            isPlayedOnce: false
-#            startTime: "35:16"
-#          }
+          {
+            title: "NATURE OF MACEDONIA"
+            thumbnail: ""
+            source:
+              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_YmZJR3lRUk8tNnM"
+              mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_S0FRWWs4YmNqX00"
+            subtitle: null
+            parsedSubtitle: null
+            isPlayedOnce: false
+            startTime: "35:16"
+          }
         ]
     }
     {
@@ -180,17 +180,17 @@ module.exports =
             isPlayedOnce: false
             startTime: "12:46"
           }
-#          {
-#            title: "SAMOTHRAKI"
-#            thumbnail: ""
-#            source:
-#              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_RXpTOTQwQVMwRmM"
-#              mp4: null
-#            subtitle: null
-#            parsedSubtitle: null
-#            isPlayedOnce: false
-#            startTime: "16:16"
-#          }
+          {
+            title: "SAMOTHRAKI"
+            thumbnail: ""
+            source:
+              webm: "https://googledrive.com/host/0Bw8k9x-W_uS_RXpTOTQwQVMwRmM"
+              mp4: "https://googledrive.com/host/0Bw8k9x-W_uS_VDNZbVR6cHlGZDA"
+            subtitle: null
+            parsedSubtitle: null
+            isPlayedOnce: false
+            startTime: "16:16"
+          }
           {
             title: "THE MUSEUM OF THE ROYAL TOMBS OF AIGAI"
             thumbnail: ""
