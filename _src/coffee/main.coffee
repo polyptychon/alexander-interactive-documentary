@@ -6,6 +6,7 @@ require "./player-timer.coffee"
 require "./modernizr-custom"
 require "./SoundWrapper"
 
+pointerEvents = require "./pointer_events_polyfill"
 resetArchive = require "./archive-animation.coffee"
 chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
@@ -14,6 +15,7 @@ ls = require 'local-storage'
 play = require "play-audio"
 
 init = ()->
+  pointerEvents()
   chapterContainers = $('.chapters-container ul, .player-footer-container .chapters ul')
   chapterList = ""
   chapterManager.getChapters().forEach((item, index)->
