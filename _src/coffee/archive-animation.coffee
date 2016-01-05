@@ -34,7 +34,7 @@ previous = ()->
   showCurrentPage()
 
 showCurrentPage = ()->
-  archive.find('.pagination-text .text').html("PAGE&nbsp;  #{currentPage}&nbsp; OF&nbsp; 3")
+  archive.find('.pagination-text .page-number').html(currentPage)
 
 width = 1000
 gap = 25
