@@ -4,7 +4,7 @@ html.loading(lang="en")
   head
     base(href="../")
     include partials/header
-  body(style="background-color: black;")
+  body(style="background-color: black;" class=locals.lang)
     .page.preloader.visible
       canvas(id="preloader" width="100" height="100")
     .page.landing.hidden

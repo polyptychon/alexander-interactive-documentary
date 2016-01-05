@@ -93,15 +93,16 @@ gulp.task('jade', function() {
     });
   var langs = fs.readdirSync("./"+SRC+"/json/");
   langs.forEach(function(item) {
+    var lang = item.split(".")[0];
     var config = {
       "production": env === PRODUCTION,
       "pretty": env === DEVELOPMENT,
       "locals": {
+        'lang': lang,
         'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/"+item, "utf8")),
         'production': env === PRODUCTION
       }
     };
-    var lang = item.split(".")[0];
     gulp.src([SRC+"/templates/doc.jade"])
       .pipe(duration('jade'))
       .pipe(jade(config).on('error', gutil.log))
