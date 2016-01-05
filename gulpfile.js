@@ -90,7 +90,8 @@ gulp.task('jade', function() {
     .pipe(gulp.dest(getOutputDir())).on('end', function() {
       if (watching) livereload.changed('');
     });
-  var langs = fs.readdirSync("./"+SRC+"/json/langs/");
+  var langsDir = "/json/";
+  var langs = fs.readdirSync("./"+SRC+langsDir);
   langs.forEach(function(item) {
     var lang = item.split(".")[0];
     var config = {
@@ -98,7 +99,7 @@ gulp.task('jade', function() {
       "pretty": env === DEVELOPMENT,
       "locals": {
         'lang': lang,
-        'data': JSON.parse(fs.readFileSync("./"+SRC+"/json/langs/"+item, "utf8")),
+        'data': JSON.parse(fs.readFileSync("./"+SRC+langsDir+item, "utf8")),
         'production': env === PRODUCTION
       }
     };

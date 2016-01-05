@@ -7,7 +7,7 @@ class Chapters extends singleton
   LOCAL_STORAGE_SHOW_SUBTITLES: 'subtitles'
   currentChapterPlaying: 0
   showSubtitles: false
-  chapters: require "./chapterData.coffee"
+  chapters: global.data.chapters
   flattenArray: (videos)->
     array = videos.concat()
     for video in videos
@@ -34,7 +34,7 @@ class Chapters extends singleton
   getTotalChapter: ()->
     return this.chapters.length
   getChapters: ()->
-    return this.chapters[this.getLang()]
+    return this.chapters
   getCurrentChapterSourceByIndex: (value)->
     if isNaN(value) || value>this.getChapters().length || value<0
       this.getChapters()[0].source

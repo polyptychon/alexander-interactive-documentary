@@ -22,9 +22,7 @@ init = ()->
     chapterList += "<li><a href=\"javascript:\">#{index+1} - #{item.title}</a></li>"
   )
   chapterContainers.html(chapterList)
-
   $('body').addClass('show-subtitles') if ls.get(chapterManager.LOCAL_STORAGE_SHOW_SUBTITLES)
-
   chapterContainers.find('a')
     .bind('click', ()->
       $('body').removeClass('show-chapters')
