@@ -41,7 +41,7 @@ include ../mixins/top-button
         ul.related-videos
           each item,index in locals.getAllRelatedItems(locals.data.chapters)
             li
-              a
+              a(title=item.title)
                 .img(style="background-image: url(assets/images/thumbnail.jpg)")
                 .info #{index+1}. #{item.title}
       a.btn.next
