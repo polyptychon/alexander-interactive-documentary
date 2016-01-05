@@ -1,4 +1,6 @@
 include ../mixins/top-button
+- var relatedItems = locals.getAllRelatedItems(locals.data.chapters);
+- var pages = Math.floor(relatedItems.length/10)
 .bg
 .archive
   .filters-container
@@ -39,15 +41,15 @@ include ../mixins/top-button
         span.glyphicon.previous-icon
       .related-videos-mask
         ul.related-videos
-          each item,index in locals.getAllRelatedItems(locals.data.chapters)
+          each item,index in relatedItems
             li
               a(title=item.title)
-                .img(style="background-image: url(assets/images/thumbnail.jpg)")
+                .img(style="background-image: url(#{item.thumbnail || 'assets/images/thumbnail.jpg'})")
                 .info #{index+1}. #{item.title}
       a.btn.next
         span.glyphicon.next-icon
   .pagination-container
     .pagination-text
       //span.glyphicon.previous-small-icon
-      span.text #{locals.data.pageLabel}&nbsp; 1&nbsp; #{locals.data.ofLabel}&nbsp; 3
+      span.text #{locals.data.pageLabel}&nbsp; 1&nbsp; #{locals.data.ofLabel}&nbsp; #{pages}
       //span.glyphicon.next-small-icon
