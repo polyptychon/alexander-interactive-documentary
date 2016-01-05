@@ -60,7 +60,29 @@ var dependencies = [];//Object.keys(packageJson && packageJson.dependencies || [
 _.forEach(not_in_dependencies_libs, function(d) {
   dependencies.push(d);
 });
-
+var flattenArray = function(videos) {
+  var array, i, len, video;
+  array = videos.concat();
+  for (i = 0, len = videos.length; i < len; i++) {
+    video = videos[i];
+    if ((video.relatedItems != null) && video.relatedItems.length > 0) {
+      array = array.concat(this.flattenArray(video.relatedItems));
+    }
+  }
+  return array;
+};
+var getAllRelatedItems = function(videos) {
+  var array, i, len, ref, video;
+  array = [];
+  ref = videos;
+  for (i = 0, len = ref.length; i < len; i++) {
+    video = ref[i];
+    if ((video.relatedItems != null) && video.relatedItems.length > 0) {
+      array = array.concat(flattenArray(video.relatedItems));
+    }
+  }
+  return array;
+};
 function getOutputDir() {
   return BUILD+env;
 }
@@ -98,6 +120,8 @@ gulp.task('jade', function() {
       "production": env === PRODUCTION,
       "pretty": env === DEVELOPMENT,
       "locals": {
+        'flattenArray': flattenArray,
+        'getAllRelatedItems': getAllRelatedItems,
         'lang': lang,
         'data': JSON.parse(fs.readFileSync("./"+SRC+langsDir+item, "utf8")),
         'production': env === PRODUCTION
