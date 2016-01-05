@@ -22,7 +22,7 @@
   "applyFiltersButtonLabel": "ΕΦΑΡΜΟΓΗ ΦΙΛΤΡΩΝ",
   "chapters": [
     {
-      "title": "THE AGE OF HEROES",
+      "title": "Η ΕΠΟΧΗ ΤΩΝ ΗΡΩΩΝ",
       "chapterBackground": null,
       "poster": null,
       "source": {
@@ -34,7 +34,7 @@
       "isPlayedOnce": false,
       "relatedItems": [
         {
-          "title": "AIANI",
+          "title": "ΑΙΑΝΗ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -47,7 +47,7 @@
           "startTime": "10:15"
         },
         {
-          "title": "AMPHIPOLIS + PHILIPPI",
+          "title": "ΑΜΦΙΠΟΛΗ + ΦΙΛΙΠΠΟΙ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -60,7 +60,7 @@
           "startTime": "14:15"
         },
         {
-          "title": "ARCHAEOLOGICAL MUSEUM DIOU",
+          "title": "ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ ΔΙΟΥ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -73,7 +73,7 @@
           "startTime": "17:15"
         },
         {
-          "title": "ARCHAEOLOGICAL MUSEUM IOANNINON",
+          "title": "ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ ΙΩΑΝΝΙΝΩΝ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -86,7 +86,7 @@
           "startTime": "30:15"
         },
         {
-          "title": "ARCHAEOLOGICAL MUSEUM PELLAS",
+          "title": "ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ ΚΑΙ ΧΩΡΟΣ ΠΕΛΛΑΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -99,7 +99,7 @@
           "startTime": "37:15"
         },
         {
-          "title": "ARCHAEOLOGICAL MUSEUM THESSALONIKIS",
+          "title": "ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -112,7 +112,7 @@
           "startTime": "44:15"
         },
         {
-          "title": "ATHENS",
+          "title": "ΑΘΗΝΑ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "title": "THE CLASSICAL REVOLUTION",
+      "title": "Η ΚΛΑΣΙΚΗ ΕΠΑΝΑΣΤΑΣΗ",
       "chapterBackground": null,
       "poster": null,
       "source": {
@@ -139,7 +139,7 @@
       "isPlayedOnce": false,
       "relatedItems": [
         {
-          "title": "DELFOI",
+          "title": "ΔΕΛΦΟΙ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -152,7 +152,7 @@
           "startTime": "5:56"
         },
         {
-          "title": "DODONI + IPEIROS",
+          "title": "ΔΩΔΩΝΗ - ΗΠΕΙΡΟΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -165,7 +165,7 @@
           "startTime": "12:56"
         },
         {
-          "title": "KORINTHOS",
+          "title": "ΚΟΡΙΝΘΟΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -178,7 +178,7 @@
           "startTime": "16:56"
         },
         {
-          "title": "NATURE OF MACEDONIA",
+          "title": "Η ΦΥΣΗ ΤΗΣ ΜΑΚΕΔΟΝΙΑΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -205,7 +205,7 @@
       "isPlayedOnce": false,
       "relatedItems": [
         {
-          "title": "OLYMPIA",
+          "title": "ΟΛΥΜΠΙΑ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -218,7 +218,7 @@
           "startTime": "4:16"
         },
         {
-          "title": "OLYNTHOS",
+          "title": "ΟΛΥΝΘΟΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -231,7 +231,7 @@
           "startTime": "12:46"
         },
         {
-          "title": "SAMOTHRAKI",
+          "title": "ΣΑΜΟΘΡΑΚΗ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -244,7 +244,7 @@
           "startTime": "16:16"
         },
         {
-          "title": "THE MUSEUM OF THE ROYAL TOMBS OF AIGAI",
+          "title": "ΤΟ ΜΟΥΣΕΙΟ ΤΩΝ ΒΑΣΙΛΙΚΩΝ ΤΑΦΩΝ ΤΩΝ ΑΙΓΩΝ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -257,7 +257,7 @@
           "startTime": "35:16"
         },
         {
-          "title": "THE TOMB OF QUEEN EVRIDIKI",
+          "title": "Ο ΤΑΦΟΣ ΤΗΣ ΒΑΣΙΛΙΣΣΑΣ ΕΥΡΥΔΙΚΗΣ",
           "thumbnail": "",
           "poster": null,
           "source": {
@@ -270,7 +270,7 @@
           "startTime": "42:16"
         },
         {
-          "title": "CHAIRONEIA",
+          "title": "ΧΑΙΡΩΝΕΙΑ",
           "thumbnail": "",
           "poster": null,
           "source": {
