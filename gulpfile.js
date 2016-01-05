@@ -225,7 +225,7 @@ gulp.task('clean-css', function() {
   gulp.src(getOutputDir()+ASSETS+'/css', { read: false })
     .pipe(gulpif(env === PRODUCTION, vinylPaths(del).on('error', gutil.log)))
 });
-gulp.task('images',['clean-images'], function() {
+gulp.task('images', function() {
   return gulp.src([MOCKUPS+'/{images,sprite}/**/*.{jpg,png,gif,svg,ico}'])
     .pipe(duration('images'))
     .pipe(flatten().on('error', gutil.log))
