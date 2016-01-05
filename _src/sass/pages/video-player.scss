@@ -423,8 +423,9 @@
         display: none;
       }
       hr {
-        border-top: none;
-        border-bottom-color: #d2d1c2;
+        border: none;
+        height: 1px;
+        background: #d2d1c2;
         margin: 0;
       }
       .mute-btn {
