@@ -122,7 +122,7 @@ addEvents = ()->
     .bind('ended', handleVideoEnded)
     .bind('waiting', handleVideoWaiting)
     .bind('playing', handleVideoPlaying)
-    .bind('progress', handleVideoProgress)
+#    .bind('progress', handleVideoProgress)
     .bind('loadedmetadata', handleVideoMetadata)
     .bind('canplaythrough', handleVideCanPlayThrough)
     .bind('stalled', handleVideoStalled)
