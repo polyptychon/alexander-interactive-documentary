@@ -110,7 +110,6 @@ $('.archive .related-videos a').bind('click', ()->
   SM.stopMusic('music', 1000)
   displayPage('.video-player-compact', '')
   createjs.Sound.play("page-slide-up")
-  console.log
   player.playVideo(chapterManager.getRelatedVideoFromIndex($(this).attr('data-index')).source)
 )
 $('.video-player-compact .back').bind('click', ()->
