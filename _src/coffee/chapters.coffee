@@ -56,6 +56,13 @@ class Chapters extends singleton
   getCurrentChapterSubtitle: ()->
     this.getChapters()[this.getCurrentChapterPlaying()].parsedSubtitle
 
+  getRelatedVideoFromIndex: (index)->
+    return this.getAllRelatedItems()[index]
+  getRelatedVideoFromSource: (src)->
+    return video for video in this.getAllRelatedItems() when video.source.webm==src || video.source.mp4==src
+
+  getVideoFromIndex: (index)->
+    return this.getAllVideos()[index]
   getVideoFromSource: (src)->
     return video for video in this.getAllVideos() when video.source.webm==src || video.source.mp4==src
 

@@ -43,7 +43,7 @@ include ../mixins/top-button
         ul.related-videos
           each item,index in relatedItems
             li
-              a(title=item.title)
+              a(title=item.title data-index=index)
                 .img(style="background-image: url(#{item.thumbnail || 'assets/images/thumbnail.jpg'})")
                 .info #{item.title}
       a.btn.next
