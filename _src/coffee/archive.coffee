@@ -1,6 +1,15 @@
 global.$ = global.jQuery = $ = require "jquery"
+chapterManager = require "./Chapters.coffee"
+displayPage = require "./displayPage.coffee"
+player = require "./play.coffee"
 slideSound = 'page-slide-back'
 archive = $('.archive')
+
+currentPage = 1;
+pageLength = 10
+
+init = ()->
+  reset()
 
 $('.btn.next').bind('click', ()->
   next()
@@ -14,9 +23,21 @@ $('.dropdown-menu-btn').bind('click', ()->
   $(this).find('.dropdown-menu').toggleClass('visible')
   $(this).parent().find('.dropdown-menu').toggleClass('visible')
 )
-currentPage = 1;
-pageLength = 10
 
+$('.archive .related-videos a').bind('click', ()->
+  $('.page.visible').addClass('slide-up')
+  $('.video-player-compact').addClass('slide-down')
+  SM.stopMusic('music', 1000)
+  displayPage('.video-player-compact', '')
+  createjs.Sound.play("page-slide-up")
+  player.playVideo(chapterManager.getRelatedVideoFromIndex($(this).attr('data-index')).source)
+)
+$('.archive .back').bind('click', ()->
+  $('.archive').removeClass('slide-up')
+  reset()
+  displayPage('.landing', '')
+  createjs.Sound.play("page-slide-back")
+)
 next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
@@ -76,13 +97,16 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
     metr = 1 if (metr==pageLength+1)
   )
 
-resetPage = ()->
+reset = ()->
   currentPage = 1
   nextItems = archive.find('.related-videos li').slice(0, 10)
   currentItems = archive.find('.related-videos li').slice(10)
   animatePageChange(currentItems, nextItems, '')
   showCurrentPage()
 
-resetPage()
+init()
 
-module.exports = resetPage
+module.exports = {
+  reset: reset
+  init: init
+}

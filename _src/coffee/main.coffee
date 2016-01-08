@@ -7,7 +7,7 @@ require "./modernizr-custom"
 require "./SoundWrapper"
 
 pointerEvents = require "./pointer_events_polyfill"
-resetArchive = require "./archive-animation.coffee"
+archive = require "./archive.coffee"
 chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
 browser = require "detect-browser"
@@ -91,27 +91,14 @@ $('.chapters .back').bind('click', ()->
 )
 $('.archive-btn').bind('click', ()->
   displayPage('.archive')
+  archive.init()
   createjs.Sound.play("page-slide-up")
-)
-$('.archive .back').bind('click', ()->
-  $('.archive').removeClass('slide-up')
-  resetArchive()
-  displayPage('.landing', '')
-  createjs.Sound.play("page-slide-back")
 )
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
   createjs.Sound.play("over")
 )
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
   createjs.Sound.play("click")
-)
-$('.archive .related-videos a').bind('click', ()->
-  $('.page.visible').addClass('slide-up')
-  $('.video-player-compact').addClass('slide-down')
-  SM.stopMusic('music', 1000)
-  displayPage('.video-player-compact', '')
-  createjs.Sound.play("page-slide-up")
-  player.playVideo(chapterManager.getRelatedVideoFromIndex($(this).attr('data-index')).source)
 )
 $('.video-player-compact .back').bind('click', ()->
   displayPage('.archive', '')
