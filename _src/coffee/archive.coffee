@@ -38,6 +38,12 @@ $('.archive .back').bind('click', ()->
   displayPage('.landing', '')
   createjs.Sound.play("page-slide-back")
 )
+$('.video-player-compact .back').bind('click', ()->
+  displayPage('.archive', '')
+  SM.playMusic('music', -1, 0)
+  createjs.Sound.play("page-slide-back")
+  player.stop()
+)
 next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
   nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))

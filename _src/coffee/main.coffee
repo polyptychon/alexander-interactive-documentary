@@ -100,12 +100,6 @@ $('.chapters li a, .intro-buttons a, .related-videos a').bind('mouseover', ()->
 $('.chapters li a, .intro-buttons a, .related-videos a').bind('click', ()->
   createjs.Sound.play("click")
 )
-$('.video-player-compact .back').bind('click', ()->
-  displayPage('.archive', '')
-  SM.playMusic('music', -1, 0)
-  createjs.Sound.play("page-slide-back")
-  player.stop()
-)
 $('.video-player-compact-documentary .back').bind('click', ()->
   player.stop()
   displayPage('.video-player', '')
