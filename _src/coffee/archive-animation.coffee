@@ -1,12 +1,14 @@
 global.$ = global.jQuery = $ = require "jquery"
 slideSound = 'page-slide-back'
 archive = $('.archive')
+
 $('.btn.next').bind('click', ()->
   next()
 )
 $('.btn.previous').bind('click', ()->
   previous()
 )
+
 $('.dropdown-menu-btn').bind('click', ()->
   $(this).closest('.dropdown-menu').toggleClass('visible')
   $(this).find('.dropdown-menu').toggleClass('visible')

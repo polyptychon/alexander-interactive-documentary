@@ -10,6 +10,7 @@ pointerEvents = require "./pointer_events_polyfill"
 resetArchive = require "./archive-animation.coffee"
 chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
+browser = require "detect-browser"
 player = require "./play.coffee"
 ls = require 'local-storage'
 play = require "play-audio"
@@ -39,7 +40,7 @@ init = ()->
 startVideoLoad = ()->
   src = chapterManager.getCurrentChapterSourceByIndex(ls.get(chapterManager.LOCAL_STORAGE_CHAPTER))
   player.setVideoSource(src,$('.page.video-player .video'), true)
-  if ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
+  if browser.name != "ie"  && ls.get(chapterManager.LOCAL_STORAGE_TIME) && $('.video-player .video video').length>0
     try
       $('.video-player .video video')[0].currentTime = ls.get(chapterManager.LOCAL_STORAGE_TIME)
     catch e
