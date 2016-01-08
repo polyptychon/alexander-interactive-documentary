@@ -1,15 +1,26 @@
 global.$ = global.jQuery = $ = require "jquery"
+require "jquery-touch-events"
+
 chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 slideSound = 'page-slide-back'
 archive = $('.archive')
 
+LEFT_KEY = 37
+RIGHT_KEY = 39
+
 currentPage = 1;
 pageLength = 10
 
 init = ()->
   reset()
+  $(window)
+    .bind('keyup', handleKeyUp)
+  if ($(window).width()>1023)
+    $('.archive .archive-videos-container')
+      .bind('swipeleft', previous)
+      .bind('swiperight', next)
 
 $('.btn.next').bind('click', ()->
   next()
@@ -23,7 +34,6 @@ $('.dropdown-menu-btn').bind('click', ()->
   $(this).find('.dropdown-menu').toggleClass('visible')
   $(this).parent().find('.dropdown-menu').toggleClass('visible')
 )
-
 $('.archive .related-videos a').bind('click', ()->
   $('.page.visible').addClass('slide-up')
   $('.video-player-compact').addClass('slide-down')
@@ -109,6 +119,15 @@ reset = ()->
   currentItems = archive.find('.related-videos li').slice(10)
   animatePageChange(currentItems, nextItems, '')
   showCurrentPage()
+  $(window)
+    .unbind('keyup')
+  $('.archive .archive-videos-container')
+    .unbind('swipeleft')
+    .unbind('swiperight')
+
+handleKeyUp = (e)->
+  previous() if e.keyCode==LEFT_KEY
+  next() if e.keyCode==RIGHT_KEY
 
 init()
 
