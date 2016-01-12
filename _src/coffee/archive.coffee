@@ -106,6 +106,7 @@ sortItems = (direction='asc')->
   requestAnimFrame(()->
     requestAnimFrame(()->
       animatePageChange(currentItems, nextItems, '')
+      createjs.Sound.play(slideSound);
       showCurrentPage()
     )
   )
