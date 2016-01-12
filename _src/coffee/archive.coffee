@@ -15,15 +15,18 @@ currentPage = 1;
 pageLength = 10
 
 bindEvents = ()->
-  $(window)
-  .unbind('keyup')
-  .bind('keyup', handleKeyUp)
-  if ($(window).width()>1023)
-    $('.archive .archive-videos-container')
-    .unbind('swipeleft')
-    .unbind('swiperight')
-    .bind('swipeleft', previous)
-    .bind('swiperight', next)
+  setTimeout(()->
+    if $('.page.archive').hasClass('visible')
+      $(window)
+        .unbind('keyup')
+        .bind('keyup', handleKeyUp)
+    if ($(window).width()>1023)
+      $('.archive .archive-videos-container')
+      .unbind('swipeleft')
+      .unbind('swiperight')
+      .bind('swipeleft', previous)
+      .bind('swiperight', next)
+  , 1000)
 
 init = ()->
   reset()
@@ -60,9 +63,7 @@ $('.video-player-compact .back').bind('click', ()->
   SM.playMusic('music', -1, 0)
   createjs.Sound.play("page-slide-back")
   player.stop()
-  setTimeout(()->
-    bindEvents()
-  , 1000)
+  bindEvents()
 )
 next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
