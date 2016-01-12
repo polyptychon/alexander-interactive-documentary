@@ -24,17 +24,20 @@ include ../mixins/top-button
                           span.glyphicon.check-icon
                           span FILTER NAME
             a.btn.apply-filter-btn=locals.data.applyFiltersButtonLabel
-        .dropdown.pull-right
+        .dropdown.sort.pull-right
           a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
             span #{locals.data.shortButtonLabel} &nbsp;
-          a.text-uppercase.btn-border VIDEO TITLE
-          ul.dropdown-menu
-            each item in [1,2,3,4]
-              li
-                a(class=item==1?'selected':'')
-                  span.glyphicon.check-icon
-                  span NAME (ASC)
+          a.current-sort.text-uppercase.btn-border VIDEO TITLE (ASC)
+          ul.dropdown-menu.sort-list
+            li
+              a(class='selected' data-sort="ASC" )
+                span.glyphicon.check-icon
+                span VIDEO TITLE (ASC)
+            li
+              a(data-sort="DESC")
+                span.glyphicon.check-icon
+                span VIDEO TITLE (DESC)
   .archive-videos-container
     .related-videos-container.page1
       a.btn.previous

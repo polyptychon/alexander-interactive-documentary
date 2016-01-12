@@ -1,6 +1,7 @@
 global.$ = global.jQuery = $ = require "jquery"
 require "jquery-touch-events"
 
+requestAnimFrame = require "animationframe"
 chapterManager = require "./Chapters.coffee"
 displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
@@ -78,6 +79,35 @@ showCurrentPage = ()->
 width = 1000
 gap = 25
 
+sort = (direction='asc')->
+  myList = archive.find('.related-videos')
+  listItems = myList.children('li').get()
+  listItems.sort((a, b) ->
+    return $(a).find('.info').text().toUpperCase().localeCompare($(b).find('.info').text().toUpperCase())
+  )
+  listItems.reverse() if direction.toLowerCase()=='desc'
+  $.each(listItems, (idx, itm) -> myList.append(itm) );
+
+sortItems = (direction='asc')->
+  currentPage = 1
+  sort(direction)
+  nextItems = archive.find('.related-videos li').slice(0, 10)
+  currentItems = archive.find('.related-videos li').slice(10)
+  requestAnimFrame(()->
+    requestAnimFrame(()->
+      animatePageChange(currentItems, nextItems, '')
+      showCurrentPage()
+    )
+  )
+
+$('.archive .sort-list a').bind('click', ()->
+  sortItems($(this).data('sort'))
+  $(this).parent().parent().find('.selected').removeClass('selected')
+  $(this).addClass('selected')
+  $(this).parent().parent().removeClass('visible')
+  $('.archive .sort .current-sort').text($(this).text())
+)
+
 animatePageChange = (currentItems, nextItems, direction = '-') ->
   top = gap
   metr = 1
@@ -115,6 +145,7 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
 
 reset = ()->
   currentPage = 1
+  sort()
   nextItems = archive.find('.related-videos li').slice(0, 10)
   currentItems = archive.find('.related-videos li').slice(10)
   animatePageChange(currentItems, nextItems, '')
