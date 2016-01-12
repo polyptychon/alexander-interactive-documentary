@@ -14,14 +14,20 @@ RIGHT_KEY = 39
 currentPage = 1;
 pageLength = 10
 
-init = ()->
-  reset()
+bindEvents = ()->
   $(window)
-    .bind('keyup', handleKeyUp)
+  .unbind('keyup')
+  .bind('keyup', handleKeyUp)
   if ($(window).width()>1023)
     $('.archive .archive-videos-container')
-      .bind('swipeleft', previous)
-      .bind('swiperight', next)
+    .unbind('swipeleft')
+    .unbind('swiperight')
+    .bind('swipeleft', previous)
+    .bind('swiperight', next)
+
+init = ()->
+  reset()
+  bindEvents()
 
 $('.btn.next').bind('click', ()->
   next()
@@ -54,6 +60,9 @@ $('.video-player-compact .back').bind('click', ()->
   SM.playMusic('music', -1, 0)
   createjs.Sound.play("page-slide-back")
   player.stop()
+  setTimeout(()->
+    bindEvents()
+  , 1000)
 )
 next = ()->
   currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
