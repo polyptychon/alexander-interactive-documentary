@@ -96,6 +96,11 @@ sort = (direction='asc')->
     return $(a).find('.info').text().toUpperCase().localeCompare($(b).find('.info').text().toUpperCase())
   )
   listItems.reverse() if direction.toLowerCase()=='desc'
+  $('.archive .sort-list a').each(()->
+    $(this).removeClass('selected')
+    if ($(this).text().toLowerCase().indexOf(direction)>=0)
+      $(this).addClass('selected')
+  )
   $.each(listItems, (idx, itm) -> myList.append(itm) );
 
 sortItems = (direction='asc')->
