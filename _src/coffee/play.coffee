@@ -253,7 +253,7 @@ setRelatedItems = (relatedData)->
       """
     htmlList += """
       <li>
-        <a data-index="#{index}">
+        <a data-index="#{index}" title="#{relatedItem.title}">
           <div class="img"><img src="#{thumbnail}"></div>
           <div class="info">#{relatedItem.title}</div>
         </a>
