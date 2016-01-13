@@ -209,16 +209,17 @@ setVideoSource = (src, parent=null, force=false)->
   if src && parent.length>0
     parent.each(()->
       currentVideo = $(this).find('video')[0]
-      currentVideo.setAttribute("poster", src.poster) if src.poster
-      if Modernizr.touchevents && Modernizr.video && Modernizr.video.h264 && src.mp4
-        currentVideo.setAttribute("src", src.mp4)
-      else if(Modernizr.video && Modernizr.video.webm && src.webm)
-        currentVideo.setAttribute("src", src.webm)
-      else if(Modernizr.video && Modernizr.video.ogg && src.ogg)
-        currentVideo.setAttribute("src", src.ogg)
-      else if Modernizr.video && Modernizr.video.h264 && src.mp4
-        currentVideo.setAttribute("src", src.mp4)
-      currentVideo.load() if currentVideo?
+      if currentVideo?
+        currentVideo.setAttribute("poster", src.poster) if src.poster
+        if Modernizr.touchevents && Modernizr.video && Modernizr.video.h264 && src.mp4
+          currentVideo.setAttribute("src", src.mp4)
+        else if(Modernizr.video && Modernizr.video.webm && src.webm)
+          currentVideo.setAttribute("src", src.webm)
+        else if(Modernizr.video && Modernizr.video.ogg && src.ogg)
+          currentVideo.setAttribute("src", src.ogg)
+        else if Modernizr.video && Modernizr.video.h264 && src.mp4
+          currentVideo.setAttribute("src", src.mp4)
+        currentVideo.load()
     )
   else
     src = {}
