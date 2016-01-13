@@ -93,3 +93,6 @@ video {
     cursor: none;
   }
 }
+.dropdown-menu-btn {
+  @include noselect();
+}
