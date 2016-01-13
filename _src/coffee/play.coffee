@@ -218,7 +218,7 @@ setVideoSource = (src, parent=null, force=false)->
         currentVideo.setAttribute("src", src.ogg)
       else if Modernizr.video && Modernizr.video.h264 && src.mp4
         currentVideo.setAttribute("src", src.mp4)
-      currentVideo.load()
+      currentVideo.load() if currentVideo?
     )
   else
     src = {}
