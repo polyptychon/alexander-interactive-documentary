@@ -100,6 +100,7 @@ sort = (direction='asc')->
     $(this).removeClass('selected')
     if ($(this).text().toLowerCase().indexOf(direction)>=0)
       $(this).addClass('selected')
+      $('.archive .sort .current-sort').text($(this).text())
   )
   $.each(listItems, (idx, itm) -> myList.append(itm) );
 
