@@ -18,7 +18,7 @@ class Chapters extends singleton
     for video in this.getChapters()
       array = array.concat this.flattenArray(video.relatedItems) if video.relatedItems? && video.relatedItems.length>0
     return array
-    
+
   getAllFilters: ()->
     this.getAllRelatedItems()
         .map((item) -> item.filters )
