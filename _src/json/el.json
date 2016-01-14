@@ -20,6 +20,7 @@
   "pageLabel": "ΣΕΛΙΔΑ",
   "ofLabel": "ΑΠΟ",
   "applyFiltersButtonLabel": "ΕΦΑΡΜΟΓΗ ΦΙΛΤΡΩΝ",
+  "filters": ["Τοποθεσία", "Κεφάλαιο", "Τύπος"],
   "chapters": [
     {
       "title": "Η ΕΠΟΧΗ ΤΩΝ ΗΡΩΩΝ",

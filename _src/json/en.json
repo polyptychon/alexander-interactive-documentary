@@ -20,6 +20,7 @@
   "pageLabel": "PAGE",
   "ofLabel": "OF",
   "applyFiltersButtonLabel": "APPLY FILTERS",
+  "filters": ["Location", "Chapter", "Type"],
   "chapters": [
     {
       "title": "THE AGE OF HEROES",
