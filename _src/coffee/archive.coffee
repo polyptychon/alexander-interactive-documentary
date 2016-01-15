@@ -182,7 +182,9 @@ previous = ()->
   showCurrentPage()
 
 showCurrentPage = ()->
+  totalPages = Math.ceil(archive.find('.related-videos li.visible').length/10)
   archive.find('.pagination-text .page-number').html(currentPage)
+  archive.find('.pagination-text .total-pages').html(totalPages)
 
 sort = (direction='asc')->
   myList = archive.find('.related-videos')
