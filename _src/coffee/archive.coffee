@@ -71,6 +71,7 @@ applyFilters = ()->
     filtersSTR += "&nbsp;"
   $('.current-filters').html(filtersSTR)
   $('.current-filters a').unbind('click').bind('click', handleCurrentFilterClick)
+  renderFilters()
 
 handleCurrentFilterClick = ()->
   _this = $(this)
@@ -84,7 +85,26 @@ handleCurrentFilterClick = ()->
         $(this).removeClass('selected')
         _this.remove()
     )
-    currentFiltersAnchors.remove() if currentFiltersAnchors.length==1 && $(currentFiltersAnchors[0]).text()==global.data.clearAll
+    currentFiltersAnchors.remove() if currentFiltersAnchors.length==2 && currentFiltersAnchors.eq(1).text().trim()==global.data.clearAll
+  renderFilters()
+
+renderFilters = ()->
+  currentLocation = $('.filter-category:nth-child(1) a.selected').text().toUpperCase()
+  currentChapter = $('.filter-category:nth-child(2) a.selected').text().toUpperCase()
+  currentType = $('.filter-category:nth-child(3) a.selected').text().toUpperCase()
+  myList = archive.find('.related-videos')
+  listItems = myList.children('li')
+  listItems.removeClass('visible')
+  listItems = listItems.filter(()->
+    return (currentLocation=="" || acc($(this).find('a').data('location')).toUpperCase()==currentLocation) &&
+      (currentChapter=="" || acc($(this).find('a').data('chapter')).toUpperCase()==currentChapter) &&
+      (currentType=="" || acc($(this).find('a').data('type')).toUpperCase()==currentType)
+  )
+  listItems.addClass('visible')
+  nextItems = archive.find('.related-videos li.visible').slice(0, 10)
+  currentItems = archive.find('.related-videos li.visible').slice(10)
+  animatePageChange(currentItems, nextItems, '')
+  showCurrentPage()
 
 bindEvents = ()->
   setTimeout(()->
@@ -105,6 +125,7 @@ bindEvents = ()->
 
 init = ()->
   createFilters()
+  renderFilters()
   reset()
   bindEvents()
 
@@ -142,8 +163,8 @@ $('.video-player-compact .back').bind('click', ()->
   bindEvents()
 )
 next = ()->
-  currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
-  nextItems = archive.find('.related-videos li').slice(currentPage*pageLength, pageLength*(currentPage+1))
+  currentItems = archive.find('.related-videos li.visible').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
+  nextItems = archive.find('.related-videos li.visible').slice(currentPage*pageLength, pageLength*(currentPage+1))
   return if (nextItems.length==0)
   createjs.Sound.play(slideSound);
   animatePageChange(currentItems, nextItems)
@@ -151,8 +172,8 @@ next = ()->
   showCurrentPage()
 
 previous = ()->
-  currentItems = archive.find('.related-videos li').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
-  previousItems = archive.find('.related-videos li').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
+  currentItems = archive.find('.related-videos li.visible').slice(currentPage*pageLength-pageLength, pageLength*currentPage)
+  previousItems = archive.find('.related-videos li.visible').slice((currentPage-1)*pageLength-pageLength, pageLength*(currentPage-1))
   return if (previousItems.length==0)
   createjs.Sound.play(slideSound);
   animatePageChange(currentItems, previousItems, '')
@@ -180,8 +201,8 @@ sort = (direction='asc')->
 sortItems = (direction='asc')->
   currentPage = 1
   sort(direction)
-  nextItems = archive.find('.related-videos li').slice(0, 10)
-  currentItems = archive.find('.related-videos li').slice(10)
+  nextItems = archive.find('.related-videos li.visible').slice(0, 10)
+  currentItems = archive.find('.related-videos li.visible').slice(10)
   requestAnimFrame(()->
     requestAnimFrame(()->
       animatePageChange(currentItems, nextItems, '')
@@ -236,8 +257,8 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
 reset = ()->
   currentPage = 1
   sort()
-  nextItems = archive.find('.related-videos li').slice(0, 10)
-  currentItems = archive.find('.related-videos li').slice(10)
+  nextItems = archive.find('.related-videos li.visible').slice(0, 10)
+  currentItems = archive.find('.related-videos li.visible').slice(10)
   animatePageChange(currentItems, nextItems, '')
   showCurrentPage()
   $(window)

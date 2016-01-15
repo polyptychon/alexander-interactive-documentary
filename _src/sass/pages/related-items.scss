@@ -111,6 +111,7 @@
         }
       }
       li {
+        opacity: 0;
         $gap: 20px;
         $horizontal-gap: 0;
         $vertical-gap: $gap;
@@ -132,6 +133,9 @@
             $vertical-gap: $vertical-gap+5 + $left;
           }
         }
+      }
+      li.visible {
+        opacity: 1;
       }
     }
   }
