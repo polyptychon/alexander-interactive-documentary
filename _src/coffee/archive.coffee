@@ -41,6 +41,14 @@ createFilters = ()->
     """
   )
   $('.filter-categories').html(filterSTR)
+  currentFiltersAnchors = $('.current-filters a')
+  currentFiltersAnchors.each(()->
+    _this = $(this)
+    $(".filter-categories a").each(()->
+      if ($(this).text().trim()==_this.text().trim())
+        $(this).addClass('selected')
+    )
+  )
   $('.filter-categories a').unbind('click').bind('click', handleFilterClick)
 
 handleFilterClick = ()->
@@ -62,6 +70,21 @@ applyFilters = ()->
   else
     filtersSTR += "&nbsp;"
   $('.current-filters').html(filtersSTR)
+  $('.current-filters a').unbind('click').bind('click', handleCurrentFilterClick)
+
+handleCurrentFilterClick = ()->
+  _this = $(this)
+  currentFiltersAnchors = $('.current-filters a')
+  if (_this.text().trim()==global.data.clearAll)
+    $(".filter-categories a").removeClass('selected')
+    currentFiltersAnchors.remove()
+  else
+    $(".filter-categories a").each(()->
+      if ($(this).text().trim()==_this.text().trim())
+        $(this).removeClass('selected')
+        _this.remove()
+    )
+    currentFiltersAnchors.remove() if currentFiltersAnchors.length==1 && $(currentFiltersAnchors[0]).text()==global.data.clearAll
 
 bindEvents = ()->
   setTimeout(()->
