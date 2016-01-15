@@ -89,6 +89,7 @@ handleCurrentFilterClick = ()->
   renderFilters()
 
 renderFilters = ()->
+  currentPage = 1
   currentLocation = $('.filter-category:nth-child(1) a.selected').text().toUpperCase()
   currentChapter = $('.filter-category:nth-child(2) a.selected').text().toUpperCase()
   currentType = $('.filter-category:nth-child(3) a.selected').text().toUpperCase()
