@@ -19,6 +19,7 @@
   "backToDocumentaryButtonLabel": "ΕΠΙΣΤΡΟΦΗ ΣΤΟ ΝΤΟΚΙΜΑΝΤΕΡ",
   "pageLabel": "ΣΕΛΙΔΑ",
   "ofLabel": "ΑΠΟ",
+  "clearAll": "CLEAR ALL",
   "applyFiltersButtonLabel": "ΕΦΑΡΜΟΓΗ ΦΙΛΤΡΩΝ",
   "filters": ["Τοποθεσία", "Κεφάλαιο", "Τύπος"],
   "chapters": [

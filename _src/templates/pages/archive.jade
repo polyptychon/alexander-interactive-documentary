@@ -12,7 +12,8 @@ include ../mixins/top-button
           a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
             span #{locals.data.filterButtonLabel} &nbsp;
-          .dropdown-menu.multiple
+          span.current-filters
+          .dropdown-menu.filters-list.multiple
             .filter-categories
               each menu in [1,2,3]
                 .filter-category

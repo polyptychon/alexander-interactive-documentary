@@ -20,7 +20,7 @@ $hover-icons: facebook twitter;
   }
 }
 
-$simple-icons: logo logo-small title title-intro speaker speaker-muted previous next arrow-up arrow-down previous-small next-small check;
+$simple-icons: logo logo-small title title-intro speaker speaker-muted previous next arrow-up arrow-down previous-small next-small check close;
 
 @each $simple-icon in $simple-icons {
   @media (-webkit-min-device-pixel-ratio: 1.1), (min-device-pixel-ratio: 1.1),  (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
@@ -34,6 +34,10 @@ $simple-icons: logo logo-small title title-intro speaker speaker-muted previous 
   }
 }
 
+.close-icon {
+  margin-bottom: -2px;
+  margin-right: -5px;
+}
 .share-icon {
   margin-bottom: -8px;
 }

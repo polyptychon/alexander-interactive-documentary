@@ -27,20 +27,41 @@ createFilters = ()->
   ]
   filterSTR = ""
   filters.forEach((filter, index)->
-    filterData = ""
-    filtersData[index].forEach((item, index)->
-      filterData += """
+    filtersSTR = ""
+    filtersData[index].forEach((item)->
+      filtersSTR += """
       <li><a><span class="glyphicon check-icon"></span><span>#{acc(item.toUpperCase())}</span></a></li>
       """
     )
     filterSTR += """
       <div class="filter-category">
       <h3>#{acc(filters[index].toUpperCase())}</h3>
-      <ul>#{filterData}</ul>
+      <ul>#{filtersSTR}</ul>
       </div>
     """
   )
   $('.filter-categories').html(filterSTR)
+  $('.filter-categories a').unbind('click').bind('click', handleFilterClick)
+
+handleFilterClick = ()->
+  _this = $(this)
+  $(this).parent().parent().find('.selected').each(()->
+    $(this).removeClass('selected') if $(this).text() != _this.text()
+  )
+  $(this).toggleClass('selected')
+
+applyFilters = ()->
+  $(this).parent().removeClass('visible')
+  selectedFilters = $('.filter-categories a.selected')
+  filtersSTR = ""
+  selectedFilters.each(()->
+    filtersSTR += """<a class="current-sort text-uppercase btn-border">#{$(this).text()}&nbsp;<span class="glyphicon close-icon"></span></a>"""
+  )
+  if selectedFilters.length>1
+    filtersSTR += """<a class="current-sort text-uppercase btn-border">#{global.data.clearAll}</a>"""
+  else
+    filtersSTR += "&nbsp;"
+  $('.current-filters').html(filtersSTR)
 
 bindEvents = ()->
   setTimeout(()->
@@ -50,10 +71,13 @@ bindEvents = ()->
         .bind('keyup', handleKeyUp)
     if ($(window).width()>1023)
       $('.archive .archive-videos-container')
-      .unbind('swipeleft')
-      .unbind('swiperight')
-      .bind('swipeleft', previous)
-      .bind('swiperight', next)
+        .unbind('swipeleft')
+        .unbind('swiperight')
+        .bind('swipeleft', previous)
+        .bind('swiperight', next)
+    $('.apply-filter-btn')
+      .unbind('click')
+      .bind('click', applyFilters)
   , 1000)
 
 init = ()->

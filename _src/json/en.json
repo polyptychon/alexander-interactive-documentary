@@ -20,6 +20,7 @@
   "pageLabel": "PAGE",
   "ofLabel": "OF",
   "applyFiltersButtonLabel": "APPLY FILTERS",
+  "clearAll": "CLEAR ALL",
   "filters": ["Location", "Chapter", "Type"],
   "chapters": [
     {
