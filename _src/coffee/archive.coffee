@@ -7,12 +7,40 @@ displayPage = require "./displayPage.coffee"
 player = require "./play.coffee"
 slideSound = 'page-slide-back'
 archive = $('.archive')
+acc = require "./acc"
 
 LEFT_KEY = 37
 RIGHT_KEY = 39
 
 currentPage = 1;
 pageLength = 10
+
+width = 1000
+gap = 25
+
+createFilters = ()->
+  filters = chapterManager.getFilters()
+  filtersData = [
+    chapterManager.getAllFilterItems('location'),
+    chapterManager.getAllFilterItems('chapter'),
+    chapterManager.getAllFilterItems('type')
+  ]
+  filterSTR = ""
+  filters.forEach((filter, index)->
+    filterData = ""
+    filtersData[index].forEach((item, index)->
+      filterData += """
+      <li><a><span class="glyphicon check-icon"></span><span>#{acc(item.toUpperCase())}</span></a></li>
+      """
+    )
+    filterSTR += """
+      <div class="filter-category">
+      <h3>#{acc(filters[index].toUpperCase())}</h3>
+      <ul>#{filterData}</ul>
+      </div>
+    """
+  )
+  $('.filter-categories').html(filterSTR)
 
 bindEvents = ()->
   setTimeout(()->
@@ -29,6 +57,7 @@ bindEvents = ()->
   , 1000)
 
 init = ()->
+  createFilters()
   reset()
   bindEvents()
 
@@ -85,9 +114,6 @@ previous = ()->
 
 showCurrentPage = ()->
   archive.find('.pagination-text .page-number').html(currentPage)
-
-width = 1000
-gap = 25
 
 sort = (direction='asc')->
   myList = archive.find('.related-videos')

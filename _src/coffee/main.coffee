@@ -16,7 +16,6 @@ ls = require 'local-storage'
 play = require "play-audio"
 
 init = ()->
-  console.log chapterManager.getAllFilterItems('type')
   pointerEvents()
   chapterContainers = $('.chapters-container ul, .player-footer-container .chapters ul')
   chapterList = ""
