@@ -105,6 +105,7 @@ renderFilters = ()->
   currentItems = archive.find('.related-videos li.visible').slice(10)
   animatePageChange(currentItems, nextItems, '')
   showCurrentPage()
+  createjs.Sound.play(slideSound);
 
 bindEvents = ()->
   setTimeout(()->
