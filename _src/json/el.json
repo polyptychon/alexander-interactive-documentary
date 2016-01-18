@@ -22,7 +22,7 @@
   "clearAll": "ΚΑΘΑΡΙΣΜΟΣ ΦΙΛΤΡΩΝ",
   "applyFiltersButtonLabel": "ΕΦΑΡΜΟΓΗ ΦΙΛΤΡΩΝ",
   "filters": ["Τοποθεσία", "Κεφάλαιο", "Τύπος"],
-  "sortItems": [{"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (ASC)", "data": "ΑΥΞΟΥΣΑ"}, {"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (DESC)", "data": "ΦΘΙΝΟΥΣΑ"}],
+  "sortItems": [{"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (ΑΥΞΟΥΣΑ)", "data": "ASC"}, {"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (ΦΘΙΝΟΥΣΑ)", "data": "DESC"}],
   "chapters": [
     {
       "title": "Η ΕΠΟΧΗ ΤΩΝ ΗΡΩΩΝ",
