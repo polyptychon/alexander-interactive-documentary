@@ -570,6 +570,12 @@ showCurrentInfo = (e)->
   clearTimeout(infoTimeout)
   isInfoVisible = true
   infoPopup.removeClass('hidden')
+  infoPopup.addClass('no-transition')
+  requestAnimFrame(()->
+    requestAnimFrame(()->
+      infoPopup.removeClass('no-transition')
+    )
+  )
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
 

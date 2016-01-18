@@ -49,6 +49,9 @@ footer, .chapters, .player-footer-container, .related-items-container {
 }
 .info-popup {
   transition: all .2s ease-out;
+  &.no-transition {
+    transition-duration: 0s;
+  }
 }
 .mini .info-popup {
   transition: transform .4s, opacity .4s;
