@@ -19,7 +19,7 @@
   "backToDocumentaryButtonLabel": "ΕΠΙΣΤΡΟΦΗ ΣΤΟ ΝΤΟΚΙΜΑΝΤΕΡ",
   "pageLabel": "ΣΕΛΙΔΑ",
   "ofLabel": "ΑΠΟ",
-  "clearAll": "CLEAR ALL",
+  "clearAll": "ΚΑΘΑΡΙΣΜΟΣ ΦΙΛΤΡΩΝ",
   "applyFiltersButtonLabel": "ΕΦΑΡΜΟΓΗ ΦΙΛΤΡΩΝ",
   "filters": ["Τοποθεσία", "Κεφάλαιο", "Τύπος"],
   "sortItems": [{"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (ASC)", "data": "ASC"}, {"label":"ΤΙΤΛΟΣ ΒΙΝΤΕΟ (DESC)", "data": "DESC"}],
