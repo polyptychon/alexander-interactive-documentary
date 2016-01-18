@@ -231,6 +231,7 @@ animatePageChange = (currentItems, nextItems, direction = '-') ->
 
 reset = ()->
   currentPage = 1
+  cleanFilters()
   sort()
   nextItems = archive.find('.related-videos li.visible').slice(0, 10)
   currentItems = archive.find('.related-videos li.visible').slice(10)
@@ -246,8 +247,22 @@ handleKeyUp = (e)->
   previous() if e.keyCode==LEFT_KEY
   next() if e.keyCode==RIGHT_KEY
 
+cleanFilters = ()->
+  currentFilters = $('.current-filters a')
+  if currentFilters.length==0
+    $(".filter-categories a").removeClass('selected')
+  else
+    currentFilters.each(()->
+      _this = $(this)
+      $(".filter-categories a").each(()->
+        $(this).removeClass('selected')
+        $(this).addClass('selected') if ($(this).text().trim()==_this.text().trim())
+      )
+    )
+
 handleArchiveClick = ()->
   $('.dropdown-menu').removeClass('visible')
+  cleanFilters()
 
 handleDropDownClick = (e)->
   e.stopImmediatePropagation()
