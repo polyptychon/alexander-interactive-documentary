@@ -556,12 +556,14 @@ handleInfoMouseOut = (e)->
   clearTimeout(infoTimeout)
   if (!$(this).hasClass('compact'))
     infoTimeout = setTimeout(()->
-      stopShowCurrentInfo()
+      stopShowCurrentInfo(e)
     , 400)
     e.stopImmediatePropagation()
     return false
 
 stopShowCurrentInfo = (e)->
+  infoPopup.addClass('compact') if e?.currentTarget? && $(e.currentTarget).hasClass('info-popup')
+  clearTimeout(infoTimeout)
   isInfoVisible = false
   infoPopup.addClass('hidden') if infoPopup
   progressBarContainer.unbind('mousemove').unbind('mouseout')  if progressBarContainer
