@@ -18,39 +18,6 @@ pageLength = 10
 width = 1000
 gap = 25
 
-createFilters = ()->
-  filters = chapterManager.getFilters()
-  filtersData = [
-    chapterManager.getAllFilterItems('location'),
-    chapterManager.getAllFilterItems('chapter'),
-    chapterManager.getAllFilterItems('type')
-  ]
-  filterSTR = ""
-  filters.forEach((filter, index)->
-    filtersSTR = ""
-    filtersData[index].forEach((item)->
-      filtersSTR += """
-      <li><a><span class="glyphicon check-icon"></span><span>#{acc(item.toUpperCase())}</span></a></li>
-      """
-    )
-    filterSTR += """
-      <div class="filter-category">
-      <h3>#{acc(filters[index].toUpperCase())}</h3>
-      <ul>#{filtersSTR}</ul>
-      </div>
-    """
-  )
-  $('.filter-categories').html(filterSTR)
-  currentFiltersAnchors = $('.current-filters a')
-  currentFiltersAnchors.each(()->
-    _this = $(this)
-    $(".filter-categories a").each(()->
-      if ($(this).text().trim()==_this.text().trim())
-        $(this).addClass('selected')
-    )
-  )
-  $('.filter-categories a').unbind('click').bind('click', handleFilterClick)
-
 handleFilterClick = ()->
   _this = $(this)
   $(this).parent().parent().find('.selected').each(()->
@@ -123,10 +90,10 @@ bindEvents = ()->
     $('.apply-filter-btn')
       .unbind('click')
       .bind('click', applyFilters)
+    $('.filter-categories a').unbind('click').bind('click', handleFilterClick)
   , 1000)
 
 init = ()->
-  createFilters()
   renderFilters()
   reset()
   bindEvents()

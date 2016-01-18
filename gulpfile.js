@@ -83,6 +83,45 @@ var getAllRelatedItems = function(videos) {
   }
   return array;
 };
+var getAllFilters = function(videos) {
+  return getAllRelatedItems(videos).map(function(item) {
+    return item.filters;
+  });
+};
+var getAllFilterItems = function(filter, videos) {
+  if (filter == null) {
+    filter = 'location';
+  }
+  return getAllFilters(videos).map(function(item) {
+    return item[filter];
+  }).filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+};
+var acc = function (t) {
+  t = t.replace(/Ά/g, "Α");
+  t = t.replace(/ά/g, "α");
+  t = t.replace(/Έ/g, "Ε");
+  t = t.replace(/έ/g, "ε");
+  t = t.replace(/Ή/g, "Η");
+  t = t.replace(/ή/g, "η");
+  t = t.replace(/Ί/g, "Ι");
+  t = t.replace(/Ϊ/g, "Ι");
+  t = t.replace(/ί/g, "ι");
+  t = t.replace(/ϊ/g, "ι");
+  t = t.replace(/ΐ/g, "ι");
+  t = t.replace(/Ό/g, "Ο");
+  t = t.replace(/ό/g, "ο");
+  t = t.replace(/Ύ/g, "Υ");
+  t = t.replace(/Ϋ/g, "Υ");
+  t = t.replace(/ύ/g, "υ");
+  t = t.replace(/ϋ/g, "υ");
+  t = t.replace(/ΰ/g, "υ");
+  t = t.replace(/Ώ/g, "Ω");
+  t = t.replace(/ώ/g, "ω");
+  return t;
+};
+
 function getOutputDir() {
   return BUILD+env;
 }
@@ -122,6 +161,8 @@ gulp.task('jade', function() {
       "locals": {
         'flattenArray': flattenArray,
         'getAllRelatedItems': getAllRelatedItems,
+        'getAllFilterItems': getAllFilterItems,
+        'acc': acc,
         'lang': lang,
         'data': JSON.parse(fs.readFileSync("./"+SRC+langsDir+item, "utf8")),
         'production': env === PRODUCTION
