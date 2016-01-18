@@ -34,16 +34,14 @@ include ../mixins/top-button
           a.dropdown-menu-btn.btn.text-uppercase
             span.glyphicon.arrow-down-icon
             span #{locals.data.shortButtonLabel} &nbsp;
-          a.current-sort.text-uppercase.btn-border VIDEO TITLE (ASC)
+          a.current-sort.text-uppercase.btn-border=acc(locals.data.sortItems[0].label.toUpperCase())
           ul.dropdown-menu.sort-list
-            li
-              a(class='selected' data-sort="ASC" )
-                span.glyphicon.check-icon
-                span VIDEO TITLE (ASC)
-            li
-              a(data-sort="DESC")
-                span.glyphicon.check-icon
-                span VIDEO TITLE (DESC)
+            each sortItem, index in locals.data.sortItems
+              li
+                a(class=index==0?'selected':'' data-sort=sortItem.data )
+                  span.glyphicon.check-icon
+                  span=acc(sortItem.label.toUpperCase())
+
   .archive-videos-container
     .related-videos-container.page1
       a.btn.previous

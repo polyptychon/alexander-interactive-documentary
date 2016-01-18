@@ -22,6 +22,7 @@
   "applyFiltersButtonLabel": "APPLY FILTERS",
   "clearAll": "CLEAR ALL",
   "filters": ["Location", "Chapter", "Type"],
+  "sortItems": [{"label":"VIDEO TITLE (ASC)", "data": "ASC"}, {"label":"VIDEO TITLE (DESC)", "data": "DESC"}],
   "chapters": [
     {
       "title": "THE AGE OF HEROES",
