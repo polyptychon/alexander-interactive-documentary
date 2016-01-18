@@ -509,6 +509,7 @@ controlProgress = (e, touch)->
   $(window)
     .unbind('mousemove').bind('mousemove', mouseMoveHandler)
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
+    .unbind('mouseout').bind('mouseout', stopUpdateTime)
   progressBarContainer
     .unbind('mouseup').bind('mouseup', stopUpdateTime)
   if Modernizr.touchevents && browser.name != 'ie'
