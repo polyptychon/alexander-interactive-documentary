@@ -167,7 +167,7 @@ sort = (direction='asc')->
   listItems.reverse() if direction.toLowerCase()=='desc'
   $('.archive .sort-list a').each(()->
     $(this).removeClass('selected')
-    if ($(this).text().toLowerCase().indexOf(direction)>=0)
+    if ($(this).data('sort').toLowerCase().indexOf(direction)>=0)
       $(this).addClass('selected')
       $('.archive .sort .current-sort').text($(this).text())
   )
