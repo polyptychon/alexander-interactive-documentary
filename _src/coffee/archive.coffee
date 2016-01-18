@@ -91,6 +91,8 @@ bindEvents = ()->
       .unbind('click')
       .bind('click', applyFilters)
     $('.filter-categories a').unbind('click').bind('click', handleFilterClick)
+    $('.dropdown-menu').unbind('click').bind('click', handleDropDownClick)
+    $('.page.archive').unbind('click').bind('click', handleArchiveClick)
   , 1000)
 
 init = ()->
@@ -105,10 +107,12 @@ $('.btn.previous').bind('click', ()->
   previous()
 )
 
-$('.dropdown-menu-btn').bind('click', ()->
+$('.dropdown-menu-btn').bind('click', (e)->
   $(this).closest('.dropdown-menu').toggleClass('visible')
   $(this).find('.dropdown-menu').toggleClass('visible')
   $(this).parent().find('.dropdown-menu').toggleClass('visible')
+  e.stopImmediatePropagation()
+  return false
 )
 $('.archive .related-videos a').bind('click', ()->
   $('.page.visible').addClass('slide-up')
@@ -241,6 +245,13 @@ reset = ()->
 handleKeyUp = (e)->
   previous() if e.keyCode==LEFT_KEY
   next() if e.keyCode==RIGHT_KEY
+
+handleArchiveClick = ()->
+  $('.dropdown-menu').removeClass('visible')
+
+handleDropDownClick = (e)->
+  e.stopImmediatePropagation()
+  return false
 
 init()
 
