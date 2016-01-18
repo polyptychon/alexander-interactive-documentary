@@ -6,47 +6,58 @@
 <g id="sprite_x5F_speaker">
 	<g id="graphics_5_">
 		<g>
-			<polygon style="fill:#A7A79C;" points="767.325,132.489 767.325,137.689 770.575,137.689 774.475,141.589 774.475,128.589 
-				770.575,132.489 			"/>
+			<polygon style="fill:#A7A79C;" points="804.7,132.489 804.7,137.689 807.95,137.689 811.85,141.589 811.85,128.589 
+				807.95,132.489 			"/>
 		</g>
-		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M777.05,131.023l0.342,0.916c0.854,2.285,0.854,4.801,0,7.085
+		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M814.425,131.023l0.342,0.916c0.854,2.285,0.854,4.801,0,7.085
 			l-0.342,0.916"/>
-		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M780.563,129.898l0.419,1.121c1.046,2.797,1.046,5.877,0,8.674
+		<path style="fill:none;stroke:#A7A79C;stroke-miterlimit:10;" d="M817.938,129.898l0.419,1.121c1.046,2.797,1.046,5.877,0,8.674
 			l-0.419,1.121"/>
 	</g>
-	<rect id="area_8_" x="764.823" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_8_" x="802.198" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
 </g>
 <g id="sprite_x5F_speaker-muted">
 	<g id="graphics_14_">
 		<g>
-			<polygon style="fill:#A7A79C;" points="727.273,132.489 727.273,137.689 730.523,137.689 734.423,141.589 734.423,128.589 
-				730.523,132.489 			"/>
+			<polygon style="fill:#A7A79C;" points="764.648,132.489 764.648,137.689 767.898,137.689 771.798,141.589 771.798,128.589 
+				767.898,132.489 			"/>
 		</g>
 	</g>
-	<rect id="area_18_" x="721.045" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
+	<rect id="area_18_" x="758.42" y="125" style="opacity:0;fill:#CCCCCC;" width="19.778" height="20.085"/>
 </g>
 <g id="sprite_x5F_arrow-down">
 	<g id="graphics_9_">
-		<polygon style="fill:#808079;" points="690.545,133.928 695.545,125.928 685.545,125.928 		"/>
+		<polygon style="fill:#808079;" points="727.92,133.928 732.92,125.928 722.92,125.928 		"/>
 	</g>
-	<rect id="area_13_" x="684.795" y="125" style="opacity:0;fill:#CCCCCC;" width="12.25" height="9.75"/>
+	<rect id="area_13_" x="722.17" y="125" style="opacity:0;fill:#CCCCCC;" width="12.25" height="9.75"/>
 </g>
 <g id="sprite_x5F_check">
 	<g id="graphics_12_">
-		<polyline style="fill:none;stroke:#808079;" points="645.419,133.336 650.419,141.336 660.043,127.939 		"/>
+		<polyline style="fill:none;stroke:#808079;" points="682.794,133.336 687.794,141.336 697.418,127.939 		"/>
 	</g>
-	<rect id="area_17_" x="643.737" y="125" style="opacity:0;fill:#CCCCCC;" width="17.058" height="17.291"/>
+	<rect id="area_17_" x="681.112" y="125" style="opacity:0;fill:#CCCCCC;" width="17.058" height="17.291"/>
 </g>
 <g id="sprite_x5F_close">
 	<g id="graphics_15_">
 		<g>
 			<g>
-				<line style="fill:none;stroke:#6D6D66;" x1="609.11" y1="126.803" x2="617.11" y2="134.803"/>
-				<line style="fill:none;stroke:#6D6D66;" x1="617.11" y1="126.803" x2="609.11" y2="134.803"/>
+				<line style="fill:none;stroke:#6D6D66;" x1="646.485" y1="126.803" x2="654.485" y2="134.803"/>
+				<line style="fill:none;stroke:#6D6D66;" x1="654.485" y1="126.803" x2="646.485" y2="134.803"/>
 			</g>
 		</g>
 	</g>
-	<rect id="area_19_" x="606.362" y="125" style="opacity:0;fill:#CCCCCC;" width="13.375" height="11.625"/>
+	<rect id="area_19_" x="643.737" y="125" style="opacity:0;fill:#CCCCCC;" width="13.375" height="11.625"/>
+</g>
+<g id="sprite_x5F_close-hover">
+	<g id="graphics_16_">
+		<g>
+			<g>
+				<line style="fill:none;stroke:#A7A79C;" x1="609.11" y1="126.803" x2="617.11" y2="134.803"/>
+				<line style="fill:none;stroke:#A7A79C;" x1="617.11" y1="126.803" x2="609.11" y2="134.803"/>
+			</g>
+		</g>
+	</g>
+	<rect id="area_15_" x="606.362" y="125" style="opacity:0;fill:#CCCCCC;" width="13.375" height="11.625"/>
 </g>
 <g id="sprite_x5F_previous-small">
 	<g id="graphics_11_">
