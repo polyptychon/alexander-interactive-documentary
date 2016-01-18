@@ -44,7 +44,7 @@
     color: $text-color;
     background: #d1d1c5;
     &:hover {
-      //background: darken(#d1d1c5, 5%);
+      //background: darken(#d1d1c5, 10%);
     }
     .related-items-btn {
       display: block;
@@ -257,6 +257,9 @@
         left: 2px;
         background: #d1d1c5;
         padding: 5px 0;
+        &:hover, &:hover::after {
+          //background: lighten(#d1d1c5, 5%);
+        }
         &:after {
           position: absolute;
           content: '';
