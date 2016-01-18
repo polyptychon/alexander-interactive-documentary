@@ -570,12 +570,13 @@ showCurrentInfo = (e)->
   clearTimeout(infoTimeout)
   isInfoVisible = true
   infoPopup.removeClass('hidden')
-  infoPopup.addClass('no-transition')
-  requestAnimFrame(()->
+  if browser.name != 'safari'
+    infoPopup.addClass('no-transition')
     requestAnimFrame(()->
-      infoPopup.removeClass('no-transition')
+      requestAnimFrame(()->
+        infoPopup.removeClass('no-transition')
+      )
     )
-  )
   progressBarContainer.unbind('mousemove').unbind('mouseout')
     .bind('mousemove', updateInfo).bind('mouseout', stopShowCurrentInfo)
 
