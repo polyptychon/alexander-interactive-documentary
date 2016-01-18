@@ -29,6 +29,7 @@ h6 { @extend .h6;
   font-family: $font-primary; }
 
 a {
+  @include noselect();
   color: $link-color;
   text-decoration: none;
   cursor: pointer;
