@@ -1,0 +1,12 @@
+{
+  "name": "Alexander the Great - Online virtual museum",
+  "short_name": "Alexander the Great",
+  "lang": "en-GB",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/images/favicon.ico"
+    }
+  ]
+}

@@ -316,6 +316,10 @@ gulp.task('fonts', function() {
   return gulp.src(['node_modules/bootstrap/assets/fonts/**', MOCKUPS+"/fonts/*"])
     .pipe(gulp.dest(getOutputDir()+ASSETS+'/fonts'))
 });
+gulp.task('mainifest', function() {
+  return gulp.src([SRC+"/templates/mainfest.json"])
+    .pipe(gulp.dest(getOutputDir()))
+});
 
 gulp.task('watch', function() {
   watching = true;
@@ -345,12 +349,12 @@ gulp.task('live', ['coffee', 'jade', 'sass', 'watch']);
 gulp.task('editor', ['editorSass']);
 
 gulp.task('build', function() {
-  runSequence(['fonts','images','sounds','spriteSass','autoVariables'],['fonts','coffee','sass'],['jade']);
+  runSequence(['fonts','mainifest','images','sounds','spriteSass','autoVariables'],['fonts','coffee','sass'],['jade']);
 });
 gulp.task('server', ['connect', 'watch']);
 gulp.task('production', function() {
   env = PRODUCTION;
-  runSequence(['clean-js'],['images','sounds'],['fonts','coffee','sass'],['jade']);
+  runSequence(['clean-js'],['images','sounds','mainifest'],['fonts','coffee','sass'],['jade']);
 });
 
 //gulp watch --jade=filename
