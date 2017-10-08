@@ -1,6 +1,6 @@
 require("./soundjs-0.6.2.min");
 global.SM = (function(){
-  var play = require("play-audio")('assets/sounds/soundtrack.mp3');
+  var play = require("./play-audio")('assets/sounds/soundtrack.mp3');
   var musics = {};
   var intervalID = -1;
   /**

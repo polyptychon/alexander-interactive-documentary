@@ -29,10 +29,10 @@
       "chapterBackground": null,
       "poster": null,
       "source": {
-        "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.webm",
-        "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.mp4"
+        "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.webm",
+        "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.mp4"
       },
-      "subtitle": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.srt",
+      "subtitle": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.1of3.The.Age.of.Heroes.srt",
       "parsedSubtitle": null,
       "isPlayedOnce": false,
       "relatedItems": [
@@ -41,8 +41,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/AIANH.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/AIANH.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/AIANH.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/AIANH.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -59,8 +59,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/AMFIPOLI_FILIPOI.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/AMFIPOLI_FILIPOI.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/AMFIPOLI_FILIPOI.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/AMFIPOLI_FILIPOI.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -77,8 +77,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Diou.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Diou.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Diou.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Diou.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -95,8 +95,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Ioanninon.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Ioanninon.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Ioanninon.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Ioanninon.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -113,8 +113,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Pellas.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Pellas.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Pellas.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Pellas.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -131,8 +131,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Thessalonikis.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Archaeological_Museum_Thessalonikis.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Thessalonikis.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Archaeological_Museum_Thessalonikis.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -149,8 +149,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Athens.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Athens.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Athens.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Athens.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -169,10 +169,10 @@
       "chapterBackground": null,
       "poster": null,
       "source": {
-        "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.webm",
-        "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.mp4"
+        "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.webm",
+        "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.mp4"
       },
-      "subtitle": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.srt",
+      "subtitle": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.2of3.The.Classical.Revolution.srt",
       "parsedSubtitle": null,
       "isPlayedOnce": false,
       "relatedItems": [
@@ -181,8 +181,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Delfoi.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Delfoi.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Delfoi.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Delfoi.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -199,8 +199,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/DODONI-HPEIROS.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/DODONI-HPEIROS.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/DODONI-HPEIROS.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/DODONI-HPEIROS.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -217,8 +217,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Korinthos.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Korinthos.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Korinthos.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Korinthos.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -235,8 +235,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Nature_of_Macedonia.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/Nature_of_Macedonia.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Nature_of_Macedonia.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/Nature_of_Macedonia.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -255,10 +255,10 @@
       "chapterBackground": null,
       "poster": null,
       "source": {
-        "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.webm",
-        "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.mp4"
+        "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.webm",
+        "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.mp4"
       },
-      "subtitle": "http://alexander-interactive-documentary.polyptychon.gr/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.srt",
+      "subtitle": "http://alexander-interactive-documentary.polyptychon.com/BBC/BBC.Treasures.of.Ancient.Greece.3of3.The.Long.Shadow.srt",
       "parsedSubtitle": null,
       "isPlayedOnce": false,
       "relatedItems": [
@@ -267,8 +267,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/OLYMPIA.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/OLYMPIA.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/OLYMPIA.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/OLYMPIA.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -285,8 +285,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/OLYNTHOS.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/OLYNTHOS.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/OLYNTHOS.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/OLYNTHOS.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -303,8 +303,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/SAMOTHRAKI.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/SAMOTHRAKI.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/SAMOTHRAKI.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/SAMOTHRAKI.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -321,8 +321,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/The_Museum_of_the_Royal_Tombs_of_Aigai.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/The_Museum_of_the_Royal_Tombs_of_Aigai.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/The_Museum_of_the_Royal_Tombs_of_Aigai.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/The_Museum_of_the_Royal_Tombs_of_Aigai.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -339,8 +339,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/THE_TOMB_OF_QUEEN_EVRIDIKIS.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/THE_TOMB_OF_QUEEN_EVRIDIKIS.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/THE_TOMB_OF_QUEEN_EVRIDIKIS.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/THE_TOMB_OF_QUEEN_EVRIDIKIS.mp4.mp4"
           },
           "filters": {
             "location": "Greece",
@@ -357,8 +357,8 @@
           "thumbnail": "",
           "poster": null,
           "source": {
-            "webm": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/XAIRONEIA.webmhd.webm",
-            "mp4": "http://alexander-interactive-documentary.polyptychon.gr/BBC/related/XAIRONEIA.mp4.mp4"
+            "webm": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/XAIRONEIA.webmhd.webm",
+            "mp4": "http://alexander-interactive-documentary.polyptychon.com/BBC/related/XAIRONEIA.mp4.mp4"
           },
           "filters": {
             "location": "Greece",

@@ -193,7 +193,7 @@ gulp.task('coffee', function() {
     return bundler.bundle()
       .on('error', function(err) {
         console.log(err.message);
-        this.end();
+        // this.end();
       })
       .pipe(duration('coffee'))
       .pipe(source('main.js'))

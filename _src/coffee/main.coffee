@@ -13,7 +13,7 @@ displayPage = require "./displayPage.coffee"
 browser = require "detect-browser"
 player = require "./play.coffee"
 ls = require 'local-storage'
-play = require "play-audio"
+play = require "./play-audio"
 
 init = ()->
   pointerEvents()
